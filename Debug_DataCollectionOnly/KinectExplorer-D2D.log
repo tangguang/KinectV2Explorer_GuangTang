@@ -1,0 +1,118 @@
+﻿Build started 2/16/2014 8:00:25 PM.
+     1>Project "C:\Users\yuner\Documents\KinectDevelop\KinectExplorer_test\KinectExplorer-D2D.vcxproj" on node 2 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\KinectExplorer-D2D.lastbuildstate".
+       InitializeBuildStatus:
+         Creating "Debug\KinectExplorer-D2D.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /IC:\opencv\build\include /I"C:\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.7.0\inc" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\um" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\shared" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\winrt" /I"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\atlmfc\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt CameraColorSettingsViewer.cpp CameraExposureSettingsViewer.cpp CameraSettingsViewer.cpp DepthInbedAPPs.cpp FaceRecog.cpp FaceTracker.cpp ImageRenderer.cpp CustomDrawListControl.cpp InbedAPPs.cpp KinectSettings.cpp KinectWindow.cpp KinectWindowManager.cpp LegRaisExcer.cpp MainWindow.cpp NuiAccelerometerStream.cpp NuiAccelerometerViewer.cpp NuiActivityWatcher.cpp NuiAudioStream.cpp NuiAudioViewer.cpp NuiColorStream.cpp NuiDepthStream.cpp NuiImageBuffer.cpp NuiSkeletonStream.cpp NuiStream.cpp NuiStreamViewer.cpp NuiTiltAngleViewer.cpp NuiViewer.cpp WaveWriter.cpp
+         WaveWriter.cpp
+         NuiViewer.cpp
+         NuiTiltAngleViewer.cpp
+         NuiStreamViewer.cpp
+         NuiStream.cpp
+         NuiSkeletonStream.cpp
+         NuiImageBuffer.cpp
+         NuiDepthStream.cpp
+         NuiColorStream.cpp
+         NuiAudioViewer.cpp
+         NuiAudioStream.cpp
+         NuiActivityWatcher.cpp
+         NuiAccelerometerViewer.cpp
+         NuiAccelerometerStream.cpp
+         MainWindow.cpp
+         LegRaisExcer.cpp
+         KinectWindowManager.cpp
+         KinectWindow.cpp
+         KinectSettings.cpp
+         InbedAPPs.cpp
+         Generating Code...
+         Compiling...
+         CustomDrawListControl.cpp
+         ImageRenderer.cpp
+         FaceTracker.cpp
+         FaceRecog.cpp
+         DepthInbedAPPs.cpp
+         CameraSettingsViewer.cpp
+         CameraExposureSettingsViewer.cpp
+         CameraColorSettingsViewer.cpp
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\KinectExplorer.res" KinectExplorer.rc 
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\KinectExplorer-D2D.exe.embed.manifest.res" Debug\KinectExplorer-D2D_manifest.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\yuner\Documents\KinectDevelop\KinectExplorer_test\Debug\KinectExplorer-D2D.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\opencv\build\x86\vc10\bin /LIBPATH:C:\opencv\build\x86\vc10\lib /LIBPATH:C:\opencv\build\x86\vc10\staticlib /LIBPATH:"C:\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.7.0\Lib\x86" /LIBPATH:"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\atlmfc\lib" FaceTrackLib.lib shlwapi.lib kernel32.lib gdiplus.lib comctl32.lib user32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Kinect10.lib d2d1.lib dwrite.lib msdmo.lib dmoguids.lib amstrmid.lib opencv_core246d.lib opencv_imgproc246d.lib opencv_highgui246d.lib opencv_ml246d.lib opencv_video246d.lib opencv_features2d246d.lib opencv_calib3d246d.lib opencv_objdetect246d.lib opencv_contrib246d.lib opencv_legacy246d.lib opencv_flann246d.lib sapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\KinectExplorer-D2D.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\yuner\Documents\KinectDevelop\KinectExplorer_test\Debug\KinectExplorer-D2D.pdb" /SUBSYSTEM:WINDOWS /STACK:"10000000","10000000" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\yuner\Documents\KinectDevelop\KinectExplorer_test\Debug\KinectExplorer-D2D.lib" /MACHINE:X86 Debug\KinectExplorer.res
+         "Debug\KinectExplorer-D2D.exe.embed.manifest.res"
+         Debug\CameraColorSettingsViewer.obj
+         Debug\CameraExposureSettingsViewer.obj
+         Debug\CameraSettingsViewer.obj
+         Debug\DepthInbedAPPs.obj
+         Debug\FaceRecog.obj
+         Debug\FaceTracker.obj
+         Debug\ImageRenderer.obj
+         Debug\CustomDrawListControl.obj
+         Debug\InbedAPPs.obj
+         Debug\KinectSettings.obj
+         Debug\KinectWindow.obj
+         Debug\KinectWindowManager.obj
+         Debug\LegRaisExcer.obj
+         Debug\MainWindow.obj
+         Debug\NuiAccelerometerStream.obj
+         Debug\NuiAccelerometerViewer.obj
+         Debug\NuiActivityWatcher.obj
+         Debug\NuiAudioStream.obj
+         Debug\NuiAudioViewer.obj
+         Debug\NuiColorStream.obj
+         Debug\NuiDepthStream.obj
+         Debug\NuiImageBuffer.obj
+         Debug\NuiSkeletonStream.obj
+         Debug\NuiStream.obj
+         Debug\NuiStreamViewer.obj
+         Debug\NuiTiltAngleViewer.obj
+         Debug\NuiViewer.obj
+         Debug\WaveWriter.obj
+       Manifest:
+         Deleting file "Debug\KinectExplorer-D2D.exe.embed.manifest".
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\KinectExplorer-D2D.exe.embed.manifest" /manifest "Debug\KinectExplorer-D2D.exe.intermediate.manifest"
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\KinectExplorer-D2D.exe.embed.manifest.res" Debug\KinectExplorer-D2D_manifest.rc 
+       LinkEmbedManifest:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\yuner\Documents\KinectDevelop\KinectExplorer_test\Debug\KinectExplorer-D2D.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\opencv\build\x86\vc10\bin /LIBPATH:C:\opencv\build\x86\vc10\lib /LIBPATH:C:\opencv\build\x86\vc10\staticlib /LIBPATH:"C:\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.7.0\Lib\x86" /LIBPATH:"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\atlmfc\lib" FaceTrackLib.lib shlwapi.lib kernel32.lib gdiplus.lib comctl32.lib user32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Kinect10.lib d2d1.lib dwrite.lib msdmo.lib dmoguids.lib amstrmid.lib opencv_core246d.lib opencv_imgproc246d.lib opencv_highgui246d.lib opencv_ml246d.lib opencv_video246d.lib opencv_features2d246d.lib opencv_calib3d246d.lib opencv_objdetect246d.lib opencv_contrib246d.lib opencv_legacy246d.lib opencv_flann246d.lib sapi.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\KinectExplorer-D2D.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\yuner\Documents\KinectDevelop\KinectExplorer_test\Debug\KinectExplorer-D2D.pdb" /SUBSYSTEM:WINDOWS /STACK:"10000000","10000000" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\yuner\Documents\KinectDevelop\KinectExplorer_test\Debug\KinectExplorer-D2D.lib" /MACHINE:X86 Debug\KinectExplorer.res
+         "Debug\KinectExplorer-D2D.exe.embed.manifest.res"
+         Debug\CameraColorSettingsViewer.obj
+         Debug\CameraExposureSettingsViewer.obj
+         Debug\CameraSettingsViewer.obj
+         Debug\DepthInbedAPPs.obj
+         Debug\FaceRecog.obj
+         Debug\FaceTracker.obj
+         Debug\ImageRenderer.obj
+         Debug\CustomDrawListControl.obj
+         Debug\InbedAPPs.obj
+         Debug\KinectSettings.obj
+         Debug\KinectWindow.obj
+         Debug\KinectWindowManager.obj
+         Debug\LegRaisExcer.obj
+         Debug\MainWindow.obj
+         Debug\NuiAccelerometerStream.obj
+         Debug\NuiAccelerometerViewer.obj
+         Debug\NuiActivityWatcher.obj
+         Debug\NuiAudioStream.obj
+         Debug\NuiAudioViewer.obj
+         Debug\NuiColorStream.obj
+         Debug\NuiDepthStream.obj
+         Debug\NuiImageBuffer.obj
+         Debug\NuiSkeletonStream.obj
+         Debug\NuiStream.obj
+         Debug\NuiStreamViewer.obj
+         Debug\NuiTiltAngleViewer.obj
+         Debug\NuiViewer.obj
+         Debug\WaveWriter.obj
+         KinectExplorer-D2D.vcxproj -> C:\Users\yuner\Documents\KinectDevelop\KinectExplorer_test\Debug\KinectExplorer-D2D.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\KinectExplorer-D2D.unsuccessfulbuild".
+         Touching "Debug\KinectExplorer-D2D.lastbuildstate".
+     1>Done Building Project "C:\Users\yuner\Documents\KinectDevelop\KinectExplorer_test\KinectExplorer-D2D.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:41.91
