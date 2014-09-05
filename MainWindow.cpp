@@ -73,8 +73,8 @@ CMainWindow::CMainWindow()
     : NuiViewer(nullptr)
     , m_hWnd(nullptr)
     , m_pKinectWindowMgr(nullptr)
-    , m_pSensorListControl(nullptr)
-    , m_pStatusLogListControl(nullptr)
+    //, m_pSensorListControl(nullptr)
+    //, m_pStatusLogListControl(nullptr)
 {
     EnsureFontCreated(LargeTextFont, 25, FW_MEDIUM);
 }
@@ -85,8 +85,8 @@ CMainWindow::CMainWindow()
 CMainWindow::~CMainWindow()
 {
     SafeDelete(m_pKinectWindowMgr);
-    SafeDelete(m_pSensorListControl);
-    SafeDelete(m_pStatusLogListControl);
+    //SafeDelete(m_pSensorListControl);
+    //SafeDelete(m_pStatusLogListControl);
 }
 
 /// <summary>
@@ -299,25 +299,23 @@ void CMainWindow::InitializeResource()
 /// </summary>
 void CMainWindow::EnumerateSensors()
 {
-    int iCount = 0;
-	IKinectSensorCollection* pKinectCollection = nullptr;
-	IEnumKinectSensor* pEnumKinect = nullptr;
-
-    HRESULT hr = NuiGetSensorCount(&iCount);
-    if (FAILED(hr))
-    {
-        return;
-    }
-
+    
+	int iCount = 1;	
+    /*HRESULT hr = NuiGetSensorCount(&iCount);*/
     for (int i = 0; i < iCount; ++i)
     {
         // INuiSensor* pNuiSensor = nullptr;
 		IKinectSensor* pNuiSensor = nullptr;
-		
-
-		if (SUCCEEDED(NuiCreateSensorByIndex(i, &pNuiSensor)))
+		HRESULT hr = GetDefaultKinectSensor(&pNuiSensor);
+		// if (SUCCEEDED(NuiCreateSensorByIndex(i, &pNuiSensor)))
+		if (SUCCEEDED(hr))
         {
-            UpdateMainWindow(pNuiSensor->NuiDeviceConnectionId(), pNuiSensor->NuiStatus());
+			BOOLEAN *isAvailable;
+			UINT bufferSize = 30;
+			WCHAR *uniqueKinectId = nullptr;
+			pNuiSensor->get_UniqueKinectId(bufferSize, uniqueKinectId);
+			pNuiSensor->get_IsAvailable(isAvailable);
+			UpdateMainWindow(uniqueKinectId, isAvailable);
         }
 
         SafeRelease(pNuiSensor);
@@ -327,7 +325,7 @@ void CMainWindow::EnumerateSensors()
 /// <summary>
 /// Update the main window status
 /// </summary>
-void CMainWindow::UpdateMainWindow(PCWSTR instanceName, HRESULT sensorStatus)
+void CMainWindow::UpdateMainWindow(WCHAR* instanceName, BOOLEAN* sensorStatus)
 {
     // The new status is "not connected"
     if (E_NUI_NOTCONNECTED == sensorStatus)

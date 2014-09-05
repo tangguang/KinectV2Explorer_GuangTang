@@ -116,8 +116,8 @@ private:
     /// <summary>
     /// Update the main window status
     /// </summary>
-    void UpdateMainWindow(PCWSTR instanceName, HRESULT hrStatus);
-
+    // void UpdateMainWindow(PCWSTR instanceName, HRESULT hrStatus);
+	void UpdateMainWindow(WCHAR* instanceName, BOOLEAN* hrStatus);
     /// <summary>
     /// Respond to the click event of "moreinfo" link
     /// </summary>
@@ -172,7 +172,8 @@ private:
 
     SensorListControl*              m_pSensorListControl;
     StatusLogListControl*           m_pStatusLogListControl;
-    
+	
+
 	// Save the minimum width of the main window
     int m_minTrackWidth;
 
