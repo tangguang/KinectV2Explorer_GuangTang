@@ -255,13 +255,13 @@ HBITMAP SensorListControl::SensorPicture;
 SensorListControl::SensorListControl(HWND hWnd)
     : CustomDrawListControl(hWnd, Columns)
 {
-    EnsureImageLoaded(SensorPicture, IDB_KINECTSENSORPICTURE);
+	
+	EnsureImageLoaded(SensorPicture, IDB_KINECTSENSORPICTURE);
     EnsureFontCreated(StatusLargeFont, 25, FW_MEDIUM);
 
     ListView_SetExtendedListViewStyle(m_hWnd, ListView_GetExtendedListViewStyle(m_hWnd) | LVS_EX_SUBITEMIMAGES);
-
-    HIMAGELIST hImgList = ImageList_Create(SensorListImageWidth, SensorListRowHeight, ILC_COLORDDB, 1, 1);
-    ListView_SetImageList(m_hWnd, hImgList, LVSIL_SMALL);
+	//HIMAGELIST hImgList = ImageList_Create(SensorListImageWidth, SensorListRowHeight, ILC_COLORDDB, 1, 1);
+    //ListView_SetImageList(m_hWnd, hImgList, LVSIL_SMALL);
 }
 
 void SensorListControl::InsertOrUpdateSensorStatus(PCWSTR instanceId, HRESULT sensorStatus)

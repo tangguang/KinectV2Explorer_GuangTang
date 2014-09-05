@@ -7,9 +7,10 @@
 #pragma once
 
 #include <vector>
+#include "NuiViewer.h"
 // #include <NuiApi.h>
 // #include "NuiDepthStream.h"
-#include "NuiColorStream.h"
+//#include "NuiColorStream.h"
 // #include "NuiSkeletonStream.h"
 // #include "NuiAudioStream.h"
 // #include "NuiAccelerometerStream.h"
@@ -270,7 +271,7 @@ private:
     HANDLE                  m_hStartWindow;             // Handle to the start window sync event
     HANDLE                  m_hStopStreamEventThread;   // Event to stop stream events thread
 
-    KinectSettings*         m_pSettings;                // Pointer to Kinect setting object
+   /* KinectSettings*         m_pSettings;                // Pointer to Kinect setting object
 
     NuiStreamViewer*        m_pPrimaryView;             // Pointer to primary viewer
     NuiStreamViewer*        m_pSecondaryView;           // Pointer to secondary viewer
@@ -287,23 +288,23 @@ private:
     NuiDepthStream*         m_pDepthStream;             // Pointer to depth stream
     NuiSkeletonStream*      m_pSkeletonStream;          // Pointer to skeleton stream
     NuiAudioStream*         m_pAudioStream;             // Pointer to audio stream
-    NuiAccelerometerStream* m_pAccelerometerStream;     // Pointer to accelerometer stream
+    NuiAccelerometerStream* m_pAccelerometerStream;     // Pointer to accelerometer stream*/
 
-    INuiSensor*             m_pNuiSensor;               // Pointer to Nui sensor
+	IKinectSensor*             m_pNuiSensor;               // Pointer to Nui sensor
 
     std::vector<NuiViewer*>             m_views;        // Collection of Kinect window's sub views
     std::vector<NuiViewer*>             m_tabbedViews;  // Collection of tabbed views
-    std::vector<CameraSettingsViewer*>  m_settingViews; // Collection of setting views
+    //std::vector<CameraSettingsViewer*>  m_settingViews; // Collection of setting views
 
 
 	WCHAR*                 m_instanceName;
 
 	////Face tracking
-	FaceTracker*           m_pFaceTrackerStream;
-	HANDLE                 m_hFaceTrackingThread;
+	//FaceTracker*           m_pFaceTrackerStream;
+	//HANDLE                 m_hFaceTrackingThread;
 	//////Face recognition
-	FaceRecog*             m_pFaceRecogStream;
-	HANDLE                 m_hFaceRecogThread;
+	//FaceRecog*             m_pFaceRecogStream;
+	//HANDLE                 m_hFaceRecogThread;
 	////Speech recognigtion
 	//CSimpleDict*           m_pSimpleDict;
 

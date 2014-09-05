@@ -9,6 +9,7 @@
 #include "MainWindow.h"
 #include "Utility.h"
 
+#include "ImageRenderer.h"
 
 //Define the global independent Direct resources
 ID2D1Factory* g_pD2DFactory = nullptr;
@@ -28,7 +29,7 @@ void EnsureIndependentResourcesCreated()
     {
         DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), reinterpret_cast<IUnknown**>(&g_pDWriteFactory));
     }
-}
+} 
 
 /// <summary>
 /// Release the independent Direct2D resources
@@ -74,8 +75,8 @@ CMainWindow::CMainWindow()
     : NuiViewer(nullptr)
     , m_hWnd(nullptr)
     , m_pKinectWindowMgr(nullptr)
-    //, m_pSensorListControl(nullptr)
-    //, m_pStatusLogListControl(nullptr)
+    , m_pSensorListControl(nullptr)
+    , m_pStatusLogListControl(nullptr)
 {
     EnsureFontCreated(LargeTextFont, 25, FW_MEDIUM);
 }
@@ -86,8 +87,8 @@ CMainWindow::CMainWindow()
 CMainWindow::~CMainWindow()
 {
     SafeDelete(m_pKinectWindowMgr);
-    //SafeDelete(m_pSensorListControl);
-    //SafeDelete(m_pStatusLogListControl);
+    SafeDelete(m_pSensorListControl);
+    SafeDelete(m_pStatusLogListControl);
 }
 
 /// <summary>
@@ -309,12 +310,12 @@ void CMainWindow::EnumerateSensors()
 		IKinectSensor* pNuiSensor = nullptr;
 		HRESULT hr = GetDefaultKinectSensor(&pNuiSensor);
 		if (SUCCEEDED(hr))
-        {
-			BOOLEAN *isAvailable;
+        {	
 			UINT bufferSize = 30;
 			WCHAR *uniqueKinectId = nullptr;
+			BOOLEAN isAvailable = false;
 			HRESULT hr1 = pNuiSensor->get_UniqueKinectId(bufferSize, uniqueKinectId);
-			HRESULT hr2 = pNuiSensor->get_IsAvailable(isAvailable);
+			HRESULT hr2 = pNuiSensor->get_IsAvailable(&isAvailable);
 			if (SUCCEEDED(hr1) && SUCCEEDED(hr2))
 				UpdateMainWindow(uniqueKinectId, isAvailable);
         }
@@ -326,10 +327,10 @@ void CMainWindow::EnumerateSensors()
 /// <summary>
 /// Update the main window status
 /// </summary>
-void CMainWindow::UpdateMainWindow(PCWSTR instanceName, BOOLEAN* sensorStatus)
+void CMainWindow::UpdateMainWindow(PCWSTR instanceName, BOOLEAN sensorStatus)
 {
     // The new status is "not connected"
-    if (*sensorStatus == false)
+    if (sensorStatus == false)
     {
         m_pKinectWindowMgr->HandleSensorDisconnected(instanceName);
 
@@ -338,14 +339,14 @@ void CMainWindow::UpdateMainWindow(PCWSTR instanceName, BOOLEAN* sensorStatus)
     }
     else
     {
-       // m_pKinectWindowMgr->HandleSensorConnected(instanceName, sensorStatus);
+		m_pKinectWindowMgr->HandleSensorConnected(instanceName, (HRESULT)sensorStatus);
 
         // Update the sensor list control
-       // m_pSensorListControl->InsertOrUpdateSensorStatus(instanceName, sensorStatus);
+		m_pSensorListControl->InsertOrUpdateSensorStatus(instanceName, (HRESULT)sensorStatus);
     }
 
     // Insert the new log item to status log list
-    //m_pStatusLogListControl->AddLog(instanceName, sensorStatus);
+	m_pStatusLogListControl->AddLog(instanceName, (HRESULT)sensorStatus);
 }
 
 /// <summary>

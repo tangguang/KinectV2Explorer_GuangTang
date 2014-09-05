@@ -6,12 +6,12 @@
 
 #include "stdafx.h"
 #include "KinectWindow.h"
-#include "NuiStreamViewer.h"
-#include "NuiStream.h"
+//#include "NuiStreamViewer.h"
+//#include "NuiStream.h"
 #include "Utility.h"
 #include "resource.h"
-#include "CameraColorSettingsViewer.h"
-#include "CameraExposureSettingsViewer.h"
+//#include "CameraColorSettingsViewer.h"
+//#include "CameraExposureSettingsViewer.h"
 //#include "SpeechRecog.h"
 //#include "ResourceSR.h"
 
@@ -78,7 +78,7 @@ static const int SitToStandMenuPosition             = 6;
 /// <param name="hInstance">Handle to the application instance</param>
 /// <param name="hWndParent">Handle to main console window</param>
 /// <param name="pNuiSensor">Pointer to Nui sensor instance</param>
-KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNuiSensor, PCWSTR instanceName)
+KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* pNuiSensor, PCWSTR instanceName)
     : NuiViewer(nullptr)
     , m_hWndTab(nullptr)
     , m_hWndParent(hWndParent)
@@ -87,7 +87,7 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
     , m_hThread(nullptr)
     , m_pNuiSensor(pNuiSensor)
 	, m_instanceName((WCHAR*)instanceName)
-    , m_bSupportCameraSettings(true)
+    //, m_bSupportCameraSettings(true)
     , m_hStartWindow(INVALID_HANDLE_VALUE)
     , m_hStopStreamEventThread(INVALID_HANDLE_VALUE)
 {
@@ -95,7 +95,7 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
     m_pNuiSensor->AddRef();
 
     // Create instances of sub views
-    m_pPrimaryView    = new NuiStreamViewer(this);
+  /*  m_pPrimaryView    = new NuiStreamViewer(this);
     m_pSecondaryView  = new NuiStreamViewer(this);
     m_pAudioView      = new NuiAudioViewer(this);
     m_pAccelView      = new NuiAccelerometerViewer(this);
@@ -108,26 +108,26 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
     m_views.push_back(m_pSecondaryView);
     m_views.push_back(m_pAudioView);
     m_views.push_back(m_pAccelView);
-    m_views.push_back(m_pTiltAngleView);
+    m_views.push_back(m_pTiltAngleView);*/
 
     // Group camera setting views
-    m_settingViews.push_back(m_pColorSettingsView);
-    m_settingViews.push_back(m_pExposureSettingsView);
+   // m_settingViews.push_back(m_pColorSettingsView);
+   // m_settingViews.push_back(m_pExposureSettingsView);
 
     // Group tabbed sub views together
-    m_tabbedViews.push_back((m_pAudioView));
-    m_tabbedViews.push_back((m_pAccelView));
-    m_tabbedViews.push_back((m_pTiltAngleView));
+  //  m_tabbedViews.push_back((m_pAudioView));
+   // m_tabbedViews.push_back((m_pAccelView));
+   // m_tabbedViews.push_back((m_pTiltAngleView));
 
     // Create stream objects
-    m_pColorStream         = new NuiColorStream(m_pNuiSensor, instanceName);  ///////////
+   /* m_pColorStream         = new NuiColorStream(m_pNuiSensor, instanceName);  ///////////
     m_pDepthStream         = new NuiDepthStream(m_pNuiSensor, instanceName, m_pPrimaryView);
     m_pSkeletonStream      = new NuiSkeletonStream(m_pNuiSensor);
     m_pAudioStream         = new NuiAudioStream(m_pNuiSensor, instanceName);  ////////////
-    m_pAccelerometerStream = new NuiAccelerometerStream(m_pNuiSensor);
+    m_pAccelerometerStream = new NuiAccelerometerStream(m_pNuiSensor);*/
 
     // Attach stream objects to viewers
-    m_pColorStream->SetStreamViewer(m_pPrimaryView);
+  /*  m_pColorStream->SetStreamViewer(m_pPrimaryView);
     m_pDepthStream->SetStreamViewer(m_pSecondaryView);
     m_pSkeletonStream->SetStreamViewer(m_pPrimaryView);
     //m_pSkeletonStream->SetSecondStreamViewer(m_pSecondaryView);   ////Close the skeleton draw in depth image
@@ -136,11 +136,11 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
 
 	m_pFaceTrackerStream=new FaceTracker(m_pColorStream, m_pDepthStream, m_pSkeletonStream, m_instanceName);
 	m_pFaceRecogStream=new FaceRecog(m_pColorStream);
-//	m_pSimpleDict=new CSimpleDict(m_hInstance, m_instanceName);
+//	m_pSimpleDict=new CSimpleDict(m_hInstance, m_instanceName);*/
 	
 
     // Create settings object
-    m_pSettings = new KinectSettings(m_pNuiSensor,
+   /* m_pSettings = new KinectSettings(m_pNuiSensor,
                                      m_pPrimaryView,
                                      m_pSecondaryView,
                                      m_pColorStream,
@@ -148,7 +148,7 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNu
 									 m_pAudioStream,
                                      m_pSkeletonStream,
                                      m_pColorSettingsView,
-                                     m_pExposureSettingsView,this);
+                                     m_pExposureSettingsView,this);*/
 }
 
 
@@ -181,31 +181,32 @@ bool KinectWindow::Initialize()
         return false;
     }
 
-    if (S_OK != m_pNuiSensor->NuiStatus())
+    /*if (S_OK != m_pNuiSensor->get_IsOpen())
     {
         return false;
-    }
+    }*/
 
     // Initialize Nui sensor
-    HRESULT hr = m_pNuiSensor->NuiInitialize(
+   /* HRESULT hr = m_pNuiSensor->NuiInitialize(
         NUI_INITIALIZE_FLAG_USES_DEPTH_AND_PLAYER_INDEX
         | NUI_INITIALIZE_FLAG_USES_SKELETON
         | NUI_INITIALIZE_FLAG_USES_COLOR
-        | NUI_INITIALIZE_FLAG_USES_AUDIO);
+        | NUI_INITIALIZE_FLAG_USES_AUDIO);*/
 
     // Ensure infrared emitter enabled
-    if (SUCCEEDED(hr))
+   /* if (SUCCEEDED(hr))
     {
         m_pNuiSensor->NuiSetForceInfraredEmitterOff(FALSE);
     }
-	
+	*/
 	//////Face tracking and speech recognition threads start
     
-	m_hFaceTrackingThread = CreateThread(NULL, 0, FaceTrackingStaticThread, (PVOID)this, 0, 0);
+	//m_hFaceTrackingThread = CreateThread(NULL, 0, FaceTrackingStaticThread, (PVOID)this, 0, 0);
 
 	//m_hFaceRecogThread = CreateThread(NULL, 0, FaceRecogStaticThread, (PVOID)this, 0, 0);
 
-	return SUCCEEDED(hr) || E_NUI_DEVICE_IN_USE == hr;
+	//return SUCCEEDED(hr) || E_NUI_DEVICE_IN_USE == hr;
+	return true;
 }
 
 /// <summary>
@@ -215,14 +216,14 @@ bool KinectWindow::Initialize()
 bool KinectWindow::InitializeCommonControl()
 {
     static bool initialized = false;
-    if (!initialized)
+    /*if (!initialized)
     {
         // Initliaze common control for tab control.
         INITCOMMONCONTROLSEX icex;
         icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
         icex.dwICC  = ICC_TAB_CLASSES;
         initialized = (FALSE != InitCommonControlsEx(&icex));
-    }
+    }*/
 
     return initialized;
 }
@@ -231,7 +232,7 @@ bool KinectWindow::InitializeCommonControl()
 /// Initialize camera setting viewers
 /// </summary>
 /// <returns>Indicate success or failure</returns>
-bool KinectWindow::CreateCameraSettingViews()
+/*bool KinectWindow::CreateCameraSettingViews()
 {
     INuiColorCameraSettings* pNuiCameraSettings = nullptr;
 
@@ -259,7 +260,7 @@ bool KinectWindow::CreateCameraSettingViews()
     SafeRelease(pNuiCameraSettings);
 
     return true;
-}
+}*/
 
 /// <summary>
 /// Start a new thread and Kinect window runs in it
@@ -339,7 +340,7 @@ DWORD WINAPI KinectWindow::ThreadProc(KinectWindow* pThis)
     if (pThis->m_hWndParent)
     {
         // Send message back to console window notifying the exit of Kinect window
-        SendMessageW(pThis->m_hWndParent, WM_CLOSEKINECTWINDOW, (WPARAM)(pThis->m_pNuiSensor ? pThis->m_pNuiSensor->NuiDeviceConnectionId() : nullptr), 0);
+       // SendMessageW(pThis->m_hWndParent, WM_CLOSEKINECTWINDOW, (WPARAM)(pThis->m_pNuiSensor ? pThis->m_pNuiSensor->NuiDeviceConnectionId() : nullptr), 0);
     }
 
 	
@@ -474,10 +475,10 @@ bool KinectWindow::CreateWindows()
     }
 
     // Creata camera setting views
-    if (!CreateCameraSettingViews())
+    /*if (!CreateCameraSettingViews())
     {
         return false;
-    }
+    }*/
 
     return CreateTabControl();
 }
@@ -546,15 +547,15 @@ void KinectWindow::ShowWindows()
     UpdateWindow(m_hWndTab);
 
     // Primary and secondary views
-    m_pPrimaryView->ShowView();
-    m_pSecondaryView->ShowView();
+    //m_pPrimaryView->ShowView();
+   // m_pSecondaryView->ShowView();
 
     // Show first tabbed view
-    if (m_tabbedViews.size() > 0)
+   /* if (m_tabbedViews.size() > 0)
     {
-        m_pCurTabbedView = m_tabbedViews[0];
-        m_pCurTabbedView->ShowView();
-    }
+       m_pCurTabbedView = m_tabbedViews[0];
+       m_pCurTabbedView->ShowView();
+    }*/
 
     // Bring Kinect window to top
     BringUpWindow();
@@ -573,7 +574,7 @@ void KinectWindow::BringUpWindow()
 /// </sumamry>
 void KinectWindow::StartStreams()
 {
-    // Color stream
+    /*// Color stream
     m_pColorStream->StartStream();
 
     // Depth stream
@@ -588,7 +589,7 @@ void KinectWindow::StartStreams()
     // Accelerometer reading stream
     m_pAccelerometerStream->StartStream();
 
-    // Start waitble timer
+    // Start waitble timer*/
     StartTimer();
 }
 
@@ -616,7 +617,7 @@ void KinectWindow::CleanUp()
         m_hTimer = nullptr;
     }
 
-    SafeDelete(m_pColorStream);
+   /* SafeDelete(m_pColorStream);
     SafeDelete(m_pDepthStream);
     SafeDelete(m_pSkeletonStream);
     SafeDelete(m_pAudioStream);
@@ -631,7 +632,7 @@ void KinectWindow::CleanUp()
     SafeDelete(m_pSettings);
 	////Delete face tracker, face recognition and speech recog
 	SafeDelete(m_pFaceTrackerStream);
-	SafeDelete(m_pFaceRecogStream);
+	SafeDelete(m_pFaceRecogStream);*/
 //	SafeDelete(m_pSimpleDict);
 
     SafeRelease(m_pNuiSensor);
@@ -658,7 +659,7 @@ void KinectWindow::CleanUp()
 void KinectWindow::OnResize()
 {
     // Move window of sub views to their positions.
-    RECT priRect, secRect, tabRect, tabbedRect;
+    /*RECT priRect, secRect, tabRect, tabbedRect;
     if (CalculateViewRects(priRect, secRect, tabRect, tabbedRect))
     {
         // Primary stream view.
@@ -680,7 +681,7 @@ void KinectWindow::OnResize()
         {
             (*itr)->MoveView(tabbedRect);
         }
-    }
+    }*/
 }
 
 /// <summary>
@@ -698,7 +699,7 @@ void KinectWindow::OnCommand(WPARAM wParam)
     if (ProcessMenuItem(id, itemChecked))
     {
         // Process menu item command
-        m_pSettings->ProcessMenuCommand(id, param, itemChecked);
+        //m_pSettings->ProcessMenuCommand(id, param, itemChecked);
     }
 }
 
@@ -743,14 +744,14 @@ void KinectWindow::InitializeMenu()
                              MF_BYCOMMAND);
 
         // This device does not support camera settings
-        if (!m_bSupportCameraSettings)
+       /* if (!m_bSupportCameraSettings)
         {
             // Delete camera setting menu
             DeleteMenu(hMenu, CameraSettingMenuPosition, MF_BYPOSITION);
 
             // Disable IR force off button
             EnableWindow(GetDlgItem(m_pTiltAngleView->GetWindow(), IDC_FORCE_OFF_IR), FALSE);
-        }
+        }*/
     }
 }
 
@@ -1019,7 +1020,7 @@ bool KinectWindow::GetMenuItemCheckStatus(HMENU hMenu, UINT id, bool& checked)
 /// <param name="lParam">Additional message information</param>
 void KinectWindow::OnNotify(LPARAM lParam)
 {
-    LPNMHDR pNMHDR = (LPNMHDR)lParam;
+    /*LPNMHDR pNMHDR = (LPNMHDR)lParam;
 
     // Check if command comes from tab control and selection has changed
     if (m_hWndTab == pNMHDR->hwndFrom && TCN_SELCHANGE == pNMHDR->code)
@@ -1036,7 +1037,7 @@ void KinectWindow::OnNotify(LPARAM lParam)
             m_pCurTabbedView = m_tabbedViews[index];
             m_pCurTabbedView->ShowView();
         }
-    }
+    }*/
 }
 
 /// <summary>
@@ -1061,7 +1062,7 @@ void KinectWindow::OnClose(HWND hWnd, WPARAM wParam)
     // Shut down the device
     if (nullptr != m_pNuiSensor)
     {
-        m_pNuiSensor->NuiShutdown();
+        m_pNuiSensor->Close();
     }
 
     // Destroy the window
@@ -1121,9 +1122,9 @@ bool KinectWindow::CalculateViewRects(RECT& priRect, RECT& secRect, RECT& tabRec
 /// </summary>
 void KinectWindow::UpdateStreams()
 {	
-    m_pColorStream->ProcessStreamFrame();
+   /* m_pColorStream->ProcessStreamFrame();
 	m_pDepthStream->ProcessStreamFrame();
-    m_pSkeletonStream->ProcessStreamFrame();
+    m_pSkeletonStream->ProcessStreamFrame();*/
 }
 
 /// <summary>
@@ -1131,8 +1132,8 @@ void KinectWindow::UpdateStreams()
 /// </summary>
 void KinectWindow::UpdateTimedStreams()
 {
-    m_pAudioStream->ProcessStream();
-    m_pAccelerometerStream->ProcessStream();
+   /* m_pAudioStream->ProcessStream();
+    m_pAccelerometerStream->ProcessStream();*/
 }
 
 /// <summary>
@@ -1142,7 +1143,7 @@ void KinectWindow::UpdateTimedStreams()
 /// <returns>Exit result from thread</returns>
 DWORD KinectWindow::StreamEventThread(KinectWindow* pThis)
 {
-    HANDLE events[] = {pThis->m_hStopStreamEventThread, 
+    /*HANDLE events[] = {pThis->m_hStopStreamEventThread, 
                        pThis->m_hTimer, 
                        pThis->m_pColorStream->GetFrameReadyEvent(), 
                        pThis->m_pDepthStream->GetFrameReadyEvent(), 
@@ -1164,34 +1165,34 @@ DWORD KinectWindow::StreamEventThread(KinectWindow* pThis)
             SendMessageW(pThis->GetWindow(), WM_STREAMEVENT, 0, 0);
         }
     }
-
+	*/
     return 0;
 }
 
 
 DWORD WINAPI KinectWindow::FaceTrackingStaticThread(PVOID lpParam)
 {
-    KinectWindow* context = static_cast<KinectWindow*>(lpParam);
+    /*KinectWindow* context = static_cast<KinectWindow*>(lpParam);
     if (context)
     {
 		FaceTracker* pFaceTracker;
 		context->GetFaceTraker(&pFaceTracker);
 
 		return pFaceTracker->FaceTrackingThread();
-    }
+    }*/
     return 0;
 }
 
 DWORD WINAPI KinectWindow::FaceRecogStaticThread(PVOID lpParam)
 {
-	KinectWindow* context = static_cast<KinectWindow*>(lpParam);
+	/*KinectWindow* context = static_cast<KinectWindow*>(lpParam);
     if (context)
     {
 		FaceRecog* pFaceRecog;
 		context->GetFaceRecog(&pFaceRecog);
 
 		return pFaceRecog->FaceRecogThread();
-    }
+    }*/
     return 0;
 }
 
@@ -1210,7 +1211,7 @@ DWORD WINAPI KinectWindow::FaceRecogStaticThread(PVOID lpParam)
 
 int KinectWindow::StopThreads()
 {
-	if ( m_hFaceTrackingThread)
+	/*if ( m_hFaceTrackingThread)
     {
 		//WaitForSingleObject(m_hFaceTrackingThread, 1000);
 		CloseHandle( m_hFaceTrackingThread);
@@ -1219,7 +1220,7 @@ int KinectWindow::StopThreads()
     {
 		//WaitForSingleObject(m_hFaceRecogThread, 1000);
 		CloseHandle( m_hFaceRecogThread);
-    }
+    }*/
 	return 0;
 }
 

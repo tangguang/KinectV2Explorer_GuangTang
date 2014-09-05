@@ -117,7 +117,7 @@ private:
     /// Update the main window status
     /// </summary>
     // void UpdateMainWindow(PCWSTR instanceName, HRESULT hrStatus);
-	void UpdateMainWindow(PCWSTR instanceName, BOOLEAN* hrStatus);
+	void UpdateMainWindow(PCWSTR instanceName, BOOLEAN hrStatus);
     /// <summary>
     /// Respond to the click event of "moreinfo" link
     /// </summary>

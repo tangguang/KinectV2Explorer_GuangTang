@@ -59,7 +59,7 @@ void KinectWindowManager::HandleSensorConnected(PCWSTR instanceName, HRESULT hrS
     if (m_sensorMap.end() == iter)
     {
 		IKinectSensor* pNuiSensor = nullptr;
-        if (SUCCEEDED(NuiCreateSensorById(instanceName, &pNuiSensor)))
+		if (SUCCEEDED(GetDefaultKinectSensor(&pNuiSensor)))
         {
             iter = AddSensor(instanceName, pNuiSensor);
         }
@@ -116,7 +116,7 @@ void KinectWindowManager::CloseAllKinectWindows()
 /// <summary>
 /// Insert a new sensor to the resource map
 /// </summary>
-SensorMapIterator KinectWindowManager::AddSensor(PCWSTR instanceName, INuiSensor* pNuiSensor)
+SensorMapIterator KinectWindowManager::AddSensor(PCWSTR instanceName, IKinectSensor* pNuiSensor)
 {
     assert(nullptr != pNuiSensor);
 
@@ -138,7 +138,7 @@ void KinectWindowManager::RemoveSensor(SensorMapIterator iter)
 /// <summary>
 /// Update the sensor related Kinect window status
 /// </summary>
-void KinectWindowManager::UpdateKinectWindow(HRESULT hrSensorCallbackStatus, INuiSensor* pNuiSensor, KinectWindow** ppKinectWindow, PCWSTR instanceName)
+void KinectWindowManager::UpdateKinectWindow(HRESULT hrSensorCallbackStatus, IKinectSensor* pNuiSensor, KinectWindow** ppKinectWindow, PCWSTR instanceName)
 {
     if (S_OK == hrSensorCallbackStatus && nullptr != ppKinectWindow)
     {
@@ -153,7 +153,7 @@ void KinectWindowManager::UpdateKinectWindow(HRESULT hrSensorCallbackStatus, INu
 /// <summary>
 /// Create a Kinect window to display the sensor
 /// </summary>
-KinectWindow* KinectWindowManager::CreateKinectWindow(INuiSensor* pNuiSensor, PCWSTR instanceName)
+KinectWindow* KinectWindowManager::CreateKinectWindow(IKinectSensor* pNuiSensor, PCWSTR instanceName)
 {
     KinectWindow* pKinectWindow = new KinectWindow(GetModuleHandle(0), m_hWnd, pNuiSensor, instanceName);
     pKinectWindow->StartWindow();

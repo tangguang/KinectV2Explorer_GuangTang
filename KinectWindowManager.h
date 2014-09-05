@@ -9,7 +9,6 @@
 #include <string>
 #include <map>
 // #include <NuiApi.h>
-
 #include "KinectWindow.h"
 
 /// <summary>
@@ -19,7 +18,6 @@
 struct SensorWindowPair
 {
 	IKinectSensor* NuiSensor;
-
     KinectWindow* KinectWindow;
 };
 

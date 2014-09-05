@@ -1,19 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="KinectWindow.cpp" />
     <ClCompile Include="KinectWindowManager.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="CustomDrawListControl.cpp" />
+    <ClCompile Include="ImageRenderer.cpp" />
+    <ClCompile Include="NuiViewer.cpp" />
+    <ClCompile Include="KinectWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h" />
-    <ClInclude Include="KinectWindow.h" />
     <ClInclude Include="KinectWindowManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="CustomDrawListControl.h" />
+    <ClInclude Include="ImageRenderer.h" />
+    <ClInclude Include="NuiViewer.h" />
+    <ClInclude Include="KinectWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />

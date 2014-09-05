@@ -8,6 +8,7 @@
 #include "NuiViewer.h"
 #include "KinectWindow.h"
 #include "resource.h"
+#include "Utility.h"
 
 HICON NuiViewer::SensorIcon;
 
