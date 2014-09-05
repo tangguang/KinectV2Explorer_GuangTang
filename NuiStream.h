@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <NuiApi.h>
+//#include <NuiApi.h>
 #include "NuiStreamViewer.h"
 #include "Utility.h"
 

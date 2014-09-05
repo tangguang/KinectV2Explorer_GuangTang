@@ -25,7 +25,9 @@ PCWSTR GetStringFromSensorStatus(HRESULT sensorStatus)
     {
     case S_OK:
         return L"Connected";
-    case S_NUI_INITIALIZING:
+	case S_FALSE:
+		return L"Disconnected";
+    /*case S_NUI_INITIALIZING:
         return L"Initializing";
     case E_NUI_NOTCONNECTED:
         return L"Disconnected";
@@ -38,7 +40,7 @@ PCWSTR GetStringFromSensorStatus(HRESULT sensorStatus)
     case E_NUI_NOTSUPPORTED:
         return L"NotSupported";
     case E_NUI_INSUFFICIENTBANDWIDTH:
-        return L"InsufficientBandwidth";
+        return L"InsufficientBandwidth";  */
     default:
         ;
     }

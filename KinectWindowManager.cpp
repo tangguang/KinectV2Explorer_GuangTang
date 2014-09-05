@@ -58,8 +58,7 @@ void KinectWindowManager::HandleSensorConnected(PCWSTR instanceName, HRESULT hrS
     // The changed sensor has not been saved
     if (m_sensorMap.end() == iter)
     {
-        INuiSensor* pNuiSensor = nullptr;
-
+		IKinectSensor* pNuiSensor = nullptr;
         if (SUCCEEDED(NuiCreateSensorById(instanceName, &pNuiSensor)))
         {
             iter = AddSensor(instanceName, pNuiSensor);

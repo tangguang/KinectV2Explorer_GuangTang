@@ -7,12 +7,12 @@
 #pragma once
 
 
-#include <NuiApi.h>
+//#include <NuiApi.h>
 #include "Utility.h"
 #include "NuiViewer.h"
 #include "NuiImageBuffer.h"
 #include "ImageRenderer.h"
-#include <FaceTrackLib.h>
+//#include <FaceTrackLib.h>
 #include "LegRaisExcer.h"
 #include "HandRaisExcer.h"
 #include "InbedAPPs.h"

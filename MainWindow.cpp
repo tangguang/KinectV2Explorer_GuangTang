@@ -9,6 +9,7 @@
 #include "MainWindow.h"
 #include "Utility.h"
 
+
 //Define the global independent Direct resources
 ID2D1Factory* g_pD2DFactory = nullptr;
 IDWriteFactory* g_pDWriteFactory = nullptr;
@@ -179,7 +180,7 @@ LRESULT CMainWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
         // Handle the Kinect sensor status change case
     case WM_UPDATEMAINWINDOW:
         {
-            UpdateMainWindow((PCWCHAR)wParam, (HRESULT)lParam);
+            //UpdateMainWindow((PCWCHAR)wParam, (HRESULT)lParam);
             UpdateLayoutAndShowStatus();
         }
         break;
@@ -307,15 +308,15 @@ void CMainWindow::EnumerateSensors()
         // INuiSensor* pNuiSensor = nullptr;
 		IKinectSensor* pNuiSensor = nullptr;
 		HRESULT hr = GetDefaultKinectSensor(&pNuiSensor);
-		// if (SUCCEEDED(NuiCreateSensorByIndex(i, &pNuiSensor)))
 		if (SUCCEEDED(hr))
         {
 			BOOLEAN *isAvailable;
 			UINT bufferSize = 30;
 			WCHAR *uniqueKinectId = nullptr;
-			pNuiSensor->get_UniqueKinectId(bufferSize, uniqueKinectId);
-			pNuiSensor->get_IsAvailable(isAvailable);
-			UpdateMainWindow(uniqueKinectId, isAvailable);
+			HRESULT hr1 = pNuiSensor->get_UniqueKinectId(bufferSize, uniqueKinectId);
+			HRESULT hr2 = pNuiSensor->get_IsAvailable(isAvailable);
+			if (SUCCEEDED(hr1) && SUCCEEDED(hr2))
+				UpdateMainWindow(uniqueKinectId, isAvailable);
         }
 
         SafeRelease(pNuiSensor);
@@ -325,10 +326,10 @@ void CMainWindow::EnumerateSensors()
 /// <summary>
 /// Update the main window status
 /// </summary>
-void CMainWindow::UpdateMainWindow(WCHAR* instanceName, BOOLEAN* sensorStatus)
+void CMainWindow::UpdateMainWindow(PCWSTR instanceName, BOOLEAN* sensorStatus)
 {
     // The new status is "not connected"
-    if (E_NUI_NOTCONNECTED == sensorStatus)
+    if (*sensorStatus == false)
     {
         m_pKinectWindowMgr->HandleSensorDisconnected(instanceName);
 
@@ -337,14 +338,14 @@ void CMainWindow::UpdateMainWindow(WCHAR* instanceName, BOOLEAN* sensorStatus)
     }
     else
     {
-        m_pKinectWindowMgr->HandleSensorConnected(instanceName, sensorStatus);
+       // m_pKinectWindowMgr->HandleSensorConnected(instanceName, sensorStatus);
 
         // Update the sensor list control
-        m_pSensorListControl->InsertOrUpdateSensorStatus(instanceName, sensorStatus);
+       // m_pSensorListControl->InsertOrUpdateSensorStatus(instanceName, sensorStatus);
     }
 
     // Insert the new log item to status log list
-    m_pStatusLogListControl->AddLog(instanceName, sensorStatus);
+    //m_pStatusLogListControl->AddLog(instanceName, sensorStatus);
 }
 
 /// <summary>
@@ -429,7 +430,8 @@ void CMainWindow::UpdateLayout()
 
     // Stretch align the status log list control
     int statusTextBottom = breakLineBottom + GenericGap + statusTextRect.GetHeight();
-    LONG statusListHeight = MAX(windowSize.cy - statusTextBottom - GenericGap - BottomMargin, 0);
+    //LONG statusListHeight = MAX(windowSize.cy - statusTextBottom - GenericGap - BottomMargin, 0);
+	LONG statusListHeight = max(windowSize.cy - statusTextBottom - GenericGap - BottomMargin, 0);
     SetWindowPos(GetHandle(IDC_STATUSLOGLIST), 0, sensorListRect.left, statusTextBottom + GenericGap, windowSize.cx - StretchMargin, statusListHeight, 0);
 }
 

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <NuiApi.h>
+//#include <NuiApi.h>
 
 #define MAX_PLAYER_INDEX    6
 
