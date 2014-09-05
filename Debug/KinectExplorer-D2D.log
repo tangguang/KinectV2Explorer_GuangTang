@@ -1,66 +1,31 @@
-﻿Build started 9/4/2014 1:06:02 PM.
+﻿Build started 9/4/2014 5:05:16 PM.
      1>Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\opencv\build\include /I"C:\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.7.0\inc" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\um" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\shared" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\winrt" /I"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\atlmfc\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CameraColorSettingsViewer.cpp CameraExposureSettingsViewer.cpp CameraSettingsViewer.cpp DepthInbedAPPs.cpp FaceRecog.cpp FaceTracker.cpp HandRaisExcer.cpp ImageRenderer.cpp CustomDrawListControl.cpp InbedAPPs.cpp KinectSettings.cpp KinectWindow.cpp KinectWindowManager.cpp LegRaisExcer.cpp MainWindow.cpp NuiAccelerometerStream.cpp NuiAccelerometerViewer.cpp NuiActivityWatcher.cpp NuiAudioStream.cpp NuiAudioViewer.cpp NuiColorStream.cpp NuiDepthStream.cpp NuiImageBuffer.cpp NuiSkeletonStream.cpp NuiStream.cpp NuiStreamViewer.cpp NuiTiltAngleViewer.cpp NuiViewer.cpp WaveWriter.cpp
-         WaveWriter.cpp
-         NuiViewer.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectwindow.h(10): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiTiltAngleViewer.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuitiltangleviewer.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiStreamViewer.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistreamviewer.h(10): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiStream.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiSkeletonStream.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiImageBuffer.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuiimagebuffer.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiDepthStream.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiColorStream.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiAudioViewer.cpp
-         NuiAudioStream.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuiaudiostream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiActivityWatcher.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuiactivitywatcher.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         NuiAccelerometerViewer.cpp
-         NuiAccelerometerStream.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuiaccelerometerstream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\opencv\build\include /I"C:\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.7.0\inc" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\um" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\shared" /I"C:\Program Files (x86)\Windows Kits\8.0\Include\winrt" /I"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\atlmfc\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CustomDrawListControl.cpp KinectWindow.cpp KinectWindowManager.cpp MainWindow.cpp
          MainWindow.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectwindowmanager.h(11): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         LegRaisExcer.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\legraisexcer.cpp(8): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
          KinectWindowManager.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectwindowmanager.h(11): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
          KinectWindow.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectwindow.h(10): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         KinectSettings.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistreamviewer.h(10): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         InbedAPPs.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\inbedapps.cpp(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         Generating Code...
-         Compiling...
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
          CustomDrawListControl.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(13): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         ImageRenderer.cpp
-         HandRaisExcer.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\handraisexcer.cpp(8): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         FaceTracker.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         FaceRecog.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistream.h(9): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         DepthInbedAPPs.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\depthinbedapps.h(8): fatal error C1083: Cannot open include file: 'opencv2/highgui/highgui.hpp': No such file or directory
-         CameraSettingsViewer.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\camerasettingsviewer.h(11): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         CameraExposureSettingsViewer.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\camerasettingsviewer.h(11): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
-         CameraColorSettingsViewer.cpp
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\cameracolorsettingsviewer.cpp(8): fatal error C1083: Cannot open include file: 'NuiApi.h': No such file or directory
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(28): error C2065: 'S_NUI_INITIALIZING' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(28): error C2051: case expression not constant
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(30): error C2065: 'E_NUI_NOTCONNECTED' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(30): error C2051: case expression not constant
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(32): error C2065: 'E_NUI_NOTREADY' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(32): error C2051: case expression not constant
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(34): error C2065: 'E_NUI_NOTPOWERED' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(34): error C2051: case expression not constant
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(36): error C2065: 'E_NUI_NOTGENUINE' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(36): error C2051: case expression not constant
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(38): error C2065: 'E_NUI_NOTSUPPORTED' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(38): error C2051: case expression not constant
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(40): error C2065: 'E_NUI_INSUFFICIENTBANDWIDTH' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\customdrawlistcontrol.cpp(40): error C2051: case expression not constant
          Generating Code...
      1>Done Building Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:14.60
+Time Elapsed 00:00:02.89

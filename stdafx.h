@@ -8,17 +8,28 @@
 
 #pragma once
 
+//#define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+#ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+#endif
+
 
 // Windows Header Files
 #include <windows.h>
 #include <ShellAPI.h>
-
 #include <Shlobj.h>
+
+// Direct2D Header Files
+#include <d2d1.h>
 
 // Assert Header Files
 #include <assert.h>
 
+// Kinect Header files
+#include <Kinect.h>
+
+#pragma comment (lib, "d2d1.lib")
+#pragma comment (lib, "kinect20.lib")
 
 // The user defined message
 #define WM_UPDATEMAINWINDOW             WM_USER + 1

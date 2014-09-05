@@ -7,16 +7,16 @@
 #pragma once
 
 #include <vector>
-#include <NuiApi.h>
-#include "NuiDepthStream.h"
+// #include <NuiApi.h>
+// #include "NuiDepthStream.h"
 #include "NuiColorStream.h"
-#include "NuiSkeletonStream.h"
-#include "NuiAudioStream.h"
-#include "NuiAccelerometerStream.h"
-#include "NuiTiltAngleViewer.h"
-#include "KinectSettings.h"
-#include "FaceTracker.h"
-#include "FaceRecog.h"
+// #include "NuiSkeletonStream.h"
+// #include "NuiAudioStream.h"
+// #include "NuiAccelerometerStream.h"
+// #include "NuiTiltAngleViewer.h"
+// #include "KinectSettings.h"
+// #include "FaceTracker.h"
+// #include "FaceRecog.h"
 //#include "SpeechRecog.h"
 
 class KinectWindow : public NuiViewer
@@ -28,7 +28,7 @@ public:
     /// <param name="hInstance">Handle to the application instance</param>
     /// <param name="hWndParent">Handle to main console window</param>
     /// <param name="pNuiSensor">Pointer to Nui sensor instance</param>
-    KinectWindow(HINSTANCE hInstance, HWND hWndParent, INuiSensor* pNuiSensor, PCWSTR instanceName);
+	KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* pNuiSensor, PCWSTR instanceName);
 
     /// <summary>
     /// Destructor. Kinect window object is deleted in its own thread. Can not be deleted in other place explicitly
@@ -55,9 +55,9 @@ public:
 
 //	static DWORD WINAPI SpeechRecogStaticThread(PVOID lpParam);
 
-	void GetFaceTraker(FaceTracker** ppFaceTracker) const  {*ppFaceTracker=m_pFaceTrackerStream;}
-	void GetFaceRecog(FaceRecog** ppFaceRecog) const  {*ppFaceRecog=m_pFaceRecogStream;}
-//	void GetSimpleDict(CSimpleDict** ppSimpleDict) const {*ppSimpleDict=m_pSimpleDict;}
+	//void GetFaceTraker(FaceTracker** ppFaceTracker) const  {*ppFaceTracker=m_pFaceTrackerStream;}
+	//void GetFaceRecog(FaceRecog** ppFaceRecog) const  {*ppFaceRecog=m_pFaceRecogStream;}
+//	void GetSimpleDict(CSimpleDict** ppSimpleDict) const {*ppSimpleDict=m_pSimpleDict;}   original
 
 
 private:

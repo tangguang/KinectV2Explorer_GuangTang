@@ -10,7 +10,7 @@
 
 #define __No__NuiSensor_h__
 #define __No__NuiSkeleton_h__
-#include <NuiApi.h>
+// #include <NuiApi.h>
 
 #include "CustomDrawListControl.h"
 #include "Utility.h"

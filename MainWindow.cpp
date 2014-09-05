@@ -136,13 +136,15 @@ LRESULT CMainWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
             m_hWnd = hWnd;
 
             // Set device status callback to monitor all sensor changes
-            NuiSetDeviceStatusCallback(StatusChangeCallback, reinterpret_cast<void*>(hWnd));
+            //NuiSetDeviceStatusCallback(StatusChangeCallback, reinterpret_cast<void*>(hWnd));
 
+			// HRESULT hrStatus = GetIsAvailableChangedEventData(hWnd, );
             InitializeResource();
         }
         break;
 
     case WM_CTLCOLORSTATIC:
+
     case WM_CTLCOLORDLG:
         return (LRESULT)GetStockObject(WHITE_BRUSH);
 
@@ -298,6 +300,9 @@ void CMainWindow::InitializeResource()
 void CMainWindow::EnumerateSensors()
 {
     int iCount = 0;
+	IKinectSensorCollection* pKinectCollection = nullptr;
+	IEnumKinectSensor* pEnumKinect = nullptr;
+
     HRESULT hr = NuiGetSensorCount(&iCount);
     if (FAILED(hr))
     {
@@ -306,9 +311,11 @@ void CMainWindow::EnumerateSensors()
 
     for (int i = 0; i < iCount; ++i)
     {
-        INuiSensor* pNuiSensor = nullptr;
+        // INuiSensor* pNuiSensor = nullptr;
+		IKinectSensor* pNuiSensor = nullptr;
+		
 
-        if (SUCCEEDED(NuiCreateSensorByIndex(i, &pNuiSensor)))
+		if (SUCCEEDED(NuiCreateSensorByIndex(i, &pNuiSensor)))
         {
             UpdateMainWindow(pNuiSensor->NuiDeviceConnectionId(), pNuiSensor->NuiStatus());
         }

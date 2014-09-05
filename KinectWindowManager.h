@@ -8,7 +8,7 @@
 
 #include <string>
 #include <map>
-#include <NuiApi.h>
+// #include <NuiApi.h>
 
 #include "KinectWindow.h"
 
@@ -18,7 +18,7 @@
 /// </summary>
 struct SensorWindowPair
 {
-    INuiSensor* NuiSensor;
+	IKinectSensor* NuiSensor;
 
     KinectWindow* KinectWindow;
 };
@@ -86,7 +86,7 @@ private:
     /// <summary>
     /// Insert a new sensor to the resource map
     /// </summary>
-    SensorMapIterator AddSensor(PCWSTR instanceName, INuiSensor* pNuiSensor);
+	SensorMapIterator AddSensor(PCWSTR instanceName, IKinectSensor* pNuiSensor);
 
     /// <summary>
     /// Remove the specified item from the resource map
@@ -96,12 +96,12 @@ private:
     /// <summary>
     /// Update the sensor related Kinect window status
     /// </summary>
-    void UpdateKinectWindow(HRESULT hrSensorCallbackStatus, INuiSensor* pNuiSensor, KinectWindow** ppKinectWindow, PCWSTR instanceName); //////
+	void UpdateKinectWindow(HRESULT hrSensorCallbackStatus, IKinectSensor* pNuiSensor, KinectWindow** ppKinectWindow, PCWSTR instanceName); //////
 
     /// <summary>
     /// Create a Kinect window to display the sensor
     /// </summary>
-    KinectWindow* CreateKinectWindow(INuiSensor* pNuiSensor, PCWSTR instanceName);  ////////////
+	KinectWindow* CreateKinectWindow(IKinectSensor* pNuiSensor, PCWSTR instanceName);  ////////////
 
     /// <summary>
     /// Notify the specified Kinect window to close and delete itself

@@ -172,8 +172,8 @@ private:
 
     SensorListControl*              m_pSensorListControl;
     StatusLogListControl*           m_pStatusLogListControl;
-
-    // Save the minimum width of the main window
+    
+	// Save the minimum width of the main window
     int m_minTrackWidth;
 
     // Save url of "MoreInfo" link which is showed in no sensor case
