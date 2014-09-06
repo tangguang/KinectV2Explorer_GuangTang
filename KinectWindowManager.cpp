@@ -70,7 +70,7 @@ void KinectWindowManager::HandleSensorConnected(PCWSTR instanceName, HRESULT hrS
     }
 
     // Show/Hide the Kinect window
-    UpdateKinectWindow(hrSensorCallbackStatus, iter->second.NuiSensor, &(iter->second.KinectWindow),instanceName);
+    UpdateKinectWindow(hrSensorCallbackStatus, iter->second.NuiSensor, &(iter->second.KinectWindow), instanceName);
 }
 
 /// <summary>

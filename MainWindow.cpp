@@ -24,11 +24,10 @@ void EnsureIndependentResourcesCreated()
     {
         D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &g_pD2DFactory);
     }
-
-    if (nullptr == g_pDWriteFactory)
-    {
-        DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), reinterpret_cast<IUnknown**>(&g_pDWriteFactory));
-    }
+	/*if (nullptr == g_pDWriteFactory)
+	{
+		DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), reinterpret_cast<IUnknown**>(&g_pDWriteFactory));
+	}*/
 } 
 
 /// <summary>
@@ -48,15 +47,21 @@ void DiscardIndependentResources()
 /// <param name="lpCmdLine">Command line arguments</param>
 /// <param name="nCmdShow">Whether to display minimized, maximized, or normally</param>
 /// <returns>status</returns>
-int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
+int APIENTRY wWinMain(
+	_In_ HINSTANCE hInstance, 
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPWSTR lpCmdLine,
+	_In_ int nCmdShow)
 {
     EnsureIndependentResourcesCreated();
+
+	UNREFERENCED_PARAMETER(hPrevInstance);
+	UNREFERENCED_PARAMETER(lpCmdLine);
 
     CMainWindow application;
     int result = application.Run();
 
     DiscardIndependentResources();
-
     return result;
 }
 
@@ -208,7 +213,6 @@ LRESULT CMainWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
         }
         break;
     }
-
     return FALSE;
 }
 
@@ -310,16 +314,14 @@ void CMainWindow::EnumerateSensors()
 		IKinectSensor* pNuiSensor = nullptr;
 		HRESULT hr = GetDefaultKinectSensor(&pNuiSensor);
 		if (SUCCEEDED(hr))
-        {	
-			UINT bufferSize = 30;
-			WCHAR *uniqueKinectId = nullptr;
+		{
+			// wchar_t uniqueKinectId[48];
 			BOOLEAN isAvailable = false;
-			HRESULT hr1 = pNuiSensor->get_UniqueKinectId(bufferSize, uniqueKinectId);
-			HRESULT hr2 = pNuiSensor->get_IsAvailable(&isAvailable);
-			if (SUCCEEDED(hr1) && SUCCEEDED(hr2))
-				UpdateMainWindow(uniqueKinectId, isAvailable);
+			//HRESULT hr1 = pNuiSensor->get_UniqueKinectId(48, uniqueKinectId);
+			HRESULT hr = pNuiSensor->get_IsAvailable(&isAvailable);
+			if (SUCCEEDED(hr))
+				UpdateMainWindow(L"default", (HRESULT) isAvailable);
         }
-
         SafeRelease(pNuiSensor);
     }
 }
@@ -327,10 +329,10 @@ void CMainWindow::EnumerateSensors()
 /// <summary>
 /// Update the main window status
 /// </summary>
-void CMainWindow::UpdateMainWindow(PCWSTR instanceName, BOOLEAN sensorStatus)
+void CMainWindow::UpdateMainWindow(PCWSTR instanceName, HRESULT sensorStatus)
 {
     // The new status is "not connected"
-    if (sensorStatus == false)
+    if (sensorStatus != S_OK)
     {
         m_pKinectWindowMgr->HandleSensorDisconnected(instanceName);
 
@@ -339,10 +341,10 @@ void CMainWindow::UpdateMainWindow(PCWSTR instanceName, BOOLEAN sensorStatus)
     }
     else
     {
-		m_pKinectWindowMgr->HandleSensorConnected(instanceName, (HRESULT)sensorStatus);
+		m_pKinectWindowMgr->HandleSensorConnected(instanceName, sensorStatus);
 
         // Update the sensor list control
-		m_pSensorListControl->InsertOrUpdateSensorStatus(instanceName, (HRESULT)sensorStatus);
+		m_pSensorListControl->InsertOrUpdateSensorStatus(instanceName, sensorStatus);
     }
 
     // Insert the new log item to status log list
