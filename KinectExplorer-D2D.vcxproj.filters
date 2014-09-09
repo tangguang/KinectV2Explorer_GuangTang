@@ -7,6 +7,10 @@
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="NuiViewer.cpp" />
     <ClCompile Include="KinectWindow.cpp" />
+    <ClCompile Include="NuiStreamViewer.cpp" />
+    <ClCompile Include="NuiImageBuffer.cpp" />
+    <ClCompile Include="NuiStream.cpp" />
+    <ClCompile Include="NuiColorStream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h" />
@@ -18,6 +22,10 @@
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="NuiViewer.h" />
     <ClInclude Include="KinectWindow.h" />
+    <ClInclude Include="NuiStreamViewer.h" />
+    <ClInclude Include="NuiImageBuffer.h" />
+    <ClInclude Include="NuiStream.h" />
+    <ClInclude Include="NuiColorStream.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />

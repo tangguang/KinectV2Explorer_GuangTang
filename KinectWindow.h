@@ -281,10 +281,12 @@ private:
     NuiViewer*              m_pCurTabbedView;           // Pointer to tabbed viewer currently visible
 
     CameraSettingsViewer*   m_pColorSettingsView;       // Pointer to camera color settings viewer
-    CameraSettingsViewer*   m_pExposureSettingsView;    // Pointer to camera exposure settings viewer
+    CameraSettingsViewer*   m_pExposureSettingsView;    // Pointer to camera exposure settings viewer*/
     bool                    m_bSupportCameraSettings;   // Indicate whether the sensor supports camera settings
 
-    NuiColorStream*         m_pColorStream;             // Pointer to color stream
+	IColorFrameSource*      m_ColorStream;              // Pointer to color stream
+
+	/*NuiColorStream*         m_pColorStream;             // Pointer to color stream
     NuiDepthStream*         m_pDepthStream;             // Pointer to depth stream
     NuiSkeletonStream*      m_pSkeletonStream;          // Pointer to skeleton stream
     NuiAudioStream*         m_pAudioStream;             // Pointer to audio stream

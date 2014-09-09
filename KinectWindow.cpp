@@ -6,7 +6,7 @@
 
 #include "stdafx.h"
 #include "KinectWindow.h"
-//#include "NuiStreamViewer.h"
+#include "NuiStreamViewer.h"
 //#include "NuiStream.h"
 #include "Utility.h"
 #include "resource.h"
@@ -87,7 +87,7 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* 
     , m_hThread(nullptr)
     , m_pNuiSensor(pNuiSensor)
 	, m_instanceName((WCHAR*)instanceName)
-    //, m_bSupportCameraSettings(true)
+    , m_bSupportCameraSettings(true)
     , m_hStartWindow(INVALID_HANDLE_VALUE)
     , m_hStopStreamEventThread(INVALID_HANDLE_VALUE)
 {
@@ -95,9 +95,9 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* 
     m_pNuiSensor->AddRef();
 
     // Create instances of sub views
-  /*  m_pPrimaryView    = new NuiStreamViewer(this);
+    m_pPrimaryView    = new NuiStreamViewer(this);
     m_pSecondaryView  = new NuiStreamViewer(this);
-    m_pAudioView      = new NuiAudioViewer(this);
+    /*m_pAudioView      = new NuiAudioViewer(this);
     m_pAccelView      = new NuiAccelerometerViewer(this);
     m_pTiltAngleView  = new NuiTiltAngleViewer(this, pNuiSensor);
     m_pCurTabbedView  = nullptr;
@@ -168,7 +168,6 @@ KinectWindow::~KinectWindow()
 /// <returns>Indicate success or failure</returns>
 bool KinectWindow::Initialize()
 {
-
     // Check Nui sensor pointer
     if (!m_pNuiSensor)
     {
@@ -181,6 +180,10 @@ bool KinectWindow::Initialize()
         return false;
     }
 
+	if (FAILED(m_pNuiSensor->Open()))
+	{
+		return false;
+	}
     /*if (S_OK != m_pNuiSensor->get_IsOpen())
     {
         return false;
@@ -215,17 +218,18 @@ bool KinectWindow::Initialize()
 /// <returns>Indicates success or failure</returns>
 bool KinectWindow::InitializeCommonControl()
 {
-    static bool initialized = false;
-    /*if (!initialized)
+    /*static bool initialized = false;
+    if (!initialized)
     {
         // Initliaze common control for tab control.
         INITCOMMONCONTROLSEX icex;
         icex.dwSize = sizeof(INITCOMMONCONTROLSEX);
         icex.dwICC  = ICC_TAB_CLASSES;
         initialized = (FALSE != InitCommonControlsEx(&icex));
-    }*/
+    }
 
-    return initialized;
+   return initialized;*/
+	return true;
 }
 
 /// <summary>
@@ -475,7 +479,7 @@ bool KinectWindow::CreateWindows()
     }
 
     // Creata camera setting views
-    /*if (!CreateCameraSettingViews())
+   /* if (!CreateCameraSettingViews())
     {
         return false;
     }*/
@@ -1122,7 +1126,8 @@ bool KinectWindow::CalculateViewRects(RECT& priRect, RECT& secRect, RECT& tabRec
 /// </summary>
 void KinectWindow::UpdateStreams()
 {	
-   /* m_pColorStream->ProcessStreamFrame();
+	// Initialize the Kinect and get the color reader
+	/* m_pColorStream->ProcessStreamFrame();
 	m_pDepthStream->ProcessStreamFrame();
     m_pSkeletonStream->ProcessStreamFrame();*/
 }
