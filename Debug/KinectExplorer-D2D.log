@@ -1,21 +1,119 @@
-﻿Build started 9/8/2014 4:20:33 PM.
+﻿Build started 9/9/2014 2:11:13 PM.
      1>Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\opencv\build\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt NuiImageBuffer.cpp
-         NuiImageBuffer.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\Debug\KinectExplorer-D2D.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\opencv\build\x86\vc12\bin" /LIBPATH:"C:\Program Files\opencv\build\x86\vc12\lib" /LIBPATH:"C:\Program Files\opencv\build\x86\vc12\staticlib" /LIBPATH:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\atlmfc\lib" opencv_calib3d249d.lib opencv_contrib249d.lib opencv_core249d.lib opencv_features2d249d.lib opencv_flann249d.lib kinect20.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opencv_gpu249d.lib opencv_highgui249d.lib opencv_imgproc249d.lib opencv_legacy249d.lib opencv_ml249d.lib opencv_nonfree249d.lib opencv_objdetect249d.lib opencv_photo249d.lib opencv_stitching249d.lib opencv_superres249d.lib opencv_ts249d.lib opencv_video249d.lib opencv_videostab249d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\Debug\KinectExplorer-D2D.pdb" /SUBSYSTEM:WINDOWS /STACK:"10000000","10000000" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\Debug\KinectExplorer-D2D.lib" /MACHINE:X86 Debug\KinectExplorer.res
-         Debug\CustomDrawListControl.obj
-         Debug\ImageRenderer.obj
-         Debug\KinectWindow.obj
-         Debug\KinectWindowManager.obj
-         Debug\MainWindow.obj
-         Debug\NuiImageBuffer.obj
-         Debug\NuiStreamViewer.obj
-         Debug\NuiViewer.obj
-         KinectExplorer-D2D.vcxproj -> C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\Debug\KinectExplorer-D2D.exe
-     1>Done Building Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\opencv\build\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt KinectWindow.cpp NuiColorStream.cpp NuiStream.cpp NuiStreamViewer.cpp
+         NuiStreamViewer.cpp
+     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
+                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+         NuiStream.cpp
+     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
+                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+         NuiColorStream.cpp
+     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
+                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(60): error C2664: 'void NuiStreamViewer::SetImageType(ColorImageFormat)' : cannot convert argument 1 from 'FrameSourceTypes' to 'ColorImageFormat'
+                 Conversion to enumeration type requires an explicit cast (static_cast, C-style cast or function-style cast)
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(93): error C2086: 'HRESULT hr' : redefinition
+                 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(83) : see declaration of 'hr'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(153): error C2664: 'void NuiStreamViewer::SetImageType(ColorImageFormat)' : cannot convert argument 1 from 'FrameSourceTypes' to 'ColorImageFormat'
+                 Conversion to enumeration type requires an explicit cast (static_cast, C-style cast or function-style cast)
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(193): error C2259: 'IColorFrame' : cannot instantiate abstract class
+                 due to following members:
+                 'HRESULT IUnknown::QueryInterface(const IID &,void **)' : is abstract
+                 c:\program files (x86)\windows kits\8.1\include\um\unknwnbase.h(114) : see declaration of 'IUnknown::QueryInterface'
+                 'ULONG IUnknown::AddRef(void)' : is abstract
+                 c:\program files (x86)\windows kits\8.1\include\um\unknwnbase.h(118) : see declaration of 'IUnknown::AddRef'
+                 'ULONG IUnknown::Release(void)' : is abstract
+                 c:\program files (x86)\windows kits\8.1\include\um\unknwnbase.h(120) : see declaration of 'IUnknown::Release'
+                 'HRESULT IColorFrame::get_RawColorImageFormat(ColorImageFormat *)' : is abstract
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2559) : see declaration of 'IColorFrame::get_RawColorImageFormat'
+                 'HRESULT IColorFrame::get_FrameDescription(IFrameDescription **)' : is abstract
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2563) : see declaration of 'IColorFrame::get_FrameDescription'
+                 'HRESULT IColorFrame::CopyRawFrameDataToArray(UINT,BYTE *)' : is abstract
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2567) : see declaration of 'IColorFrame::CopyRawFrameDataToArray'
+                 'HRESULT IColorFrame::AccessRawUnderlyingBuffer(UINT *,BYTE **)' : is abstract
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2572) : see declaration of 'IColorFrame::AccessRawUnderlyingBuffer'
+                 'HRESULT IColorFrame::CopyConvertedFrameDataToArray(UINT,BYTE *,ColorImageFormat)' : is abstract
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2578) : see declaration of 'IColorFrame::CopyConvertedFrameDataToArray'
+                 'HRESULT IColorFrame::CreateFrameDescription(ColorImageFormat,IFrameDescription **)' : is abstract
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2584) : see declaration of 'IColorFrame::CreateFrameDescription'
+                 'HRESULT IColorFrame::get_ColorCameraSettings(IColorCameraSettings **)' : is abstract
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2589) : see declaration of 'IColorFrame::get_ColorCameraSettings'
+                 'HRESULT IColorFrame::get_RelativeTime(TIMESPAN *)' : is abstract
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2593) : see declaration of 'IColorFrame::get_RelativeTime'
+                 'HRESULT IColorFrame::get_ColorFrameSource(IColorFrameSource **)' : is abstract
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2597) : see declaration of 'IColorFrame::get_ColorFrameSource'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(220): error C2039: 'NuiImageStreamGetNextFrame' : is not a member of 'IKinectSensor'
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(950) : see declaration of 'IKinectSensor'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(232): error C2065: 'INuiFrameTexture' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(232): error C2065: 'pTexture' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(232): error C2039: 'pFrameTexture' : is not a member of 'IColorFrame'
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(2556) : see declaration of 'IColorFrame'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(235): error C2065: 'NUI_LOCKED_RECT' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(235): error C2146: syntax error : missing ';' before identifier 'lockedRect'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(235): error C2065: 'lockedRect' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(236): error C2065: 'pTexture' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(236): error C2227: left of '->LockRect' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(236): error C2065: 'lockedRect' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(239): error C2065: 'lockedRect' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(239): error C2228: left of '.Pitch' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(244): error C2065: 'lockedRect' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(244): error C2228: left of '.pBits' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(244): error C2228: left of '.size' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(244): error C2660: 'NuiImageBuffer::CopyBayer' : function does not take 1 arguments
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(248): error C2065: 'lockedRect' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(248): error C2228: left of '.pBits' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(248): error C2228: left of '.Pitch' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(248): error C2660: 'cvSetData' : function does not take 1 arguments
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(264): error C2065: 'lockedRect' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(264): error C2228: left of '.pBits' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(264): error C2228: left of '.size' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(264): error C2660: 'NuiImageBuffer::CopyRGB' : function does not take 1 arguments
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2065: 'm_pFTcolorBuffer' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2227: left of '->GetBuffer' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2065: 'lockedRect' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2228: left of '.pBits' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2227: left of '->GetBufferSize' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2065: 'pTexture' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2227: left of '->BufferLen' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2780: 'const _Ty &std::min(const _Ty &,const _Ty &,_Pr)' : expects 3 arguments - 2 provided
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\algorithm(4134) : see declaration of 'std::min'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2780: '_Ty std::min(std::initializer_list<_Elem>)' : expects 1 arguments - 2 provided
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\algorithm(4125) : see declaration of 'std::min'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(265): error C2660: 'memcpy' : function does not take 2 arguments
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(266): error C2065: 'lockedRect' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(266): error C2228: left of '.pBits' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(266): error C2228: left of '.Pitch' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(266): error C2660: 'cvSetData' : function does not take 1 arguments
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(294): error C2065: 'pTexture' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(294): error C2227: left of '->UnlockRect' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(297): error C2039: 'NuiImageStreamReleaseFrame' : is not a member of 'IKinectSensor'
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(950) : see declaration of 'IKinectSensor'
+         KinectWindow.cpp
+     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
+                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectwindow.cpp(98): error C2065: 'm_pPrimaryView' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectwindow.cpp(99): error C2065: 'm_pSecondaryView' : undeclared identifier
+         Generating Code...
+     1>Done Building Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.25
+Time Elapsed 00:00:04.44

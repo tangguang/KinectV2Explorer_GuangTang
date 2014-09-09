@@ -68,7 +68,7 @@ public:
     /// Set image type.
     /// </summary>
     /// <param name="type">Image type to be set</param>
-	void SetImageType(FrameSourceTypes type)
+	void SetImageType(ColorImageFormat type)
     {
         m_imageType = type;
     }
@@ -220,7 +220,7 @@ private:
 
 private:
 	
-	FrameSourceTypes            m_imageType;
+	ColorImageFormat            m_imageType;
     const NuiImageBuffer*       m_pImage;
     //const NUI_SKELETON_FRAME*   m_pSkeletonFrame;
 

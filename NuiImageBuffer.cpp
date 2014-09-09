@@ -65,10 +65,11 @@ NuiImageBuffer::~NuiImageBuffer()
     GetImageSize(resolution, m_srcWidth, m_srcHeight);
 }*/
 
-void NuiImageBuffer::SetImageSize()
+void NuiImageBuffer::SetImageSize(NUI_IMAGE_RESOLUTION resolution)
 {
-	m_srcWidth = 1920;
-	m_srcHeight = 1080;
+	//m_srcWidth = 1920;
+	//m_srcHeight = 1080;
+	GetImageSize(resolution, m_srcWidth, m_srcHeight);
 }
 
 /// <summary>
@@ -78,10 +79,21 @@ void NuiImageBuffer::SetImageSize()
 /// <param name="resolution">Enumeration value which indicates the image resolution format</param>
 /// <param name="width">Calculated image width</param>
 /// <param name="height">Calculated image height</param>
-/*void NuiImageBuffer::GetImageSize(NUI_IMAGE_RESOLUTION resolution, DWORD& width, DWORD& height)
+void NuiImageBuffer::GetImageSize(NUI_IMAGE_RESOLUTION resolution, DWORD& width, DWORD& height)
 {
-    NuiImageResolutionToSize(resolution, width, height);
-}*/
+    // NuiImageResolutionToSize(resolution, width, height);
+	switch (resolution)
+	{
+	case NUI_IMAGE_RESOLUTION_1920x1080:
+		width = 1920;
+		height = 1080;
+		break;
+	default:
+		width = 0;
+		height = 0;
+		break;
+	}
+}
 
 
 /// <summary>

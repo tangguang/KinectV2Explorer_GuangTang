@@ -26,7 +26,7 @@ static const FLOAT TargetDistThr = 10.0f;
 /// <param name="pParent">The pointer to parent window</param>
 NuiStreamViewer::NuiStreamViewer(const NuiViewer* pParent)
     : NuiViewer(pParent)
-	, m_imageType(FrameSourceTypes_Color)
+	, m_imageType(ColorImageFormat_Bayer)
     , m_pImage(nullptr)
     , m_pauseSkeleton(false)
 	, m_isHandReinitial(FALSE)

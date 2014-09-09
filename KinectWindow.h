@@ -10,7 +10,7 @@
 #include "NuiViewer.h"
 // #include <NuiApi.h>
 // #include "NuiDepthStream.h"
-//#include "NuiColorStream.h"
+#include "NuiColorStream.h"
 // #include "NuiSkeletonStream.h"
 // #include "NuiAudioStream.h"
 // #include "NuiAccelerometerStream.h"

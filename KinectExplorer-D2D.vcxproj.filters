@@ -11,6 +11,7 @@
     <ClCompile Include="NuiImageBuffer.cpp" />
     <ClCompile Include="NuiStream.cpp" />
     <ClCompile Include="NuiColorStream.cpp" />
+    <ClCompile Include="KinectSettings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h" />
@@ -26,6 +27,7 @@
     <ClInclude Include="NuiImageBuffer.h" />
     <ClInclude Include="NuiStream.h" />
     <ClInclude Include="NuiColorStream.h" />
+    <ClInclude Include="KinectSettings.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />

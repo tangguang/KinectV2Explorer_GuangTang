@@ -17,6 +17,16 @@ enum DEPTH_TREATMENT
     DISPLAY_ALL_DEPTHS,
 };
 
+#ifndef _NUI_IMAGE_TYPE_
+#define _NUI_IMAGE_RESOLUTION_
+typedef
+enum NUI_IMAGE_RESOLUTION
+{
+	NUI_IMAGE_RESOLUTION_INVALID = -1,
+	NUI_IMAGE_RESOLUTION_1920x1080 = 0
+}	NUI_IMAGE_RESOLUTION;
+#endif _NUI_IMAGE_RESOLUTION_
+
 class NuiImageBuffer
 {
 public:
@@ -35,8 +45,7 @@ public:
     /// Set image size according to image resolution
     /// </summary>
     /// <param name="resolution">Image resolution</param>
-    //void SetImageSize(NUI_IMAGE_RESOLUTION resolution);
-	void SetImageSize();
+    void SetImageSize(NUI_IMAGE_RESOLUTION resolution);
 
     /// <summary>
     /// Clear buffer
@@ -109,7 +118,7 @@ private:
     /// <param name="resolution">Enumeration value which indicates the image resolution format</param>
     /// <param name="width">Calculated image width</param>
     /// <param name="height">Calculated image height</param>
-    //void GetImageSize(NUI_IMAGE_RESOLUTION resolution, DWORD& width, DWORD& height);
+    void GetImageSize(NUI_IMAGE_RESOLUTION resolution, DWORD& width, DWORD& height);
 
     /// <summary>
     /// Initialize the depth-color mapping table.

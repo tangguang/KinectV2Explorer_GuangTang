@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="CustomDrawListControl.h" />
     <ClInclude Include="ImageRenderer.h" />
+    <ClInclude Include="KinectSettings.h" />
     <ClInclude Include="KinectWindow.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="NuiColorStream.h" />
@@ -178,6 +179,7 @@
   <ItemGroup>
     <ClCompile Include="CustomDrawListControl.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
+    <ClCompile Include="KinectSettings.cpp" />
     <ClCompile Include="KinectWindow.cpp" />
     <ClCompile Include="KinectWindowManager.cpp" />
     <ClCompile Include="MainWindow.cpp" />
