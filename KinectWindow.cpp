@@ -7,7 +7,7 @@
 #include "stdafx.h"
 #include "KinectWindow.h"
 #include "NuiStreamViewer.h"
-//#include "NuiStream.h"
+#include "NuiStream.h"
 #include "Utility.h"
 #include "resource.h"
 //#include "CameraColorSettingsViewer.h"
@@ -120,8 +120,8 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* 
    // m_tabbedViews.push_back((m_pTiltAngleView));
 
     // Create stream objects
-   /* m_pColorStream         = new NuiColorStream(m_pNuiSensor, instanceName);  ///////////
-    m_pDepthStream         = new NuiDepthStream(m_pNuiSensor, instanceName, m_pPrimaryView);
+    m_pColorStream         = new NuiColorStream(m_pNuiSensor, instanceName);  ///////////
+   /* m_pDepthStream         = new NuiDepthStream(m_pNuiSensor, instanceName, m_pPrimaryView);
     m_pSkeletonStream      = new NuiSkeletonStream(m_pNuiSensor);
     m_pAudioStream         = new NuiAudioStream(m_pNuiSensor, instanceName);  ////////////
     m_pAccelerometerStream = new NuiAccelerometerStream(m_pNuiSensor);*/
@@ -168,35 +168,30 @@ KinectWindow::~KinectWindow()
 /// <returns>Indicate success or failure</returns>
 bool KinectWindow::Initialize()
 {
-    // Check Nui sensor pointer
+	HRESULT hr;
+	// Check Nui sensor pointer
     if (!m_pNuiSensor)
     {
         return false;
     }
-
     // Initialize common control for tab control
     if (!InitializeCommonControl())
     {
         return false;
     }
 
-	if (FAILED(m_pNuiSensor->Open()))
-	{
-		return false;
-	}
     /*if (S_OK != m_pNuiSensor->get_IsOpen())
     {
         return false;
     }*/
 
-    // Initialize Nui sensor
    /* HRESULT hr = m_pNuiSensor->NuiInitialize(
         NUI_INITIALIZE_FLAG_USES_DEPTH_AND_PLAYER_INDEX
         | NUI_INITIALIZE_FLAG_USES_SKELETON
         | NUI_INITIALIZE_FLAG_USES_COLOR
         | NUI_INITIALIZE_FLAG_USES_AUDIO);*/
 
-    // Ensure infrared emitter enabled
+	// Ensure infrared emitter enabled
    /* if (SUCCEEDED(hr))
     {
         m_pNuiSensor->NuiSetForceInfraredEmitterOff(FALSE);
@@ -578,11 +573,11 @@ void KinectWindow::BringUpWindow()
 /// </sumamry>
 void KinectWindow::StartStreams()
 {
-    /*// Color stream
+    // Color stream
     m_pColorStream->StartStream();
 
     // Depth stream
-    m_pDepthStream->StartStream();
+    /*m_pDepthStream->StartStream();
 
     // Skeleton stream
     m_pSkeletonStream->StartStream();
@@ -1127,8 +1122,8 @@ bool KinectWindow::CalculateViewRects(RECT& priRect, RECT& secRect, RECT& tabRec
 void KinectWindow::UpdateStreams()
 {	
 	// Initialize the Kinect and get the color reader
-	/* m_pColorStream->ProcessStreamFrame();
-	m_pDepthStream->ProcessStreamFrame();
+	m_pColorStream->ProcessStreamFrame();
+	/*m_pDepthStream->ProcessStreamFrame();
     m_pSkeletonStream->ProcessStreamFrame();*/
 }
 

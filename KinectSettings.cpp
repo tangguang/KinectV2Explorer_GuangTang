@@ -19,7 +19,7 @@
 
 ////Draw detected events along time 
 wchar_t cmdline[MAX_PATH];
-HRESULT hr = StringCchPrintfW(cmdline, _countof(cmdline), L"%s\\distrib\\DrawDetectEvents.exe", knownPath);
+// HRESULT hr = StringCchPrintfW(cmdline, _countof(cmdline), L"%s\\distrib\\DrawDetectEvents.exe", knownPath);
 
 /// <summary>
 /// Return the chooser mode based on the given command Id
@@ -140,7 +140,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
             return;
         }
 
-        switch (commandId)
+       /* switch (commandId)
         {
         case ID_RESOLUTION_RGBRESOLUTION640X480FPS30:
             m_pColorStream->SetImageType(NUI_IMAGE_TYPE_COLOR);
@@ -171,14 +171,13 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
             m_pColorStream->SetImageType(NUI_IMAGE_TYPE_COLOR_RAW_BAYER);
             m_pColorStream->SetImageResolution(NUI_IMAGE_RESOLUTION_1280x960);
             break;
-
+			
         default:
             return;
-        }
-
-        m_pColorStream->OpenStream();
+        }*/
+       // m_pColorStream->OpenStream();
     }
-    else if (ID_DEPTHSTREAM_PAUSE == commandId)
+    /*else if (ID_DEPTHSTREAM_PAUSE == commandId)
     {
         // Pause depth stream
         if(m_pDepthStream)
@@ -271,8 +270,8 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
         }
 
         m_pSkeletonStream->SetChooserMode(ConvertCommandIdToChooserMode(commandId));
-    }
-    else
+    }*/
+   /* else
     {
         switch (commandId)
         {
@@ -374,10 +373,10 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 				m_pAudioStream->m_pWaveWriter=NULL;
 				m_pAudioStream->SetRecordingStatus(false);
 			}
-			break;
+			break;*/
 		
 		////Recording 3D facial model
-		case ID_RECORDING_3DFACIALMODEL:
+		/*case ID_RECORDING_3DFACIALMODEL:
 			if (!(pFaceTracker->GetFTRecordingStatus())) 
 				pFaceTracker->SetFTRecordingStatus(true);
 			else
@@ -386,9 +385,9 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 				pFaceTracker->ResetAUSUcounts();
 				pFaceTracker->CloseAUSUfile();
 			}
-			break;
+			break;*/
 		////Speech recognition dication pad
-		case ID_SPEECHRECOGNITION:
+		//case ID_SPEECHRECOGNITION:
 			/*if (!m_threadRun)
 			{*/
 				//m_hSpeechRecogThread=CreateThread(NULL, 0, m_pKinectWindow->SpeechRecogStaticThread, (PVOID)m_pKinectWindow, 0, 0);
@@ -406,10 +405,10 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 				//    m_threadRun=false;
 				//}
 			//}
-			break;
+			//break;
 
 		////In-bed detection
-		case ID_FALLDETECTION:
+		/*case ID_FALLDETECTION:
 			if (!(pFallDetect->getIsRunFallDetect()))
 			{
 				pFallDetect->setIsRunFallDetect(TRUE);
@@ -556,7 +555,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
         default:
             break;
         }
-    }
+    }*/
 }
 
 

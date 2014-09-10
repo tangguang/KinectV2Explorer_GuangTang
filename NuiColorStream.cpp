@@ -29,6 +29,7 @@ NuiColorStream::NuiColorStream(IKinectSensor* pNuiSensor, PCWSTR instanceName)
 	, m_pcolorImage(nullptr)
 	, m_TimerCount(0)
 	, m_instanceName((WCHAR*)instanceName)
+	, m_pColorFrameReader(nullptr)
 	, m_Recording(false)
 	, m_FTRecording(false)
 	//, m_pFTcolorBuffer(nullptr)
@@ -44,6 +45,7 @@ NuiColorStream::~NuiColorStream()
 		m_pFTcolorBuffer->Release();
 		m_pFTcolorBuffer=nullptr;
 	}*/
+
 }
 
 /// <summary>
@@ -69,8 +71,23 @@ NuiStreamViewer* NuiColorStream::SetStreamViewer(NuiStreamViewer* pStreamViewer)
 /// <returns>Indicate success or failure.</returns>
 HRESULT NuiColorStream::StartStream()
 {
+	HRESULT hr;
 	SetImageType(ColorImageFormat_Bayer);                 // Set default image type to color image
 	SetImageResolution(NUI_IMAGE_RESOLUTION_1920x1080);   // Set default image resolution to 1920x1080
+	
+	// Initialize Nui sensor
+	IColorFrameSource* pColorFrameSource = NULL;
+	hr = m_pNuiSensor->Open();
+	if (SUCCEEDED(hr))
+	{
+		hr = m_pNuiSensor->get_ColorFrameSource(&pColorFrameSource);
+	}
+	if (SUCCEEDED(hr))
+	{
+		hr = pColorFrameSource->OpenReader(&m_pColorFrameReader);
+	}
+	SafeRelease(pColorFrameSource);
+
     return OpenStream();
 }
 
@@ -89,31 +106,10 @@ HRESULT NuiColorStream::OpenStream()
                                                   2,
                                                   GetFrameReadyEvent(),
                                                   &m_hStreamHandle);*/
-	///////////// new
-	HRESULT hr;
-	hr = GetDefaultKinectSensor(&m_pNuiSensor);
-	if (FAILED(hr))
+	if (!m_pColorFrameReader)
 	{
-		return hr;
+		return;
 	}
-	if (m_pNuiSensor)
-	{
-		// Initialize the Kinect and get the color reader
-		IColorFrameSource*      pColorFrameSource = NULL;
-		IColorFrameReader*      m_pColorFrameReader;
-		hr = m_pNuiSensor->Open();
-		if (SUCCEEDED(hr))
-		{
-			hr = m_pNuiSensor->get_ColorFrameSource(&pColorFrameSource);
-		}
-
-		if (SUCCEEDED(hr))
-		{
-			hr = pColorFrameSource->OpenReader(&m_pColorFrameReader);
-		}
-		SafeRelease(pColorFrameSource);
-	}
-	////////////////new
 
     // Reset image buffer
     if (SUCCEEDED(hr))
@@ -190,7 +186,10 @@ void NuiColorStream::ProcessStreamFrame()
 void NuiColorStream::ProcessColor()
 {
     HRESULT hr;
-	IColorFrame imageFrame;
+	IColorFrame* imageFrame = nullptr;
+	INT64 nTime = 0;
+	RGBQUAD *pBuffer = nullptr;
+	UINT nBufferSize = 0;
 
 	POINT Point;
 	Point.x=Point.y=0;
@@ -217,7 +216,8 @@ void NuiColorStream::ProcessColor()
 	}
 
     // Attempt to get the color frame
-    hr = m_pNuiSensor->NuiImageStreamGetNextFrame(m_hStreamHandle, 0, &imageFrame);
+	HRESULT hr = m_pColorFrameReader->AcquireLatestFrame(&imageFrame);
+    // hr = m_pNuiSensor->NuiImageStreamGetNextFrame(m_hStreamHandle, 0, &imageFrame);
     if (FAILED(hr))
     {
         return;
@@ -229,11 +229,13 @@ void NuiColorStream::ProcessColor()
         goto ReleaseFrame;
     }
 
-    INuiFrameTexture* pTexture = imageFrame.pFrameTexture;
+	hr = imageFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));
+
+    // INuiFrameTexture* pTexture = imageFrame.pFrameTexture;
 
     // Lock the frame data so the Kinect knows not to modify it while we are reading it
-    NUI_LOCKED_RECT lockedRect;
-    pTexture->LockRect(0, &lockedRect, NULL, 0);
+   /// NUI_LOCKED_RECT lockedRect;
+   // pTexture->LockRect(0, &lockedRect, NULL, 0);
 
     // Make sure we've received valid data
     if (lockedRect.Pitch != 0)

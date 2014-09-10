@@ -87,6 +87,7 @@ private:
 private:
 	ColorImageFormat     m_imageType;
     NUI_IMAGE_RESOLUTION m_imageResolution;
+	IColorFrameReader*   m_pColorFrameReader;
     NuiImageBuffer       m_imageBuffer;
 	IplImage            *m_pcolorImage;
 	UINT                 m_TimerCount;

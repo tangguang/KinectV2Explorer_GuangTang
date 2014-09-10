@@ -1,24 +1,14 @@
-﻿Build started 9/9/2014 2:11:13 PM.
+﻿Build started 9/9/2014 3:54:09 PM.
      1>Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\opencv\build\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt KinectWindow.cpp NuiColorStream.cpp NuiStream.cpp NuiStreamViewer.cpp
-         NuiStreamViewer.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
-                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
-         NuiStream.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
-                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\opencv\build\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt KinectSettings.cpp KinectWindow.cpp KinectWindowManager.cpp MainWindow.cpp NuiColorStream.cpp NuiViewer.cpp
          NuiColorStream.cpp
      1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
                  c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
      1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(60): error C2664: 'void NuiStreamViewer::SetImageType(ColorImageFormat)' : cannot convert argument 1 from 'FrameSourceTypes' to 'ColorImageFormat'
-                 Conversion to enumeration type requires an explicit cast (static_cast, C-style cast or function-style cast)
      1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(93): error C2086: 'HRESULT hr' : redefinition
                  c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(83) : see declaration of 'hr'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(153): error C2664: 'void NuiStreamViewer::SetImageType(ColorImageFormat)' : cannot convert argument 1 from 'FrameSourceTypes' to 'ColorImageFormat'
-                 Conversion to enumeration type requires an explicit cast (static_cast, C-style cast or function-style cast)
      1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuicolorstream.cpp(193): error C2259: 'IColorFrame' : cannot instantiate abstract class
                  due to following members:
                  'HRESULT IUnknown::QueryInterface(const IID &,void **)' : is abstract
@@ -109,11 +99,178 @@
          KinectWindow.cpp
      1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
                  c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
      1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectwindow.cpp(98): error C2065: 'm_pPrimaryView' : undeclared identifier
      1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectwindow.cpp(99): error C2065: 'm_pSecondaryView' : undeclared identifier
+         KinectSettings.cpp
+     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
+                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(22): error C2065: 'knownPath' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(146): error C2065: 'NUI_IMAGE_TYPE_COLOR' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(147): error C2065: 'NUI_IMAGE_RESOLUTION_640x480' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(151): error C2065: 'NUI_IMAGE_TYPE_COLOR' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(152): error C2065: 'NUI_IMAGE_RESOLUTION_1280x960' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(156): error C2065: 'NUI_IMAGE_TYPE_COLOR_YUV' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(157): error C2065: 'NUI_IMAGE_RESOLUTION_640x480' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(161): error C2065: 'NUI_IMAGE_TYPE_COLOR_INFRARED' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(162): error C2065: 'NUI_IMAGE_RESOLUTION_640x480' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(166): error C2065: 'NUI_IMAGE_TYPE_COLOR_RAW_BAYER' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(167): error C2065: 'NUI_IMAGE_RESOLUTION_640x480' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(171): error C2065: 'NUI_IMAGE_TYPE_COLOR_RAW_BAYER' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(172): error C2065: 'NUI_IMAGE_RESOLUTION_1280x960' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(184): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(186): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(186): error C2227: left of '->PauseStream' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(207): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(209): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(209): error C2227: left of '->SetNearMode' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(212): error C2065: 'm_pSkeletonStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(214): error C2065: 'm_pSkeletonStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(214): error C2227: left of '->SetNearMode' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(221): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(223): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(223): error C2227: left of '->OpenStream' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(230): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(232): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(232): error C2227: left of '->SetDepthTreatment' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(238): error C2065: 'm_pSkeletonStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(240): error C2065: 'm_pSkeletonStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(240): error C2227: left of '->PauseStream' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(246): error C2065: 'm_pSkeletonStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(254): error C2065: 'm_pSkeletonStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(254): error C2227: left of '->SetSeatedMode' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(258): error C2065: 'm_pSkeletonStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(258): error C2227: left of '->SetSeatedMode' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(268): error C2065: 'm_pSkeletonStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(273): error C2065: 'm_pSkeletonStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(273): error C2227: left of '->SetChooserMode' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(273): error C3861: 'ConvertCommandIdToChooserMode': identifier not found
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(281): error C2065: 'm_pColorSettingsView' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(281): error C2227: left of '->ShowView' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(286): error C2065: 'm_pExposureSettingsView' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(286): error C2227: left of '->ShowView' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(291): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(293): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(293): error C2227: left of '->SetStreamViewer' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(298): error C2039: 'NuiSetForceInfraredEmitterOff' : is not a member of 'IKinectSensor'
+                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(950) : see declaration of 'IKinectSensor'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(303): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(303): error C2227: left of '->GetRecordingStauts' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(305): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(305): error C2227: left of '->SetRecordingStatus' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(307): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(307): error C2227: left of '->GetRecordingStauts' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(309): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(309): error C2227: left of '->m_pWaveWriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(309): error C2227: left of '->Stop' must point to class/struct/union/generic type
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(310): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(310): error C2227: left of '->m_pWaveWriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(311): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(311): error C2227: left of '->m_pWaveWriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(312): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(312): error C2227: left of '->SetRecordingStatus' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(330): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(330): error C2227: left of '->GetRecordingStauts' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(332): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(332): error C2227: left of '->SetRecordingStatus' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(334): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(334): error C2227: left of '->GetRecordingStauts' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(336): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(336): error C2227: left of '->m_pwriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(337): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(337): error C2227: left of '->m_pwriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(338): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(338): error C2227: left of '->SetRecordingStatus' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(355): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(355): error C2227: left of '->GetRecordingStauts' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(357): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(357): error C2227: left of '->SetRecordingStatus' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(359): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(359): error C2227: left of '->GetRecordingStauts' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(361): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(361): error C2227: left of '->m_pwriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(362): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(362): error C2227: left of '->m_pwriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(363): error C2065: 'm_pDepthStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(363): error C2227: left of '->SetRecordingStatus' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(366): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(366): error C2227: left of '->GetRecordingStauts' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(368): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(368): error C2227: left of '->SetRecordingStatus' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(370): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(370): error C2227: left of '->GetRecordingStauts' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(372): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(372): error C2227: left of '->m_pWaveWriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(372): error C2227: left of '->Stop' must point to class/struct/union/generic type
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(373): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(373): error C2227: left of '->m_pWaveWriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(374): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(374): error C2227: left of '->m_pWaveWriter' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(375): error C2065: 'm_pAudioStream' : undeclared identifier
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectsettings.cpp(375): fatal error C1003: error count exceeds 100; stopping compilation
+         Generating Code...
+         Compiling...
+         KinectWindowManager.cpp
+     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
+                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+         Generating Code...
+         Compiling...
+         NuiViewer.cpp
+     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
+                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+         MainWindow.cpp
+     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
+                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
+     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\mainwindow.cpp(437): error C3861: 'max': identifier not found
          Generating Code...
      1>Done Building Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:04.44
+Time Elapsed 00:00:10.20
