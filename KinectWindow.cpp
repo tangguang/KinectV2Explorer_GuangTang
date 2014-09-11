@@ -127,8 +127,8 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* 
     m_pAccelerometerStream = new NuiAccelerometerStream(m_pNuiSensor);*/
 
     // Attach stream objects to viewers
-  /*  m_pColorStream->SetStreamViewer(m_pPrimaryView);
-    m_pDepthStream->SetStreamViewer(m_pSecondaryView);
+    m_pColorStream->SetStreamViewer(m_pPrimaryView);
+    /*m_pDepthStream->SetStreamViewer(m_pSecondaryView);
     m_pSkeletonStream->SetStreamViewer(m_pPrimaryView);
     //m_pSkeletonStream->SetSecondStreamViewer(m_pSecondaryView);   ////Close the skeleton draw in depth image
     m_pAudioStream->SetStreamViewer(m_pAudioView);
@@ -439,7 +439,6 @@ LRESULT KinectWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     default:
         break;
     }
-
     return FALSE;
 }
 
@@ -546,11 +545,11 @@ void KinectWindow::ShowWindows()
     UpdateWindow(m_hWndTab);
 
     // Primary and secondary views
-    //m_pPrimaryView->ShowView();
-   // m_pSecondaryView->ShowView();
+    m_pPrimaryView->ShowView();
+    m_pSecondaryView->ShowView();
 
     // Show first tabbed view
-   /* if (m_tabbedViews.size() > 0)
+    /*if (m_tabbedViews.size() > 0)
     {
        m_pCurTabbedView = m_tabbedViews[0];
        m_pCurTabbedView->ShowView();
@@ -616,8 +615,8 @@ void KinectWindow::CleanUp()
         m_hTimer = nullptr;
     }
 
-   /* SafeDelete(m_pColorStream);
-    SafeDelete(m_pDepthStream);
+    SafeDelete(m_pColorStream);
+   /* SafeDelete(m_pDepthStream);
     SafeDelete(m_pSkeletonStream);
     SafeDelete(m_pAudioStream);
     SafeDelete(m_pAccelerometerStream);
@@ -658,7 +657,7 @@ void KinectWindow::CleanUp()
 void KinectWindow::OnResize()
 {
     // Move window of sub views to their positions.
-    /*RECT priRect, secRect, tabRect, tabbedRect;
+    RECT priRect, secRect, tabRect, tabbedRect;
     if (CalculateViewRects(priRect, secRect, tabRect, tabbedRect))
     {
         // Primary stream view.
@@ -680,7 +679,7 @@ void KinectWindow::OnResize()
         {
             (*itr)->MoveView(tabbedRect);
         }
-    }*/
+    }
 }
 
 /// <summary>

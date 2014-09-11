@@ -86,8 +86,11 @@ HRESULT NuiColorStream::StartStream()
 	{
 		hr = pColorFrameSource->OpenReader(&m_pColorFrameReader);
 	}
+	if (SUCCEEDED(hr))
+	{
+		m_pColorFrameReader->SubscribeFrameArrived(&m_hColorFrameArrived);
+	}
 	SafeRelease(pColorFrameSource);
-
     return OpenStream();
 }
 
@@ -97,31 +100,20 @@ HRESULT NuiColorStream::StartStream()
 /// <returns>Indicates success or failure.</returns>
 HRESULT NuiColorStream::OpenStream()
 {
-	HRESULT hr;
-
+	//HRESULT hr;
 	// Open color stream.
-    /*hr = m_pNuiSensor->NuiImageStreamOpen(m_imageType,
-                                                  m_imageResolution,
-                                                  0,
-                                                  2,
-                                                  GetFrameReadyEvent(),
-                                                  &m_hStreamHandle);*/
-	if (!m_pColorFrameReader)
-	{
-		return;
-	}
+    /*hr = m_pNuiSensor->NuiImageStreamOpen(m_imageType,m_imageResolution,2,GetFrameReadyEvent(),&m_hStreamHandle);*/
 
     // Reset image buffer
-    if (SUCCEEDED(hr))
-    {
-        m_imageBuffer.SetImageSize(m_imageResolution);  // Set source image resolution to image buffer
-    }
+   // if (SUCCEEDED(hr))
+    //{
+    m_imageBuffer.SetImageSize(m_imageResolution);  // Set source image resolution to image buffer
+    //}
 
 	// Video writer
 	m_ImageRes = cvSize(static_cast<int>(m_imageBuffer.GetWidth()),static_cast<int>(m_imageBuffer.GetHeight()));
 	m_pcolorImage = cvCreateImage(m_ImageRes, 8, 4);    //openCV only supports <=8 bits
-
-    return hr;
+    return S_OK;
 }
 
 /// <summary>
@@ -185,16 +177,81 @@ void NuiColorStream::ProcessStreamFrame()
 /// </summary>
 void NuiColorStream::ProcessColor()
 {
-    HRESULT hr;
+	HRESULT hr;
 	IColorFrame* imageFrame = nullptr;
 	INT64 nTime = 0;
 	RGBQUAD *pBuffer = nullptr;
 	UINT nBufferSize = 0;
-
+	IColorFrameArrivedEventArgs* pArgs = nullptr;
 	POINT Point;
-	Point.x=Point.y=0;
+	Point.x = Point.y = 0;
 
-	if (m_Recording)
+	if (!m_pColorFrameReader)
+	{
+		return;
+	}
+	// HRESULT hr = m_pColorFrameReader->GetFrameArrivedEventData(m_hColorFrameArrived, &pArgs);
+	IColorFrame* pColorFrame = NULL;
+	hr = m_pColorFrameReader->AcquireLatestFrame(&pColorFrame);
+	if (SUCCEEDED(hr))
+	{
+		INT64 nTime = 0;
+		IFrameDescription* pFrameDescription = NULL;
+		int nWidth = 0;
+		int nHeight = 0;
+		ColorImageFormat imageFormat = ColorImageFormat_None;
+		UINT nBufferSize = 0;
+		RGBQUAD *pBuffer = NULL;
+
+		hr = pColorFrame->get_RelativeTime(&nTime);
+
+		if (SUCCEEDED(hr))
+		{
+			hr = pColorFrame->get_FrameDescription(&pFrameDescription);
+		}
+
+		if (SUCCEEDED(hr))
+		{
+			hr = pFrameDescription->get_Width(&nWidth);
+		}
+
+		if (SUCCEEDED(hr))
+		{
+			hr = pFrameDescription->get_Height(&nHeight);
+		}
+
+		if (SUCCEEDED(hr))
+		{
+			hr = pColorFrame->get_RawColorImageFormat(&imageFormat);
+		}
+
+		if (SUCCEEDED(hr))
+		{
+			if (imageFormat == ColorImageFormat_Bgra)
+			{
+				hr = pColorFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));
+				m_imageBuffer.CopyBayer(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
+				if (m_pStreamViewer)
+				{
+					m_pStreamViewer->SetImage(&m_imageBuffer);
+				}
+			}
+			else
+			{
+				hr = E_FAIL;
+			}
+		}
+
+		/*if (SUCCEEDED(hr))
+		{
+			ProcessColor();
+		}*/
+		SafeRelease(pFrameDescription);
+	}
+	SafeRelease(pColorFrame);
+	
+}
+	/*if (m_Recording)
 	{
 	    //////Initializaing a video writer and allocate an image for recording /////////
 		if ((m_TimerCount++) % FramesPerFile==0)
@@ -213,12 +270,12 @@ void NuiColorStream::ProcessColor()
 			}
 			m_TimerCount %= FramesPerFile;
 		}
-	}
+	}*/
 
     // Attempt to get the color frame
-	HRESULT hr = m_pColorFrameReader->AcquireLatestFrame(&imageFrame);
+	// HRESULT hr = m_pColorFrameReader->AcquireLatestFrame(&imageFrame);
     // hr = m_pNuiSensor->NuiImageStreamGetNextFrame(m_hStreamHandle, 0, &imageFrame);
-    if (FAILED(hr))
+    /*if (FAILED(hr))
     {
         return;
     }
@@ -229,7 +286,7 @@ void NuiColorStream::ProcessColor()
         goto ReleaseFrame;
     }
 
-	hr = imageFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));
+	hr = imageFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));*/
 
     // INuiFrameTexture* pTexture = imageFrame.pFrameTexture;
 
@@ -238,7 +295,7 @@ void NuiColorStream::ProcessColor()
    // pTexture->LockRect(0, &lockedRect, NULL, 0);
 
     // Make sure we've received valid data
-    if (lockedRect.Pitch != 0)
+    /*if (lockedRect.Pitch != 0)
     {
         switch (m_imageType)
         {
@@ -252,7 +309,7 @@ void NuiColorStream::ProcessColor()
 			}
             break;
 
-        /*case NUI_IMAGE_TYPE_COLOR_INFRARED:             // Convert infrared data to color image and copy to image buffer
+        case NUI_IMAGE_TYPE_COLOR_INFRARED:             // Convert infrared data to color image and copy to image buffer
             m_imageBuffer.CopyInfrared(lockedRect.pBits, lockedRect.size);
 			/////Recording
 			if (m_Recording)
@@ -260,7 +317,7 @@ void NuiColorStream::ProcessColor()
 				cvSetData(m_pcolorImage,lockedRect.pBits,lockedRect.Pitch);
 				cvWriteFrame(m_pwriter,m_pcolorImage);
 			}
-            break;*/
+            break;
 
         default:   
             m_imageBuffer.CopyRGB(lockedRect.pBits, lockedRect.size);
@@ -295,9 +352,9 @@ void NuiColorStream::ProcessColor()
     // Unlock frame data
     pTexture->UnlockRect(0);
 
-ReleaseFrame:
-    m_pNuiSensor->NuiImageStreamReleaseFrame(m_hStreamHandle, &imageFrame);
-}
+    // ReleaseFrame:
+    m_pNuiSensor->NuiImageStreamReleaseFrame(m_hStreamHandle, &imageFrame);*/
+
 
 void NuiColorStream::SetRecordingStatus (bool RecStatus) 
 {

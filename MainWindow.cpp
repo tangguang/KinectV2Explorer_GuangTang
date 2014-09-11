@@ -434,7 +434,7 @@ void CMainWindow::UpdateLayout()
     // Stretch align the status log list control
     int statusTextBottom = breakLineBottom + GenericGap + statusTextRect.GetHeight();
     //LONG statusListHeight = MAX(windowSize.cy - statusTextBottom - GenericGap - BottomMargin, 0);
-	LONG statusListHeight = max(windowSize.cy - statusTextBottom - GenericGap - BottomMargin, 0);
+	LONG statusListHeight = MAX(windowSize.cy - statusTextBottom - GenericGap - BottomMargin, 0);
     SetWindowPos(GetHandle(IDC_STATUSLOGLIST), 0, sensorListRect.left, statusTextBottom + GenericGap, windowSize.cx - StretchMargin, statusListHeight, 0);
 }
 

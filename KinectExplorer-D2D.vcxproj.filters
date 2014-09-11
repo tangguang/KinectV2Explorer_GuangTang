@@ -4,14 +4,13 @@
     <ClCompile Include="KinectWindowManager.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="CustomDrawListControl.cpp" />
-    <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="NuiViewer.cpp" />
     <ClCompile Include="KinectWindow.cpp" />
     <ClCompile Include="NuiStreamViewer.cpp" />
     <ClCompile Include="NuiImageBuffer.cpp" />
     <ClCompile Include="NuiStream.cpp" />
     <ClCompile Include="NuiColorStream.cpp" />
-    <ClCompile Include="KinectSettings.cpp" />
+    <ClCompile Include="ImageRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h" />
@@ -20,14 +19,13 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="CustomDrawListControl.h" />
-    <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="NuiViewer.h" />
     <ClInclude Include="KinectWindow.h" />
     <ClInclude Include="NuiStreamViewer.h" />
     <ClInclude Include="NuiImageBuffer.h" />
     <ClInclude Include="NuiStream.h" />
     <ClInclude Include="NuiColorStream.h" />
-    <ClInclude Include="KinectSettings.h" />
+    <ClInclude Include="ImageRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
