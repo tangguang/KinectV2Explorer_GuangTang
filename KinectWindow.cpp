@@ -339,7 +339,7 @@ DWORD WINAPI KinectWindow::ThreadProc(KinectWindow* pThis)
     if (pThis->m_hWndParent)
     {
         // Send message back to console window notifying the exit of Kinect window
-       // SendMessageW(pThis->m_hWndParent, WM_CLOSEKINECTWINDOW, (WPARAM)(pThis->m_pNuiSensor ? pThis->m_pNuiSensor->NuiDeviceConnectionId() : nullptr), 0);
+        //SendMessageW(pThis->m_hWndParent, WM_CLOSEKINECTWINDOW, (WPARAM)(pThis->m_pNuiSensor ? pThis->m_pNuiSensor->NuiDeviceConnectionId() : nullptr), 0);
     }
 
 	
@@ -397,6 +397,7 @@ LRESULT KinectWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     {
     case WM_STREAMEVENT:
         UpdateStreams();
+		// SendMessageW(m_pPrimaryView->GetWindow(), WM_PAINT, 0, 0);
         break;
 
     case WM_TIMEREVENT:
@@ -1142,28 +1143,30 @@ void KinectWindow::UpdateTimedStreams()
 /// <returns>Exit result from thread</returns>
 DWORD KinectWindow::StreamEventThread(KinectWindow* pThis)
 {
-    HANDLE events[] = {pThis->m_hStopStreamEventThread, 
+    /*HANDLE events[] = {pThis->m_hStopStreamEventThread, 
                        pThis->m_hTimer, 
                        pThis->m_pColorStream->GetFrameReadyEvent()
                        //pThis->m_pDepthStream->GetFrameReadyEvent(), 
                        //pThis->m_pSkeletonStream->GetFrameReadyEvent()
-	};
+	};*/
+	HANDLE events[] = { reinterpret_cast<HANDLE>(pThis->m_pColorStream->GetArrivedEvent()) };
 
     while (true)
     {
-        DWORD ret = WaitForMultipleObjects(ARRAYSIZE(events), events, FALSE, INFINITE);
-
+		events[0] = reinterpret_cast<HANDLE>(pThis->m_pColorStream->GetArrivedEvent());
+		DWORD ret = WaitForMultipleObjects(ARRAYSIZE(events), events, FALSE, INFINITE);
         if (WAIT_OBJECT_0 == ret)
-            break;
-
-        if (WAIT_OBJECT_0 + 1 == ret)
+		{
+			SendMessageW(pThis->GetWindow(), WM_STREAMEVENT, 0, 0);
+		}
+        /*if (WAIT_OBJECT_0 + 1 == ret)
         {
             SendMessageW(pThis->GetWindow(), WM_TIMEREVENT, 0, 0);
-        }
-        else if(WAIT_OBJECT_0 + 4 >= ret)
+        }*/
+        /*else if(WAIT_OBJECT_0 + 4 >= ret)
         {
             SendMessageW(pThis->GetWindow(), WM_STREAMEVENT, 0, 0);
-        }
+        }*/
     }
     return 0;
 }

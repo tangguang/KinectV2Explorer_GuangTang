@@ -79,10 +79,10 @@ HRESULT ImageRenderer::EnsureDependentResourcesCreated(HWND hWnd)
         return E_INVALIDARG;
     }
 
-    if (!g_pDWriteFactory)
+    /*if (!g_pDWriteFactory)
     {
         return E_FAIL;
-    }
+    }**/
 
     if (m_hWnd != hWnd)
     {
@@ -107,7 +107,7 @@ HRESULT ImageRenderer::EnsureDependentResourcesCreated(HWND hWnd)
         CreateGradientBrush();
 
         // Create text format to draw text
-        CreateTextFormats();
+        //CreateTextFormats();
     }
 
     return hr;

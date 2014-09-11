@@ -165,7 +165,7 @@ void NuiColorStream::SetImageResolution(NUI_IMAGE_RESOLUTION resolution)
 void NuiColorStream::ProcessStreamFrame()
 {
 
-    if (WAIT_OBJECT_0 == WaitForSingleObject(GetFrameReadyEvent(), 0))
+	if (WAIT_OBJECT_0 == WaitForSingleObject(reinterpret_cast<HANDLE>(GetArrivedEvent()), 0))
     {
         // Frame ready event has been set. Proceed to process incoming frame
         ProcessColor();
@@ -177,22 +177,13 @@ void NuiColorStream::ProcessStreamFrame()
 /// </summary>
 void NuiColorStream::ProcessColor()
 {
-	HRESULT hr;
-	IColorFrame* imageFrame = nullptr;
-	INT64 nTime = 0;
-	RGBQUAD *pBuffer = nullptr;
-	UINT nBufferSize = 0;
-	IColorFrameArrivedEventArgs* pArgs = nullptr;
-	POINT Point;
-	Point.x = Point.y = 0;
-
 	if (!m_pColorFrameReader)
 	{
 		return;
 	}
-	// HRESULT hr = m_pColorFrameReader->GetFrameArrivedEventData(m_hColorFrameArrived, &pArgs);
+
 	IColorFrame* pColorFrame = NULL;
-	hr = m_pColorFrameReader->AcquireLatestFrame(&pColorFrame);
+	HRESULT hr = m_pColorFrameReader->AcquireLatestFrame(&pColorFrame);
 	if (SUCCEEDED(hr))
 	{
 		INT64 nTime = 0;
@@ -202,10 +193,149 @@ void NuiColorStream::ProcessColor()
 		ColorImageFormat imageFormat = ColorImageFormat_None;
 		UINT nBufferSize = 0;
 		RGBQUAD *pBuffer = NULL;
+		RGBQUAD* m_pColorRGBX;
 
 		hr = pColorFrame->get_RelativeTime(&nTime);
 
 		if (SUCCEEDED(hr))
+		{
+			hr = pColorFrame->get_FrameDescription(&pFrameDescription);
+		}
+
+		if (SUCCEEDED(hr))
+		{
+			hr = pFrameDescription->get_Width(&nWidth);
+		}
+
+		if (SUCCEEDED(hr))
+		{
+			hr = pFrameDescription->get_Height(&nHeight);
+		}
+
+		if (SUCCEEDED(hr))
+		{
+			hr = pColorFrame->get_RawColorImageFormat(&imageFormat);
+		}
+
+		if (SUCCEEDED(hr))
+		{
+			m_pColorRGBX = new RGBQUAD[nWidth * nHeight];
+			if (imageFormat == ColorImageFormat_Bgra)
+			{
+				hr = pColorFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));
+				m_imageBuffer.CopyRGB(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
+				if (m_pStreamViewer)
+				{
+					m_pStreamViewer->SetImage(&m_imageBuffer);
+				}
+			}
+			else if (m_pColorRGBX)
+			{
+				pBuffer = m_pColorRGBX;
+				nBufferSize = nWidth * nHeight * sizeof(RGBQUAD);
+				hr = pColorFrame->CopyConvertedFrameDataToArray(nBufferSize, reinterpret_cast<BYTE*>(pBuffer), ColorImageFormat_Bgra);
+				m_imageBuffer.CopyRGB(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
+				if (m_pStreamViewer)
+				{
+					m_pStreamViewer->SetImage(&m_imageBuffer);
+					// SendMessageW(m_pStreamViewer->GetWindow(), WM_PAINT, 0, 0);
+				}
+			}
+			else
+			{
+				hr = E_FAIL;
+			}
+		}
+		SafeRelease(pFrameDescription);
+	}
+
+	SafeRelease(pColorFrame);
+	/*IColorFrameArrivedEventArgs* m_pEvents = nullptr;
+
+	IColorFrameReference* m_pColorFrameRef = nullptr;
+
+	IColorFrame* m_pColorFrame = nullptr;
+
+	IFrameDescription* pFrameDescription = nullptr;
+
+	int nWidth = 0;
+
+	int nHeight = 0;
+
+	ColorImageFormat imageFormat = ColorImageFormat_None;
+
+	UINT nBufferSize = 0;
+
+	RGBQUAD *pBuffer = nullptr;
+
+	INT64 nTime = 0;
+
+	//POINT Point;
+	//Point.x = Point.y = 0;
+
+	if (!m_pColorFrameReader)
+	{
+		return;
+	}
+
+	HRESULT hr = m_pColorFrameReader->GetFrameArrivedEventData(m_hColorFrameArrived, &m_pEvents);
+
+	if (SUCCEEDED(hr)) {
+		hr = m_pEvents->get_FrameReference(&m_pColorFrameRef);
+	}
+
+	if (SUCCEEDED(hr)) {
+		hr = m_pColorFrameRef->AcquireFrame(&m_pColorFrame);
+	}
+
+	if (SUCCEEDED(hr)) {
+		hr = m_pColorFrame->get_FrameDescription(&pFrameDescription);
+	}
+
+	if (SUCCEEDED(hr)) {
+		hr = pFrameDescription->get_Width(&nWidth);
+	}
+	// 获取帧高度
+	if (SUCCEEDED(hr)) {
+		hr = pFrameDescription->get_Height(&nHeight);
+	}
+	// 获取帧格式
+	if (SUCCEEDED(hr)) {
+		hr = m_pColorFrame->get_RawColorImageFormat(&imageFormat);
+	}
+	if (SUCCEEDED(hr)) {
+		if (imageFormat == ColorImageFormat_Bgra)
+		{
+			hr = m_pColorFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));
+			m_imageBuffer.CopyBayer(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
+			if (m_pStreamViewer)
+			{
+				m_pStreamViewer->SetImage(&m_imageBuffer);
+			}
+		}
+		else
+		{
+			hr = E_FAIL;
+		}
+	}
+	SafeRelease(pFrameDescription);
+	SafeRelease(m_pColorFrame);
+	SafeRelease(m_pColorFrameRef);
+	SafeRelease(m_pEvents);*/
+}
+	// hr = m_pColorFrameReader->AcquireLatestFrame(&pColorFrame);
+	/*if (SUCCEEDED(hr))
+	{
+		INT64 nTime = 0;
+		IFrameDescription* pFrameDescription = NULL;
+		
+		ColorImageFormat imageFormat = ColorImageFormat_None;
+		UINT nBufferSize = 0;
+		RGBQUAD *pBuffer = NULL;
+
+		hr = pColorFrame->get_RelativeTime(&nTime);*/
+
+		/*if (SUCCEEDED(hr))
 		{
 			hr = pColorFrame->get_FrameDescription(&pFrameDescription);
 		}
@@ -240,17 +370,16 @@ void NuiColorStream::ProcessColor()
 			{
 				hr = E_FAIL;
 			}
-		}
+		}*/
 
 		/*if (SUCCEEDED(hr))
 		{
 			ProcessColor();
 		}*/
-		SafeRelease(pFrameDescription);
-	}
-	SafeRelease(pColorFrame);
-	
-}
+		//SafeRelease(pFrameDescription);
+	//}
+	//SafeRelease(pColorFrame);
+
 	/*if (m_Recording)
 	{
 	    //////Initializaing a video writer and allocate an image for recording /////////
@@ -363,6 +492,8 @@ void NuiColorStream::SetRecordingStatus (bool RecStatus)
 }
 
 bool NuiColorStream::GetRecordingStauts () const {return m_Recording;}
+
+WAITABLE_HANDLE NuiColorStream::GetArrivedEvent() { return m_hColorFrameArrived; }
 
 /*HRESULT NuiColorStream::FTcolorInit(FT_CAMERA_CONFIG ColorCameraConfig)
 {

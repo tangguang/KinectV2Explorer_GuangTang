@@ -69,6 +69,7 @@ public:
 	friend bool GetDevIdforFile(wchar_t *USBDeviceInstancePath, wchar_t *pDevIdOut);  //////// 
 	void SetRecordingStatus(bool RecStatus);
 	bool GetRecordingStauts() const;
+	WAITABLE_HANDLE GetArrivedEvent();
 
 	CvVideoWriter       *m_pwriter;
 	WCHAR*               m_instanceName;
@@ -93,6 +94,6 @@ private:
 	UINT                 m_TimerCount;
 	CvSize               m_ImageRes;
 	bool                 m_Recording, m_FTRecording;
-	WAITABLE_HANDLE         m_hColorFrameArrived = 0;
+	WAITABLE_HANDLE      m_hColorFrameArrived = 0;
 	//IFTImage*            m_pFTcolorBuffer;
 };
