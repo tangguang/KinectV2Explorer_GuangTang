@@ -24,10 +24,10 @@ void EnsureIndependentResourcesCreated()
     {
         D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &g_pD2DFactory);
     }
-	/*if (nullptr == g_pDWriteFactory)
+	if (nullptr == g_pDWriteFactory)
 	{
 		DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), reinterpret_cast<IUnknown**>(&g_pDWriteFactory));
-	}*/
+	}
 } 
 
 /// <summary>
@@ -186,7 +186,7 @@ LRESULT CMainWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
         // Handle the Kinect sensor status change case
     case WM_UPDATEMAINWINDOW:
         {
-            //UpdateMainWindow((PCWCHAR)wParam, (HRESULT)lParam);
+            UpdateMainWindow((PCWCHAR)wParam, (HRESULT)lParam);
             UpdateLayoutAndShowStatus();
         }
         break;
@@ -307,17 +307,13 @@ void CMainWindow::EnumerateSensors()
 {
     
 	int iCount = 1;	
-    /*HRESULT hr = NuiGetSensorCount(&iCount);*/
     for (int i = 0; i < iCount; ++i)
     {
-        // INuiSensor* pNuiSensor = nullptr;
 		IKinectSensor* pNuiSensor = nullptr;
 		HRESULT hr = GetDefaultKinectSensor(&pNuiSensor);
 		if (SUCCEEDED(hr))
 		{
-			// wchar_t uniqueKinectId[48];
 			BOOLEAN isAvailable = false;
-			//HRESULT hr1 = pNuiSensor->get_UniqueKinectId(48, uniqueKinectId);
 			HRESULT hr = pNuiSensor->get_IsAvailable(&isAvailable);
 			if (SUCCEEDED(hr))
 				UpdateMainWindow(L"default", (HRESULT) isAvailable);

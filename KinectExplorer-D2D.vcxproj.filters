@@ -11,6 +11,7 @@
     <ClCompile Include="NuiStream.cpp" />
     <ClCompile Include="NuiColorStream.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
+    <ClCompile Include="NuiDepthStream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h" />
@@ -26,6 +27,7 @@
     <ClInclude Include="NuiStream.h" />
     <ClInclude Include="NuiColorStream.h" />
     <ClInclude Include="ImageRenderer.h" />
+    <ClInclude Include="NuiDepthStream.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />

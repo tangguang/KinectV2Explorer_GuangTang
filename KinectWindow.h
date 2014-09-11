@@ -8,8 +8,7 @@
 
 #include <vector>
 #include "NuiViewer.h"
-// #include <NuiApi.h>
-// #include "NuiDepthStream.h"
+#include "NuiDepthStream.h"
 #include "NuiColorStream.h"
 // #include "NuiSkeletonStream.h"
 // #include "NuiAudioStream.h"
@@ -284,11 +283,9 @@ private:
     CameraSettingsViewer*   m_pExposureSettingsView;    // Pointer to camera exposure settings viewer*/
     bool                    m_bSupportCameraSettings;   // Indicate whether the sensor supports camera settings
 
-	//IColorFrameSource*      m_ColorStream;              // Pointer to color stream
-	//IColorFrameReader*      m_pColorFrameReader;
 	NuiColorStream*         m_pColorStream;             // Pointer to color stream
-    /*NuiDepthStream*         m_pDepthStream;             // Pointer to depth stream
-    NuiSkeletonStream*      m_pSkeletonStream;          // Pointer to skeleton stream
+    NuiDepthStream*         m_pDepthStream;             // Pointer to depth stream
+    /*NuiSkeletonStream*      m_pSkeletonStream;          // Pointer to skeleton stream
     NuiAudioStream*         m_pAudioStream;             // Pointer to audio stream
     NuiAccelerometerStream* m_pAccelerometerStream;     // Pointer to accelerometer stream*/
 

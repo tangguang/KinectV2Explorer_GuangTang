@@ -29,6 +29,7 @@
 #include <Kinect.h>
 
 #pragma comment (lib, "d2d1.lib")
+#pragma comment(lib, "Dwrite.lib")
 #pragma comment (lib, "kinect20.lib")
 
 // The user defined message

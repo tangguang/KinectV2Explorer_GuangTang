@@ -121,15 +121,15 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* 
 
     // Create stream objects
     m_pColorStream         = new NuiColorStream(m_pNuiSensor, instanceName);  ///////////
-   /* m_pDepthStream         = new NuiDepthStream(m_pNuiSensor, instanceName, m_pPrimaryView);
-    m_pSkeletonStream      = new NuiSkeletonStream(m_pNuiSensor);
+    m_pDepthStream         = new NuiDepthStream(m_pNuiSensor, instanceName, m_pPrimaryView);
+    /*m_pSkeletonStream      = new NuiSkeletonStream(m_pNuiSensor);
     m_pAudioStream         = new NuiAudioStream(m_pNuiSensor, instanceName);  ////////////
     m_pAccelerometerStream = new NuiAccelerometerStream(m_pNuiSensor);*/
 
     // Attach stream objects to viewers
     m_pColorStream->SetStreamViewer(m_pPrimaryView);
-    /*m_pDepthStream->SetStreamViewer(m_pSecondaryView);
-    m_pSkeletonStream->SetStreamViewer(m_pPrimaryView);
+    m_pDepthStream->SetStreamViewer(m_pSecondaryView);
+    /*m_pSkeletonStream->SetStreamViewer(m_pPrimaryView);
     //m_pSkeletonStream->SetSecondStreamViewer(m_pSecondaryView);   ////Close the skeleton draw in depth image
     m_pAudioStream->SetStreamViewer(m_pAudioView);
     m_pAccelerometerStream->SetStreamViewer(m_pAccelView);
@@ -222,8 +222,7 @@ bool KinectWindow::InitializeCommonControl()
         icex.dwICC  = ICC_TAB_CLASSES;
         initialized = (FALSE != InitCommonControlsEx(&icex));
     }
-
-   return initialized;*/
+    return initialized;*/
 	return true;
 }
 
@@ -397,7 +396,6 @@ LRESULT KinectWindow::DialogProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
     {
     case WM_STREAMEVENT:
         UpdateStreams();
-		// SendMessageW(m_pPrimaryView->GetWindow(), WM_PAINT, 0, 0);
         break;
 
     case WM_TIMEREVENT:
@@ -617,13 +615,13 @@ void KinectWindow::CleanUp()
     }
 
     SafeDelete(m_pColorStream);
-   /* SafeDelete(m_pDepthStream);
-    SafeDelete(m_pSkeletonStream);
+    SafeDelete(m_pDepthStream);
+    /*SafeDelete(m_pSkeletonStream);
     SafeDelete(m_pAudioStream);
-    SafeDelete(m_pAccelerometerStream);
+    SafeDelete(m_pAccelerometerStream);*/
     SafeDelete(m_pPrimaryView);
     SafeDelete(m_pSecondaryView);
-    SafeDelete(m_pAudioView);
+   /* SafeDelete(m_pAudioView);
     SafeDelete(m_pAccelView);
     SafeDelete(m_pTiltAngleView);
     SafeDelete(m_pColorSettingsView);
@@ -633,11 +631,8 @@ void KinectWindow::CleanUp()
 	SafeDelete(m_pFaceTrackerStream);
 	SafeDelete(m_pFaceRecogStream);*/
 //	SafeDelete(m_pSimpleDict);
-
     SafeRelease(m_pNuiSensor);
-
 	StopThreads();
-
     if (INVALID_HANDLE_VALUE != m_hStartWindow)
     {
         CloseHandle(m_hStartWindow);
@@ -649,7 +644,6 @@ void KinectWindow::CleanUp()
         CloseHandle(m_hStopStreamEventThread);
         m_hStopStreamEventThread = INVALID_HANDLE_VALUE;
     }
-
 }
 
 /// <summary>
@@ -1123,8 +1117,8 @@ void KinectWindow::UpdateStreams()
 {	
 	// Initialize the Kinect and get the color reader
 	m_pColorStream->ProcessStreamFrame();
-	/*m_pDepthStream->ProcessStreamFrame();
-    m_pSkeletonStream->ProcessStreamFrame();*/
+	m_pDepthStream->ProcessStreamFrame();
+   /* m_pSkeletonStream->ProcessStreamFrame();*/
 }
 
 /// <summary>

@@ -100,15 +100,7 @@ HRESULT NuiColorStream::StartStream()
 /// <returns>Indicates success or failure.</returns>
 HRESULT NuiColorStream::OpenStream()
 {
-	//HRESULT hr;
-	// Open color stream.
-    /*hr = m_pNuiSensor->NuiImageStreamOpen(m_imageType,m_imageResolution,2,GetFrameReadyEvent(),&m_hStreamHandle);*/
-
-    // Reset image buffer
-   // if (SUCCEEDED(hr))
-    //{
     m_imageBuffer.SetImageSize(m_imageResolution);  // Set source image resolution to image buffer
-    //}
 
 	// Video writer
 	m_ImageRes = cvSize(static_cast<int>(m_imageBuffer.GetWidth()),static_cast<int>(m_imageBuffer.GetHeight()));
@@ -149,8 +141,6 @@ void NuiColorStream::SetImageResolution(NUI_IMAGE_RESOLUTION resolution)
 {
     switch (resolution)
     {
-    //case NUI_IMAGE_RESOLUTION_640x480:
-	//	break;
     case NUI_IMAGE_RESOLUTION_1920x1080:
         m_imageResolution = resolution;
         break;
@@ -238,7 +228,6 @@ void NuiColorStream::ProcessColor()
 				if (m_pStreamViewer)
 				{
 					m_pStreamViewer->SetImage(&m_imageBuffer);
-					// SendMessageW(m_pStreamViewer->GetWindow(), WM_PAINT, 0, 0);
 				}
 			}
 			else
@@ -248,242 +237,8 @@ void NuiColorStream::ProcessColor()
 		}
 		SafeRelease(pFrameDescription);
 	}
-
 	SafeRelease(pColorFrame);
-	/*IColorFrameArrivedEventArgs* m_pEvents = nullptr;
-
-	IColorFrameReference* m_pColorFrameRef = nullptr;
-
-	IColorFrame* m_pColorFrame = nullptr;
-
-	IFrameDescription* pFrameDescription = nullptr;
-
-	int nWidth = 0;
-
-	int nHeight = 0;
-
-	ColorImageFormat imageFormat = ColorImageFormat_None;
-
-	UINT nBufferSize = 0;
-
-	RGBQUAD *pBuffer = nullptr;
-
-	INT64 nTime = 0;
-
-	//POINT Point;
-	//Point.x = Point.y = 0;
-
-	if (!m_pColorFrameReader)
-	{
-		return;
-	}
-
-	HRESULT hr = m_pColorFrameReader->GetFrameArrivedEventData(m_hColorFrameArrived, &m_pEvents);
-
-	if (SUCCEEDED(hr)) {
-		hr = m_pEvents->get_FrameReference(&m_pColorFrameRef);
-	}
-
-	if (SUCCEEDED(hr)) {
-		hr = m_pColorFrameRef->AcquireFrame(&m_pColorFrame);
-	}
-
-	if (SUCCEEDED(hr)) {
-		hr = m_pColorFrame->get_FrameDescription(&pFrameDescription);
-	}
-
-	if (SUCCEEDED(hr)) {
-		hr = pFrameDescription->get_Width(&nWidth);
-	}
-	// 获取帧高度
-	if (SUCCEEDED(hr)) {
-		hr = pFrameDescription->get_Height(&nHeight);
-	}
-	// 获取帧格式
-	if (SUCCEEDED(hr)) {
-		hr = m_pColorFrame->get_RawColorImageFormat(&imageFormat);
-	}
-	if (SUCCEEDED(hr)) {
-		if (imageFormat == ColorImageFormat_Bgra)
-		{
-			hr = m_pColorFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));
-			m_imageBuffer.CopyBayer(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
-			if (m_pStreamViewer)
-			{
-				m_pStreamViewer->SetImage(&m_imageBuffer);
-			}
-		}
-		else
-		{
-			hr = E_FAIL;
-		}
-	}
-	SafeRelease(pFrameDescription);
-	SafeRelease(m_pColorFrame);
-	SafeRelease(m_pColorFrameRef);
-	SafeRelease(m_pEvents);*/
 }
-	// hr = m_pColorFrameReader->AcquireLatestFrame(&pColorFrame);
-	/*if (SUCCEEDED(hr))
-	{
-		INT64 nTime = 0;
-		IFrameDescription* pFrameDescription = NULL;
-		
-		ColorImageFormat imageFormat = ColorImageFormat_None;
-		UINT nBufferSize = 0;
-		RGBQUAD *pBuffer = NULL;
-
-		hr = pColorFrame->get_RelativeTime(&nTime);*/
-
-		/*if (SUCCEEDED(hr))
-		{
-			hr = pColorFrame->get_FrameDescription(&pFrameDescription);
-		}
-
-		if (SUCCEEDED(hr))
-		{
-			hr = pFrameDescription->get_Width(&nWidth);
-		}
-
-		if (SUCCEEDED(hr))
-		{
-			hr = pFrameDescription->get_Height(&nHeight);
-		}
-
-		if (SUCCEEDED(hr))
-		{
-			hr = pColorFrame->get_RawColorImageFormat(&imageFormat);
-		}
-
-		if (SUCCEEDED(hr))
-		{
-			if (imageFormat == ColorImageFormat_Bgra)
-			{
-				hr = pColorFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));
-				m_imageBuffer.CopyBayer(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
-				if (m_pStreamViewer)
-				{
-					m_pStreamViewer->SetImage(&m_imageBuffer);
-				}
-			}
-			else
-			{
-				hr = E_FAIL;
-			}
-		}*/
-
-		/*if (SUCCEEDED(hr))
-		{
-			ProcessColor();
-		}*/
-		//SafeRelease(pFrameDescription);
-	//}
-	//SafeRelease(pColorFrame);
-
-	/*if (m_Recording)
-	{
-	    //////Initializaing a video writer and allocate an image for recording /////////
-		if ((m_TimerCount++) % FramesPerFile==0)
-		{
-		    WCHAR szFilename[MAX_PATH] = { 0 };
-		    if (SUCCEEDED(GetFileName(szFilename,_countof(szFilename), m_instanceName, RGBSensor)))
-			{
-				char char_szFilename[MAX_PATH] = {0};
-				size_t convertedChars;
-				wcstombs_s(&convertedChars,char_szFilename,sizeof(char_szFilename),szFilename,sizeof(char_szFilename));
-				m_pwriter = cvCreateVideoWriter(char_szFilename,
-				CV_FOURCC('L', 'A', 'G', 'S'),
-				//-1,  //user specified 
-				FramesPerSecond,m_ImageRes);
-				//2,m_ImageRes);
-			}
-			m_TimerCount %= FramesPerFile;
-		}
-	}*/
-
-    // Attempt to get the color frame
-	// HRESULT hr = m_pColorFrameReader->AcquireLatestFrame(&imageFrame);
-    // hr = m_pNuiSensor->NuiImageStreamGetNextFrame(m_hStreamHandle, 0, &imageFrame);
-    /*if (FAILED(hr))
-    {
-        return;
-    }
-
-    if (m_paused)
-    {
-        // Stream paused. Skip frame process and release the frame.
-        goto ReleaseFrame;
-    }
-
-	hr = imageFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));*/
-
-    // INuiFrameTexture* pTexture = imageFrame.pFrameTexture;
-
-    // Lock the frame data so the Kinect knows not to modify it while we are reading it
-   /// NUI_LOCKED_RECT lockedRect;
-   // pTexture->LockRect(0, &lockedRect, NULL, 0);
-
-    // Make sure we've received valid data
-    /*if (lockedRect.Pitch != 0)
-    {
-        switch (m_imageType)
-        {
-		case ColorImageFormat_Bayer:                 // Convert raw bayer data to color image and copy to image buffer
-            m_imageBuffer.CopyBayer(lockedRect.pBits, lockedRect.size);
-			/////Recording
-			if (m_Recording)
-			{
-				cvSetData(m_pcolorImage,lockedRect.pBits,lockedRect.Pitch);
-				cvWriteFrame(m_pwriter,m_pcolorImage);
-			}
-            break;
-
-        case NUI_IMAGE_TYPE_COLOR_INFRARED:             // Convert infrared data to color image and copy to image buffer
-            m_imageBuffer.CopyInfrared(lockedRect.pBits, lockedRect.size);
-			/////Recording
-			if (m_Recording)
-			{
-				cvSetData(m_pcolorImage,lockedRect.pBits,lockedRect.Pitch);
-				cvWriteFrame(m_pwriter,m_pcolorImage);
-			}
-            break;
-
-        default:   
-            m_imageBuffer.CopyRGB(lockedRect.pBits, lockedRect.size);
-			memcpy(m_pFTcolorBuffer->GetBuffer(), PBYTE(lockedRect.pBits), std::min(m_pFTcolorBuffer->GetBufferSize(), UINT(pTexture->BufferLen())));
-			cvSetData(m_pcolorImage,lockedRect.pBits,lockedRect.Pitch);
-
-			/////Recording
-			if (m_Recording)
-			{
-				cvWriteFrame(m_pwriter,m_pcolorImage);
-			}
-			
-            break;
-        }
-
-        if (m_pStreamViewer)
-        {
-            // Set image data to viewer
-            m_pStreamViewer->SetImage(&m_imageBuffer);
-        }
-		
-		///Recording
-		if (m_Recording)
-		{
-			if (m_TimerCount%FramesPerFile==0)
-			{
-				cvReleaseVideoWriter(&m_pwriter);
-			}
-		}
-    }
-
-    // Unlock frame data
-    pTexture->UnlockRect(0);
-
-    // ReleaseFrame:
-    m_pNuiSensor->NuiImageStreamReleaseFrame(m_hStreamHandle, &imageFrame);*/
-
 
 void NuiColorStream::SetRecordingStatus (bool RecStatus) 
 {

@@ -166,6 +166,7 @@
     <ClInclude Include="KinectWindow.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="NuiColorStream.h" />
+    <ClInclude Include="NuiDepthStream.h" />
     <ClInclude Include="NuiImageBuffer.h" />
     <ClInclude Include="NuiStream.h" />
     <ClInclude Include="NuiStreamViewer.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="KinectWindowManager.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="NuiColorStream.cpp" />
+    <ClCompile Include="NuiDepthStream.cpp" />
     <ClCompile Include="NuiImageBuffer.cpp" />
     <ClCompile Include="NuiStream.cpp" />
     <ClCompile Include="NuiStreamViewer.cpp" />
