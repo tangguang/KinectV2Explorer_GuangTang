@@ -102,11 +102,11 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* 
     m_pTiltAngleView  = new NuiTiltAngleViewer(this, pNuiSensor);
     m_pCurTabbedView  = nullptr;
     m_pColorSettingsView = new CameraColorSettingsViewer(this);
-    m_pExposureSettingsView = new CameraExposureSettingsViewer(this);
+    m_pExposureSettingsView = new CameraExposureSettingsViewer(this);*/
 
     m_views.push_back(m_pPrimaryView);
     m_views.push_back(m_pSecondaryView);
-    m_views.push_back(m_pAudioView);
+   /* m_views.push_back(m_pAudioView);
     m_views.push_back(m_pAccelView);
     m_views.push_back(m_pTiltAngleView);*/
 
@@ -1142,11 +1142,12 @@ void KinectWindow::UpdateTimedStreams()
 /// <returns>Exit result from thread</returns>
 DWORD KinectWindow::StreamEventThread(KinectWindow* pThis)
 {
-    /*HANDLE events[] = {pThis->m_hStopStreamEventThread, 
+    HANDLE events[] = {pThis->m_hStopStreamEventThread, 
                        pThis->m_hTimer, 
-                       pThis->m_pColorStream->GetFrameReadyEvent(), 
-                       pThis->m_pDepthStream->GetFrameReadyEvent(), 
-                       pThis->m_pSkeletonStream->GetFrameReadyEvent()};
+                       pThis->m_pColorStream->GetFrameReadyEvent()
+                       //pThis->m_pDepthStream->GetFrameReadyEvent(), 
+                       //pThis->m_pSkeletonStream->GetFrameReadyEvent()
+	};
 
     while (true)
     {
@@ -1164,7 +1165,6 @@ DWORD KinectWindow::StreamEventThread(KinectWindow* pThis)
             SendMessageW(pThis->GetWindow(), WM_STREAMEVENT, 0, 0);
         }
     }
-	*/
     return 0;
 }
 
