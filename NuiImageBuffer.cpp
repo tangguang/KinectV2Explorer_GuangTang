@@ -12,7 +12,7 @@
 #define BYTES_PER_PIXEL_RGB         4
 #define BYTES_PER_PIXEL_INFRARED    2
 #define BYTES_PER_PIXEL_BAYER       1
-#define BYTES_PER_PIXEL_DEPTH       sizeof(NUI_DEPTH_IMAGE_PIXEL)
+// #define BYTES_PER_PIXEL_DEPTH       sizeof(NUI_DEPTH_IMAGE_PIXEL)
 
 #define COLOR_INDEX_BLUE            0
 #define COLOR_INDEX_GREEN           1
@@ -45,7 +45,7 @@ NuiImageBuffer::NuiImageBuffer()
     , m_srcHeight(0)
     , m_pBuffer(nullptr)
 {
-    InitDepthColorTable();
+    // InitDepthColorTable();
 }
 
 /// <summary>
@@ -87,6 +87,10 @@ void NuiImageBuffer::GetImageSize(NUI_IMAGE_RESOLUTION resolution, DWORD& width,
 	case NUI_IMAGE_RESOLUTION_1920x1080:
 		width = 1920;
 		height = 1080;
+		break;
+	case NUI_IMAGE_RESOLUTION_512x424:
+		width = 512;
+		height = 424;
 		break;
 	default:
 		width = 0;
@@ -169,11 +173,11 @@ void NuiImageBuffer::Clear()
 /// <summary>
 /// Initialize the depth-color mapping table.
 /// </summary>
-void NuiImageBuffer::InitDepthColorTable()
+void NuiImageBuffer::InitDepthColorTable(USHORT depthMin, USHORT depthMax)
 {
     // Get the min and max reliable depth
-   /* USHORT minReliableDepth = (m_nearMode ? NUI_IMAGE_DEPTH_MINIMUM_NEAR_MODE : NUI_IMAGE_DEPTH_MINIMUM) >> NUI_IMAGE_PLAYER_INDEX_SHIFT;
-    USHORT maxReliableDepth = (m_nearMode ? NUI_IMAGE_DEPTH_MAXIMUM_NEAR_MODE : NUI_IMAGE_DEPTH_MAXIMUM) >> NUI_IMAGE_PLAYER_INDEX_SHIFT;
+	USHORT minReliableDepth = depthMin; // (m_nearMode ? NUI_IMAGE_DEPTH_MINIMUM_NEAR_MODE : NUI_IMAGE_DEPTH_MINIMUM) >> NUI_IMAGE_PLAYER_INDEX_SHIFT;
+	USHORT maxReliableDepth = depthMax; // (m_nearMode ? NUI_IMAGE_DEPTH_MAXIMUM_NEAR_MODE : NUI_IMAGE_DEPTH_MAXIMUM) >> NUI_IMAGE_PLAYER_INDEX_SHIFT;
 
     ZeroMemory(m_depthColorTable, sizeof(m_depthColorTable));
 
@@ -245,7 +249,7 @@ void NuiImageBuffer::InitDepthColorTable()
             BYTE b = intensity >> m_intensityShiftB[index];
             SetColor(&m_depthColorTable[index][depth], r, g, b);
         }
-    }*/
+    }
 }
 
 /// <summary>
@@ -407,46 +411,51 @@ void NuiImageBuffer::CopyInfrared(const BYTE* pImage, UINT size)
 /// <param name="size">Size in bytes to copy</param>
 /// <param name="nearMode">Depth stream range mode</param>
 /// <param name="treatment">Depth treatment mode</param>
-void NuiImageBuffer::CopyDepth(const BYTE* pImage, UINT size, BOOL nearMode, DEPTH_TREATMENT treatment)
+// void NuiImageBuffer::CopyDepth(const BYTE* pImage, UINT size, BOOL nearMode, DEPTH_TREATMENT treatment)
+void NuiImageBuffer::CopyDepth(const UINT16* pImage, int nWidth, int nHeight, USHORT depthMin, USHORT depthMax)
 {
     // Check source buffer size
     /*if (size != m_srcWidth * m_srcHeight * BYTES_PER_PIXEL_DEPTH)
     {
         return;
-    }
+    }*/
 
     // Check if range mode and depth treatment have been changed. Re-initlialize depth-color table with changed parameters
-    if (m_nearMode != (FALSE != nearMode) || m_depthTreatment != treatment)
+    /*if (m_nearMode != (FALSE != nearMode) || m_depthTreatment != treatment)
     {
         m_nearMode       = (FALSE != nearMode);
         m_depthTreatment = treatment;
 
         InitDepthColorTable();
-    }
+    }*/
 
+	InitDepthColorTable(depthMin, depthMax);
     // Converted image size is equal to source image size
     m_width  = m_srcWidth;
     m_height = m_srcHeight;
 
     // Allocate buffer for color image. If required buffer size hasn't changed, the previously allocated buffer is returned
-    UINT* rgbrun = (UINT*)ResetBuffer(m_width * m_height * BYTES_PER_PIXEL_RGB);
+    UINT* rgbrun = (UINT*)ResetBuffer(nWidth * nHeight * BYTES_PER_PIXEL_RGB);
 
-    // Initialize pixel pointers to start and end of image buffer
-    NUI_DEPTH_IMAGE_PIXEL* pPixelRun = (NUI_DEPTH_IMAGE_PIXEL*)pImage;
-    NUI_DEPTH_IMAGE_PIXEL* pPixelEnd = pPixelRun + m_srcWidth * m_srcHeight;
+	if (pImage && nWidth == m_srcWidth && nHeight == m_srcHeight)
+	{
+		// Initialize pixel pointers to start and end of image buffer
+		const UINT16* pPixelEnd = pImage + (nWidth * nHeight);
 
-    // Run through pixels
-    while (pPixelRun < pPixelEnd)
-    {
-        // Get pixel depth and player index
-        USHORT depth = pPixelRun->depth;
-        USHORT index = pPixelRun->playerIndex;
+		// Run through pixels
+		while (pImage < pPixelEnd)
+		{
+			// Get pixel depth and player index
+			// USHORT depth = pPixelRun->depth;
+			USHORT depth = *pImage;
+			// USHORT index = pPixelRun->playerIndex;
 
-        // Get mapped color from depth-color table
-        *rgbrun = m_depthColorTable[index][depth];
+			// Get mapped color from depth-color table
+			*rgbrun = m_depthColorTable[1][depth];
 
-        // Move the pointers to next pixel
-        ++rgbrun;
-        ++pPixelRun;
-    }*/
+			// Move the pointers to next pixel
+			++rgbrun;
+			++pImage;
+		}
+	}
 }

@@ -23,7 +23,8 @@ typedef
 enum NUI_IMAGE_RESOLUTION
 {
 	NUI_IMAGE_RESOLUTION_INVALID = -1,
-	NUI_IMAGE_RESOLUTION_1920x1080 = 0
+	NUI_IMAGE_RESOLUTION_1920x1080 = 0,
+	NUI_IMAGE_RESOLUTION_512x424 = 1
 }	NUI_IMAGE_RESOLUTION;
 #endif _NUI_IMAGE_RESOLUTION_
 
@@ -107,7 +108,8 @@ public:
     /// <param name="size">Size in bytes to copy</param>
     /// <param name="nearMode">Depth stream range mode</param>
     /// <param name="treatment">Depth treatment mode</param>
-    void CopyDepth(const BYTE* source, UINT size, BOOL nearMode, DEPTH_TREATMENT treatment);
+    //void CopyDepth(const BYTE* source, UINT size, BOOL nearMode, DEPTH_TREATMENT treatment);
+	void CopyDepth(const UINT16* source, int nWidth, int nHeight, USHORT depthMin, USHORT depthMax);
 
 
 private:
@@ -123,7 +125,7 @@ private:
     /// <summary>
     /// Initialize the depth-color mapping table.
     /// </summary>
-    void InitDepthColorTable();
+	void InitDepthColorTable(USHORT depthMin, USHORT depthMax);
 
     /// <summary>
     /// Set color value

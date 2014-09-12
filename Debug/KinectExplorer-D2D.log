@@ -1,153 +1,28 @@
-﻿Build started 9/11/2014 3:10:29 PM.
+﻿Build started 9/12/2014 2:18:22 PM.
      1>Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\opencv\build\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt KinectWindow.cpp KinectWindowManager.cpp MainWindow.cpp NuiColorStream.cpp NuiDepthStream.cpp NuiViewer.cpp
-         NuiDepthStream.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
-                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
-     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(27): error C2065: 'NUI_IMAGE_TYPE_DEPTH_AND_PLAYER_INDEX' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(66): error C2664: 'void NuiStreamViewer::SetImageType(ColorImageFormat)' : cannot convert argument 1 from 'FrameSourceTypes' to 'ColorImageFormat'
-                 Conversion to enumeration type requires an explicit cast (static_cast, C-style cast or function-style cast)
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(81): error C2039: 'NuiImageStreamSetImageFrameFlags' : is not a member of 'IKinectSensor'
-                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(950) : see declaration of 'IKinectSensor'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(81): error C2065: 'NUI_IMAGE_STREAM_FLAG_ENABLE_NEAR_MODE' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(100): error C2065: 'NUI_IMAGE_RESOLUTION_640x480' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(110): error C2065: 'NUI_IMAGE_TYPE_DEPTH_AND_PLAYER_INDEX' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(110): error C2065: 'NUI_IMAGE_TYPE_DEPTH' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(110): error C3861: 'HasSkeletalEngine': identifier not found
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(113): error C2039: 'NuiImageStreamOpen' : is not a member of 'IKinectSensor'
-                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(950) : see declaration of 'IKinectSensor'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(121): error C2039: 'NuiImageStreamSetImageFrameFlags' : is not a member of 'IKinectSensor'
-                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(950) : see declaration of 'IKinectSensor'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(121): error C2065: 'NUI_IMAGE_STREAM_FLAG_ENABLE_NEAR_MODE' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(150): error C2065: 'NUI_IMAGE_FRAME' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(150): error C2146: syntax error : missing ';' before identifier 'imageFrame'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(150): error C2065: 'imageFrame' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(174): error C2039: 'NuiImageStreamGetNextFrame' : is not a member of 'IKinectSensor'
-                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(950) : see declaration of 'IKinectSensor'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(174): error C2065: 'imageFrame' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(187): error C2065: 'INuiFrameTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(187): error C2065: 'pTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(190): error C2065: 'INuiFrameTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(190): error C2065: 'pFTTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(192): error C2065: 'pFTTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(192): error C2065: 'imageFrame' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(192): error C2228: left of '.pFrameTexture' must have class/struct/union
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(195): error C2039: 'NuiImageFrameGetDepthImagePixelFrameTexture' : is not a member of 'IKinectSensor'
-                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(950) : see declaration of 'IKinectSensor'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(195): error C2065: 'imageFrame' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(195): error C2065: 'pTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(201): error C2065: 'NUI_LOCKED_RECT' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(201): error C2146: syntax error : missing ';' before identifier 'lockedRect'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(201): error C2065: 'lockedRect' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(204): error C2065: 'NUI_LOCKED_RECT' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(204): error C2146: syntax error : missing ';' before identifier 'FTlockedRect'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(204): error C2065: 'FTlockedRect' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(207): error C2065: 'pTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(207): error C2227: left of '->LockRect' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(207): error C2065: 'lockedRect' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(210): error C2065: 'pFTTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(210): error C2227: left of '->LockRect' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(210): error C2065: 'FTlockedRect' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(213): error C2065: 'lockedRect' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(213): error C2228: left of '.Pitch' must have class/struct/union
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(216): error C2065: 'lockedRect' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(216): error C2228: left of '.pBits' must have class/struct/union
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(216): error C2228: left of '.size' must have class/struct/union
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(216): error C2660: 'NuiImageBuffer::CopyDepth' : function does not take 3 arguments
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(218): error C2065: 'NUI_DEPTH_IMAGE_PIXEL' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(218): error C2065: 'depthBuffer' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(218): error C2059: syntax error : ')'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(223): error C2065: 'depthBuffer' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(223): error C2227: left of '->depth' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(226): error C2065: 'depthBuffer' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2065: 'm_pFTdepthBuffer' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2227: left of '->GetBuffer' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2065: 'FTlockedRect' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2228: left of '.pBits' must have class/struct/union
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2227: left of '->GetBufferSize' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2065: 'pFTTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2227: left of '->BufferLen' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2780: 'const _Ty &std::min(const _Ty &,const _Ty &,_Pr)' : expects 3 arguments - 2 provided
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\algorithm(4134) : see declaration of 'std::min'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2780: '_Ty std::min(std::initializer_list<_Elem>)' : expects 1 arguments - 2 provided
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\algorithm(4125) : see declaration of 'std::min'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(232): error C2660: 'memcpy' : function does not take 2 arguments
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(239): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(239): error C2143: syntax error : missing ';' before '*'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(239): error C2065: 'pSkeletonFrame' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(239): error C2039: 'getSkeleton' : is not a member of 'NuiStreamViewer'
-                 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuistreamviewer.h(32) : see declaration of 'NuiStreamViewer'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(240): error C2065: 'm_pDepthInbedAPPs' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(240): error C2227: left of '->processFrame' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(240): error C2065: 'lockedRect' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(240): error C2228: left of '.pBits' must have class/struct/union
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(240): error C2065: 'pSkeletonFrame' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(256): error C2065: 'pFTTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(256): error C2227: left of '->UnlockRect' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(257): error C2065: 'pTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(257): error C2227: left of '->UnlockRect' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(258): error C2065: 'pTexture' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(258): error C2227: left of '->Release' must point to class/struct/union/generic type
-                 type is 'unknown-type'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(262): error C2039: 'NuiImageStreamReleaseFrame' : is not a member of 'IKinectSensor'
-                 c:\program files\microsoft sdks\kinect\v2.0-publicpreview1408\inc\kinect.h(950) : see declaration of 'IKinectSensor'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(262): error C2065: 'imageFrame' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(274): error C2039: 'FTdepthInit' : is not a member of 'NuiDepthStream'
-                 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.h(17) : see declaration of 'NuiDepthStream'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(274): error C2065: 'FT_CAMERA_CONFIG' : undeclared identifier
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(274): error C2146: syntax error : missing ')' before identifier 'DepthCameraConfig'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(274): error C2059: syntax error : ')'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(275): error C2143: syntax error : missing ';' before '{'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\nuidepthstream.cpp(275): error C2447: '{' : missing function header (old-style formal list?)
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\opencv\build\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt NuiColorStream.cpp
          NuiColorStream.cpp
      1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
                  c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
      1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-         MainWindow.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
-                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
-     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-         KinectWindow.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
-                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
-     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-     1>c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\kinectwindow.cpp(171): warning C4101: 'hr' : unreferenced local variable
-         Generating Code...
-         Compiling...
-         NuiViewer.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
-                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
-     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-         KinectWindowManager.cpp
-     1>c:\program files (x86)\windows kits\8.1\include\um\sphelper.h(1319): warning C4996: 'GetVersionExW': was declared deprecated
-                 c:\program files (x86)\windows kits\8.1\include\um\sysinfoapi.h(442) : see declaration of 'GetVersionExW'
-     1>c:\program files\opencv\build\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-         Generating Code...
-     1>Done Building Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" (Build target(s)) -- FAILED.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\Debug\KinectExplorer-D2D.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\opencv\build\x86\vc12\bin" /LIBPATH:"C:\Program Files\opencv\build\x86\vc12\lib" /LIBPATH:"C:\Program Files\opencv\build\x86\vc12\staticlib" /LIBPATH:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\atlmfc\lib" opencv_calib3d249d.lib opencv_contrib249d.lib opencv_core249d.lib opencv_features2d249d.lib opencv_flann249d.lib kinect20.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib opencv_gpu249d.lib opencv_highgui249d.lib opencv_imgproc249d.lib opencv_legacy249d.lib opencv_ml249d.lib opencv_nonfree249d.lib opencv_objdetect249d.lib opencv_photo249d.lib opencv_stitching249d.lib opencv_superres249d.lib opencv_ts249d.lib opencv_video249d.lib opencv_videostab249d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\Debug\KinectExplorer-D2D.pdb" /SUBSYSTEM:WINDOWS /STACK:"10000000","10000000" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\Debug\KinectExplorer-D2D.lib" /MACHINE:X86 Debug\KinectExplorer.res
+         Debug\CustomDrawListControl.obj
+         Debug\ImageRenderer.obj
+         Debug\KinectWindow.obj
+         Debug\KinectWindowManager.obj
+         Debug\MainWindow.obj
+         Debug\NuiColorStream.obj
+         Debug\NuiDepthStream.obj
+         Debug\NuiImageBuffer.obj
+         Debug\NuiStream.obj
+         Debug\NuiStreamViewer.obj
+         Debug\NuiViewer.obj
+         KinectExplorer-D2D.vcxproj -> C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\Debug\KinectExplorer-D2D.exe
+     1>Done Building Project "C:\Users\tg857_000\Documents\GitHub\KinectV2Explorer_GuangTang\KinectExplorer-D2D.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:10.57
+Time Elapsed 00:00:02.21

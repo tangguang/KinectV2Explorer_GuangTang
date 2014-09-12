@@ -70,6 +70,7 @@ public:
 	friend bool GetDevIdforFile(wchar_t *USBDeviceInstancePath, wchar_t *pDevIdOut);  //////// 
 	void SetRecordingStatus(bool RecStatus);
 	bool NuiDepthStream::GetRecordingStauts () const; 
+	WAITABLE_HANDLE GetArrivedEvent();
 
 	CvVideoWriter       *m_pwriter;
 	WCHAR*               m_instanceName;

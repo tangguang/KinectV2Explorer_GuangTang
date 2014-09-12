@@ -113,7 +113,7 @@ HRESULT NuiDepthStream::StartStream()
 		m_pDepthFrameReader->SubscribeFrameArrived(&m_hDepthFrameArrived);
 	}
 	SafeRelease(pDepthFrameSource);
-	return OpenStream(NUI_IMAGE_RESOLUTION_1920x1080); // Start stream with default resolution 640x480
+	return OpenStream(NUI_IMAGE_RESOLUTION_512x424); // Start stream with default resolution 640x480
 }
 
 /// <summary>
@@ -176,6 +176,7 @@ void NuiDepthStream::ProcessDepth()
 		USHORT nDepthMaxDistance = 0;
 		UINT nBufferSize = 0;
 		UINT16 *pBuffer = NULL;
+		// UINT bytesPerPixel NUI_DEPTH_IMAGE_PIXEL = 0;
 
 		hr = pDepthFrame->get_RelativeTime(&nTime);
 
@@ -201,18 +202,28 @@ void NuiDepthStream::ProcessDepth()
 
 		if (SUCCEEDED(hr))
 		{
-			// In order to see the full range of depth (including the less reliable far field depth)
-			// we are setting nDepthMaxDistance to the extreme potential depth threshold
-			nDepthMaxDistance = USHRT_MAX;
-
-			// Note:  If you wish to filter by reliable depth distance, uncomment the following line.
-			//// hr = pDepthFrame->get_DepthMaxReliableDistance(&nDepthMaxDistance);
+			hr = pDepthFrame->get_DepthMaxReliableDistance(&nDepthMaxDistance);
 		}
+
 
 		if (SUCCEEDED(hr))
 		{
 			hr = pDepthFrame->AccessUnderlyingBuffer(&nBufferSize, &pBuffer);
-			m_imageBuffer.CopyDepth(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
+			m_imageBuffer.CopyDepth(pBuffer, nWidth, nHeight, nDepthMinReliableDistance, nDepthMaxDistance);
+
+			// Convert 8 bits depth frame to 12 bits
+			/*NUI_DEPTH_IMAGE_PIXEL* depthBuffer = (NUI_DEPTH_IMAGE_PIXEL*)lockedRect.pBits;
+			cv::Mat depthMat(m_ImageRes.height, m_ImageRes.width, CV_8UC1);
+			INT cn = 1;
+			for (int i = 0; i<depthMat.rows; i++){
+				for (int j = 0; j<depthMat.cols; j++){
+					USHORT realdepth = ((depthBuffer->depth) & 0x0fff); //Taking 12LSBs for depth
+					BYTE intensity = realdepth == 0 || realdepth > 4095 ? 0 : 255 - (BYTE)(((float)realdepth / 4095.0f) * 255.0f);//Scaling to 255 scale grayscale
+					depthMat.data[i*depthMat.cols*cn + j*cn + 0] = intensity;
+					depthBuffer++;
+				}
+			}*/
+			
 			if (m_pStreamViewer)
 			{
 				m_pStreamViewer->SetImage(&m_imageBuffer);
@@ -344,10 +355,11 @@ void NuiDepthStream::SetRecordingStatus (bool RecStatus)
 	m_TimerCount=0;
 }
 
-bool NuiDepthStream::GetRecordingStauts () const {return m_Recording;}
+bool NuiDepthStream::GetRecordingStauts () const { return m_Recording; }
 
+WAITABLE_HANDLE NuiDepthStream::GetArrivedEvent() { return m_hDepthFrameArrived; }
 
-HRESULT NuiDepthStream::FTdepthInit(FT_CAMERA_CONFIG DepthCameraConfig)
+/*HRESULT NuiDepthStream::FTdepthInit(FT_CAMERA_CONFIG DepthCameraConfig)
 {
 	HRESULT hr;
     m_pFTdepthBuffer=FTCreateImage();
@@ -355,4 +367,4 @@ HRESULT NuiDepthStream::FTdepthInit(FT_CAMERA_CONFIG DepthCameraConfig)
 	if (!m_pFTdepthBuffer||FAILED(hr)) 
 		return E_OUTOFMEMORY;
 	return hr;
-}
+}*/

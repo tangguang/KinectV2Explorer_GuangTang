@@ -229,6 +229,11 @@ void NuiColorStream::ProcessColor()
 				{
 					m_pStreamViewer->SetImage(&m_imageBuffer);
 				}
+				if (m_pColorRGBX)
+				{
+					delete[] m_pColorRGBX;
+					m_pColorRGBX = NULL;
+				}
 			}
 			else
 			{

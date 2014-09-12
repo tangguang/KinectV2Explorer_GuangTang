@@ -575,10 +575,10 @@ void KinectWindow::StartStreams()
     m_pColorStream->StartStream();
 
     // Depth stream
-    /*m_pDepthStream->StartStream();
+    m_pDepthStream->StartStream();
 
     // Skeleton stream
-    m_pSkeletonStream->StartStream();
+    /*m_pSkeletonStream->StartStream();
 
     // Audio reading stream
     m_pAudioStream->StartStream();
@@ -1143,16 +1143,21 @@ DWORD KinectWindow::StreamEventThread(KinectWindow* pThis)
                        //pThis->m_pDepthStream->GetFrameReadyEvent(), 
                        //pThis->m_pSkeletonStream->GetFrameReadyEvent()
 	};*/
-	HANDLE events[] = { reinterpret_cast<HANDLE>(pThis->m_pColorStream->GetArrivedEvent()) };
+	HANDLE events[] = { reinterpret_cast<HANDLE>(pThis->m_pColorStream->GetArrivedEvent()),
+		                reinterpret_cast<HANDLE>(pThis->m_pDepthStream->GetArrivedEvent())
+	};
 
     while (true)
     {
 		events[0] = reinterpret_cast<HANDLE>(pThis->m_pColorStream->GetArrivedEvent());
+		events[1] = reinterpret_cast<HANDLE>(pThis->m_pDepthStream->GetArrivedEvent());
+		
 		DWORD ret = WaitForMultipleObjects(ARRAYSIZE(events), events, FALSE, INFINITE);
-        if (WAIT_OBJECT_0 == ret)
+        if (WAIT_OBJECT_0 + 1 >= ret)
 		{
 			SendMessageW(pThis->GetWindow(), WM_STREAMEVENT, 0, 0);
 		}
+
         /*if (WAIT_OBJECT_0 + 1 == ret)
         {
             SendMessageW(pThis->GetWindow(), WM_TIMEREVENT, 0, 0);
