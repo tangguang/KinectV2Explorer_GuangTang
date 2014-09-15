@@ -11,7 +11,7 @@
 #include "KinectWindow.h"
 //#include "CameraColorSettingsViewer.h"
 //#include "CameraExposureSettingsViewer.h"
-//#include "NuiAudioStream.h"
+#include "NuiAudioStream.h"
 #include <strsafe.h>
 
 #include "opencv\cv.h"
@@ -68,8 +68,8 @@ KinectSettings::KinectSettings(
 	NuiStreamViewer*      pPrimaryView, 
 	NuiStreamViewer*      pSecondaryView, 
 	NuiColorStream*       pColorStream, 
-	// NuiDepthStream*       pDepthStream, 
-	// NuiAudioStream*       pAudioStream, 
+	NuiDepthStream*       pDepthStream, 
+	NuiAudioStream*       pAudioStream, 
 	// NuiSkeletonStream*    pSkeletonStream, 
 	// CameraSettingsViewer* pColorSettingsView, 
 	// CameraSettingsViewer* pExposureSettingsView, 
@@ -78,8 +78,8 @@ KinectSettings::KinectSettings(
     , m_pPrimaryView(pPrimaryView)
     , m_pSecondaryView(pSecondaryView)
     , m_pColorStream(pColorStream)
-    //, m_pDepthStream(pDepthStream)
-	//, m_pAudioStream(pAudioStream)
+    , m_pDepthStream(pDepthStream)
+	, m_pAudioStream(pAudioStream)
     //, m_pSkeletonStream(pSkeletonStream)
     //, m_pColorSettingsView(pColorSettingsView)
     //, m_pExposureSettingsView(pExposureSettingsView)
@@ -112,17 +112,17 @@ KinectSettings::~KinectSettings()
 void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previouslyChecked)
 {
 	DWORD ExitCode;
-	/*FaceTracker* pFaceTracker;
-	InbedAPPs* pFallDetect;
-	DepthInbedAPPs* pDepthInbedApps;
-	LegRaisExcer* pLegRaisExer;
-	HandRaisExcer* pHandRaisExer;
+	//FaceTracker* pFaceTracker;
+	//InbedAPPs* pFallDetect;
+	//DepthInbedAPPs* pDepthInbedApps;
+	//LegRaisExcer* pLegRaisExer;
+	//HandRaisExcer* pHandRaisExer;
 	
-	m_pKinectWindow->GetFaceTraker(&pFaceTracker);
-	m_pPrimaryView->GetFallDetect(&pFallDetect);
-	m_pDepthStream->GetDepthInbedAPPs(&pDepthInbedApps);
-	m_pPrimaryView->GetLegRaisExcer(&pLegRaisExer);
-	m_pPrimaryView->GetHandRaisExcer(&pHandRaisExer);*/
+	//m_pKinectWindow->GetFaceTraker(&pFaceTracker);
+	//m_pPrimaryView->GetFallDetect(&pFallDetect);
+	//m_pDepthStream->GetDepthInbedAPPs(&pDepthInbedApps);
+	//m_pPrimaryView->GetLegRaisExcer(&pLegRaisExer);
+	//m_pPrimaryView->GetHandRaisExcer(&pHandRaisExer);
 
     if (ID_COLORSTREAM_PAUSE == commandId)
     {
@@ -175,9 +175,8 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
         default:
             return;
         }*/
-       // m_pColorStream->OpenStream();
     }
-    /*else if (ID_DEPTHSTREAM_PAUSE == commandId)
+    else if (ID_DEPTHSTREAM_PAUSE == commandId)
     {
         // Pause depth stream
         if(m_pDepthStream)
@@ -208,10 +207,10 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
             m_pDepthStream->SetNearMode(nearMode);
         }
 
-        if (m_pSkeletonStream)
+       /* if (m_pSkeletonStream)
         {
             m_pSkeletonStream->SetNearMode(nearMode);
-        }
+        }*/
     }
     else if (ID_DEPTHSTREAM_RESOLUTION_START <= commandId && ID_DEPTHSTREAM_RESOLUTION_END >= commandId)
     {
@@ -234,27 +233,27 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
     else if (ID_SKELETONSTREAM_PAUSE == commandId)
     {
         // Pause skeleton stream
-        if (m_pSkeletonStream)
+       /* if (m_pSkeletonStream)
         {
             m_pSkeletonStream->PauseStream(!previouslyChecked);
-        }
+        }*/
     }
     else if (ID_SKELETONSTREAM_TRACKINGMODE_START <= commandId && ID_SKELETONSTREAM_TRACKINGMODE_END >= commandId)
     {
         // Set skeleton track mode
-        if (!m_pSkeletonStream)
+        /*if (!m_pSkeletonStream)
         {
             return;
-        }
+        }*/
 
         switch (commandId)
         {
         case ID_TRACKINGMODE_DEFAULT:
-            m_pSkeletonStream->SetSeatedMode(false);
+           // m_pSkeletonStream->SetSeatedMode(false);
             break;
 
         case ID_TRACKINGMODE_SEATED:
-            m_pSkeletonStream->SetSeatedMode(true);
+           // m_pSkeletonStream->SetSeatedMode(true);
             break;
 
         default:
@@ -264,25 +263,25 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
     else if (ID_SKELETONSTREAM_CHOOSERMODE_START <= commandId && ID_SKELETONSTREAM_CHOOSERMODE_END >= commandId)
     {
         // Set skeleton chooser mode
-        if(!m_pSkeletonStream)
+        /*if(!m_pSkeletonStream)
         {
             return;
-        }
+        }*/
 
-        m_pSkeletonStream->SetChooserMode(ConvertCommandIdToChooserMode(commandId));
-    }*/
-   /* else
+        //m_pSkeletonStream->SetChooserMode(ConvertCommandIdToChooserMode(commandId));
+    }
+   else
     {
         switch (commandId)
         {
             // Bring up camera color setting dialog
         case ID_CAMERA_COLORSETTINGS:
-            m_pColorSettingsView->ShowView();
+            //m_pColorSettingsView->ShowView();
             break;
 
             // Bring up camera exposure setting dialog
         case ID_CAMERA_EXPOSURESETTINGS:
-            m_pExposureSettingsView->ShowView();
+            //m_pExposureSettingsView->ShowView();
             break;
 
             // Switch the stream display on primary and secondary stream viewers
@@ -294,7 +293,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
             break;
 
         case ID_FORCE_OFF_IR:
-            m_pNuiSensor->NuiSetForceInfraredEmitterOff(param);
+            //m_pNuiSensor->NuiSetForceInfraredEmitterOff(param);
             break;
 
 		//////Recording
@@ -373,7 +372,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 				m_pAudioStream->m_pWaveWriter=NULL;
 				m_pAudioStream->SetRecordingStatus(false);
 			}
-			break;*/
+			break;
 		
 		////Recording 3D facial model
 		/*case ID_RECORDING_3DFACIALMODEL:
@@ -408,8 +407,8 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 			//break;
 
 		////In-bed detection
-		/*case ID_FALLDETECTION:
-			if (!(pFallDetect->getIsRunFallDetect()))
+		case ID_FALLDETECTION:
+			/*if (!(pFallDetect->getIsRunFallDetect()))
 			{
 				pFallDetect->setIsRunFallDetect(TRUE);
 				if (!m_FallDetectThreadRun)
@@ -430,7 +429,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 				    CloseHandle(m_hFallDetectTxt2SpeechThread);
 				    m_FallDetectThreadRun = FALSE;
 				}
-			}
+			}*/
 			break;
 
 		case ID_MOVEMENTDETECTION:	
@@ -555,7 +554,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
         default:
             break;
         }
-    }*/
+    }
 }
 
 

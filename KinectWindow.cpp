@@ -97,17 +97,17 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* 
     // Create instances of sub views
     m_pPrimaryView    = new NuiStreamViewer(this);
     m_pSecondaryView  = new NuiStreamViewer(this);
-    /*m_pAudioView      = new NuiAudioViewer(this);
-    m_pAccelView      = new NuiAccelerometerViewer(this);
-    m_pTiltAngleView  = new NuiTiltAngleViewer(this, pNuiSensor);
+    m_pAudioView      = new NuiAudioViewer(this);
+    //m_pAccelView      = new NuiAccelerometerViewer(this);
+    //m_pTiltAngleView  = new NuiTiltAngleViewer(this, pNuiSensor);
     m_pCurTabbedView  = nullptr;
-    m_pColorSettingsView = new CameraColorSettingsViewer(this);
-    m_pExposureSettingsView = new CameraExposureSettingsViewer(this);*/
+    // m_pColorSettingsView = new CameraColorSettingsViewer(this);
+    //m_pExposureSettingsView = new CameraExposureSettingsViewer(this);*/
 
     m_views.push_back(m_pPrimaryView);
     m_views.push_back(m_pSecondaryView);
-   /* m_views.push_back(m_pAudioView);
-    m_views.push_back(m_pAccelView);
+    m_views.push_back(m_pAudioView);
+    /*m_views.push_back(m_pAccelView);
     m_views.push_back(m_pTiltAngleView);*/
 
     // Group camera setting views
@@ -115,24 +115,24 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* 
    // m_settingViews.push_back(m_pExposureSettingsView);
 
     // Group tabbed sub views together
-  //  m_tabbedViews.push_back((m_pAudioView));
+    m_tabbedViews.push_back((m_pAudioView));
    // m_tabbedViews.push_back((m_pAccelView));
    // m_tabbedViews.push_back((m_pTiltAngleView));
 
     // Create stream objects
     m_pColorStream         = new NuiColorStream(m_pNuiSensor, instanceName);  ///////////
     m_pDepthStream         = new NuiDepthStream(m_pNuiSensor, instanceName, m_pPrimaryView);
-    /*m_pSkeletonStream      = new NuiSkeletonStream(m_pNuiSensor);
+   // m_pSkeletonStream      = new NuiSkeletonStream(m_pNuiSensor);
     m_pAudioStream         = new NuiAudioStream(m_pNuiSensor, instanceName);  ////////////
-    m_pAccelerometerStream = new NuiAccelerometerStream(m_pNuiSensor);*/
+    //m_pAccelerometerStream = new NuiAccelerometerStream(m_pNuiSensor);
 
     // Attach stream objects to viewers
     m_pColorStream->SetStreamViewer(m_pPrimaryView);
     m_pDepthStream->SetStreamViewer(m_pSecondaryView);
-    /*m_pSkeletonStream->SetStreamViewer(m_pPrimaryView);
+    //m_pSkeletonStream->SetStreamViewer(m_pPrimaryView);
     //m_pSkeletonStream->SetSecondStreamViewer(m_pSecondaryView);   ////Close the skeleton draw in depth image
     m_pAudioStream->SetStreamViewer(m_pAudioView);
-    m_pAccelerometerStream->SetStreamViewer(m_pAccelView);
+   /* m_pAccelerometerStream->SetStreamViewer(m_pAccelView);
 
 	m_pFaceTrackerStream=new FaceTracker(m_pColorStream, m_pDepthStream, m_pSkeletonStream, m_instanceName);
 	m_pFaceRecogStream=new FaceRecog(m_pColorStream);
@@ -548,11 +548,11 @@ void KinectWindow::ShowWindows()
     m_pSecondaryView->ShowView();
 
     // Show first tabbed view
-    /*if (m_tabbedViews.size() > 0)
+    if (m_tabbedViews.size() > 0)
     {
        m_pCurTabbedView = m_tabbedViews[0];
        m_pCurTabbedView->ShowView();
-    }*/
+    }
 
     // Bring Kinect window to top
     BringUpWindow();
@@ -578,13 +578,13 @@ void KinectWindow::StartStreams()
     m_pDepthStream->StartStream();
 
     // Skeleton stream
-    /*m_pSkeletonStream->StartStream();
+    //m_pSkeletonStream->StartStream();
 
     // Audio reading stream
     m_pAudioStream->StartStream();
 
     // Accelerometer reading stream
-    m_pAccelerometerStream->StartStream();
+   /* m_pAccelerometerStream->StartStream();
 
     // Start waitble timer*/
     StartTimer();
@@ -616,13 +616,13 @@ void KinectWindow::CleanUp()
 
     SafeDelete(m_pColorStream);
     SafeDelete(m_pDepthStream);
-    /*SafeDelete(m_pSkeletonStream);
+   // SafeDelete(m_pSkeletonStream);
     SafeDelete(m_pAudioStream);
-    SafeDelete(m_pAccelerometerStream);*/
+    /*SafeDelete(m_pAccelerometerStream);*/
     SafeDelete(m_pPrimaryView);
     SafeDelete(m_pSecondaryView);
-   /* SafeDelete(m_pAudioView);
-    SafeDelete(m_pAccelView);
+    SafeDelete(m_pAudioView);
+    /*SafeDelete(m_pAccelView);
     SafeDelete(m_pTiltAngleView);
     SafeDelete(m_pColorSettingsView);
     SafeDelete(m_pExposureSettingsView);
@@ -1013,7 +1013,7 @@ bool KinectWindow::GetMenuItemCheckStatus(HMENU hMenu, UINT id, bool& checked)
 /// <param name="lParam">Additional message information</param>
 void KinectWindow::OnNotify(LPARAM lParam)
 {
-    /*LPNMHDR pNMHDR = (LPNMHDR)lParam;
+    LPNMHDR pNMHDR = (LPNMHDR)lParam;
 
     // Check if command comes from tab control and selection has changed
     if (m_hWndTab == pNMHDR->hwndFrom && TCN_SELCHANGE == pNMHDR->code)
@@ -1030,7 +1030,7 @@ void KinectWindow::OnNotify(LPARAM lParam)
             m_pCurTabbedView = m_tabbedViews[index];
             m_pCurTabbedView->ShowView();
         }
-    }*/
+    }
 }
 
 /// <summary>
@@ -1126,8 +1126,8 @@ void KinectWindow::UpdateStreams()
 /// </summary>
 void KinectWindow::UpdateTimedStreams()
 {
-   /* m_pAudioStream->ProcessStream();
-    m_pAccelerometerStream->ProcessStream();*/
+    m_pAudioStream->ProcessStream();
+    /*m_pAccelerometerStream->ProcessStream();*/
 }
 
 /// <summary>
@@ -1143,20 +1143,29 @@ DWORD KinectWindow::StreamEventThread(KinectWindow* pThis)
                        //pThis->m_pDepthStream->GetFrameReadyEvent(), 
                        //pThis->m_pSkeletonStream->GetFrameReadyEvent()
 	};*/
-	HANDLE events[] = { reinterpret_cast<HANDLE>(pThis->m_pColorStream->GetArrivedEvent()),
+	HANDLE events[] = { pThis->m_hTimer,
+		                reinterpret_cast<HANDLE>(pThis->m_pColorStream->GetArrivedEvent()),
 		                reinterpret_cast<HANDLE>(pThis->m_pDepthStream->GetArrivedEvent())
+						//reinterpret_cast<HANDLE>(pThis->m_pAudioStream->GetArrivedEvent())
 	};
 
     while (true)
     {
-		events[0] = reinterpret_cast<HANDLE>(pThis->m_pColorStream->GetArrivedEvent());
-		events[1] = reinterpret_cast<HANDLE>(pThis->m_pDepthStream->GetArrivedEvent());
-		
+		events[0] = pThis->m_hTimer;
+		events[1] = reinterpret_cast<HANDLE>(pThis->m_pColorStream->GetArrivedEvent());
+		events[2] = reinterpret_cast<HANDLE>(pThis->m_pDepthStream->GetArrivedEvent());
+
 		DWORD ret = WaitForMultipleObjects(ARRAYSIZE(events), events, FALSE, INFINITE);
-        if (WAIT_OBJECT_0 + 1 >= ret)
+
+		if (WAIT_OBJECT_0 == ret)
+		{
+			SendMessageW(pThis->GetWindow(), WM_TIMEREVENT, 0, 0);
+		}
+        else if (WAIT_OBJECT_0 + 1 >= ret)
 		{
 			SendMessageW(pThis->GetWindow(), WM_STREAMEVENT, 0, 0);
 		}
+
 
         /*if (WAIT_OBJECT_0 + 1 == ret)
         {

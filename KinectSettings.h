@@ -8,8 +8,8 @@
 
 #include "NuiStreamViewer.h"
 #include "NuiColorStream.h"
-//#include "NuiDepthStream.h"
-//#include "NuiAudioStream.h"
+#include "NuiDepthStream.h"
+#include "NuiAudioStream.h"
 //#include "NuiSkeletonStream.h"
 //#include "CameraSettingsViewer.h"
 
@@ -30,8 +30,8 @@ public:
 		NuiStreamViewer*      pPrimaryView, 
 		NuiStreamViewer*      pSecondarView, 
 		NuiColorStream*       pColorStream, 
-		//NuiDepthStream*       pDepthStream, 
-		//NuiAudioStream*       pAudioStream, 
+		NuiDepthStream*       pDepthStream, 
+		NuiAudioStream*       pAudioStream, 
 		//NuiSkeletonStream*    pSkeletonStream, 
 		//CameraSettingsViewer* pColorSettingsView, 
 		//CameraSettingsViewer* pExposureSettingsView, 
@@ -61,8 +61,8 @@ private:
 
     // Streams
     NuiColorStream*          m_pColorStream;
-    //NuiDepthStream*          m_pDepthStream;
-	//NuiAudioStream*          m_pAudioStream;
+    NuiDepthStream*          m_pDepthStream;
+	NuiAudioStream*          m_pAudioStream;
     //NuiSkeletonStream*       m_pSkeletonStream;
 
     // Camera settings
@@ -75,7 +75,7 @@ private:
 	BOOL                     m_NurseCallThreadRun;
 	BOOL                     m_HandRaisexcerThreadRun;
 	BOOL                     m_LegRaisexcerThreadRun;
-	//HANDLE                   m_hSpeechRecogThread;
+	HANDLE                   m_hSpeechRecogThread;
 	HANDLE                   m_hFallDetectTxt2SpeechThread;
 	HANDLE                   m_hNurseCallTxt2SpeechThread;
 	HANDLE                   m_hHandRaisExcerTxt2SpeechThread;

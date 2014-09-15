@@ -41,6 +41,8 @@ NuiColorStream::NuiColorStream(IKinectSensor* pNuiSensor, PCWSTR instanceName)
 NuiColorStream::~NuiColorStream()
 {
 	if (m_pwriter) cvReleaseVideoWriter(&m_pwriter);
+	SafeRelease(m_pColorFrameReader);
+	SafeRelease(m_pNuiSensor);
     /*if (m_pFTcolorBuffer) {
 		m_pFTcolorBuffer->Release();
 		m_pFTcolorBuffer=nullptr;
@@ -185,6 +187,11 @@ void NuiColorStream::ProcessColor()
 		RGBQUAD *pBuffer = NULL;
 		RGBQUAD* m_pColorRGBX;
 
+		if (m_paused)
+		{
+			return;
+		}
+
 		hr = pColorFrame->get_RelativeTime(&nTime);
 
 		if (SUCCEEDED(hr))
@@ -243,6 +250,14 @@ void NuiColorStream::ProcessColor()
 		SafeRelease(pFrameDescription);
 	}
 	SafeRelease(pColorFrame);
+	if (m_paused)
+	{
+		m_pColorFrameReader->put_IsPaused(m_paused);
+	}
+	else
+	{
+
+	}
 }
 
 void NuiColorStream::SetRecordingStatus (bool RecStatus) 

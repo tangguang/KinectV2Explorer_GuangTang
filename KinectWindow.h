@@ -11,7 +11,7 @@
 #include "NuiDepthStream.h"
 #include "NuiColorStream.h"
 // #include "NuiSkeletonStream.h"
-// #include "NuiAudioStream.h"
+#include "NuiAudioStream.h"
 // #include "NuiAccelerometerStream.h"
 // #include "NuiTiltAngleViewer.h"
 //#include "KinectSettings.h"
@@ -274,20 +274,20 @@ private:
 
     NuiStreamViewer*        m_pPrimaryView;             // Pointer to primary viewer
     NuiStreamViewer*        m_pSecondaryView;           // Pointer to secondary viewer
-    /*NuiAudioViewer*         m_pAudioView;               // Pointer to audio viewer
-    NuiAccelerometerViewer* m_pAccelView;               // Pointer to accelerometer viewer
-    NuiTiltAngleViewer*     m_pTiltAngleView;           // Pointer to tilt angle viewer
+    NuiAudioViewer*         m_pAudioView;               // Pointer to audio viewer
+    //NuiAccelerometerViewer* m_pAccelView;               // Pointer to accelerometer viewer
+    //NuiTiltAngleViewer*     m_pTiltAngleView;           // Pointer to tilt angle viewer
     NuiViewer*              m_pCurTabbedView;           // Pointer to tabbed viewer currently visible
 
-    CameraSettingsViewer*   m_pColorSettingsView;       // Pointer to camera color settings viewer
-    CameraSettingsViewer*   m_pExposureSettingsView;    // Pointer to camera exposure settings viewer*/
+    //CameraSettingsViewer*   m_pColorSettingsView;       // Pointer to camera color settings viewer
+    //CameraSettingsViewer*   m_pExposureSettingsView;    // Pointer to camera exposure settings viewer
     bool                    m_bSupportCameraSettings;   // Indicate whether the sensor supports camera settings
 
 	NuiColorStream*         m_pColorStream;             // Pointer to color stream
     NuiDepthStream*         m_pDepthStream;             // Pointer to depth stream
-    /*NuiSkeletonStream*      m_pSkeletonStream;          // Pointer to skeleton stream
+    // NuiSkeletonStream*      m_pSkeletonStream;          // Pointer to skeleton stream
     NuiAudioStream*         m_pAudioStream;             // Pointer to audio stream
-    NuiAccelerometerStream* m_pAccelerometerStream;     // Pointer to accelerometer stream*/
+   /* NuiAccelerometerStream* m_pAccelerometerStream;     // Pointer to accelerometer stream*/
 
 	IKinectSensor*             m_pNuiSensor;               // Pointer to Nui sensor
 

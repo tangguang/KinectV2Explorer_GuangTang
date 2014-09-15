@@ -59,7 +59,7 @@ void NuiStream::PauseStream(bool pause)
     m_paused = pause;
 
     // And meanwhile pause the skeleton
-    m_pStreamViewer->PauseSkeleton(pause);
+    // m_pStreamViewer->PauseSkeleton(pause);
 }
 
 /// <summary>

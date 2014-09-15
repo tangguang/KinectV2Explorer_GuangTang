@@ -12,6 +12,10 @@
     <ClCompile Include="NuiColorStream.cpp" />
     <ClCompile Include="ImageRenderer.cpp" />
     <ClCompile Include="NuiDepthStream.cpp" />
+    <ClCompile Include="NuiAudioStream.cpp" />
+    <ClCompile Include="NuiAudioViewer.cpp" />
+    <ClCompile Include="WaveWriter.cpp" />
+    <ClCompile Include="KinectSettings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h" />
@@ -28,6 +32,10 @@
     <ClInclude Include="NuiColorStream.h" />
     <ClInclude Include="ImageRenderer.h" />
     <ClInclude Include="NuiDepthStream.h" />
+    <ClInclude Include="NuiAudioStream.h" />
+    <ClInclude Include="NuiAudioViewer.h" />
+    <ClInclude Include="WaveWriter.h" />
+    <ClInclude Include="KinectSettings.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <NuiApi.h>
+// #include <NuiApi.h>
 #include "NuiAudioViewer.h"
 #include "StaticMediaBuffer.h"
 #include "WaveWriter.h"
@@ -21,7 +21,7 @@ public:
     /// Constructor
     /// </summary>
     /// <param name="pNuiSensor">The pointer to Nui sensor object</param>
-    NuiAudioStream(INuiSensor* pNuiSensor, PCWSTR instanceName);
+	NuiAudioStream(IKinectSensor* pNuiSensor, PCWSTR instanceName);
 	//NuiAudioStream(INuiSensor* pNuiSensor);
 
     /// <summary>
@@ -47,23 +47,31 @@ public:
     /// </summary>
     void ProcessStream();
 
+	/// <summary>
+	/// Capture new audio data.
+	/// </summary>
+	void ProcessAudio(IAudioBeamSubFrame* pAudioBeamSubFrame);
+
 	friend HRESULT GetFileName(wchar_t *FileName, UINT FileNameSize, WCHAR* instanceName, SensorType senserID);   ////////
 	friend bool GetDevIdforFile(wchar_t *USBDeviceInstancePath, wchar_t *pDevIdOut);  //////// 
 	void SetRecordingStatus(bool RecStatus);
 	bool GetRecordingStauts() const;
+	WAITABLE_HANDLE GetArrivedEvent();
 
 	WCHAR*              m_instanceName;
 	WaveWriter* 		m_pWaveWriter; 
 
 private:
-    INuiSensor*         m_pNuiSensor;
-    INuiAudioBeam*      m_pNuiAudioSource;
-    IMediaObject*       m_pDMO;
-    IPropertyStore*     m_pPropertyStore;
-    NuiAudioViewer*     m_pAudioViewer;
-    CStaticMediaBuffer  m_captureBuffer;
-	WAVEFORMATEX        m_wfxOut;
-	UINT                m_TimerCount;
-	bool                m_Recording;
+	IKinectSensor*          m_pNuiSensor;
+    // INuiAudioBeam*        m_pNuiAudioSource;
+	IAudioBeamFrameReader*  m_pAudioBeamFrameReader;
+	WAITABLE_HANDLE         m_hFrameArrivedEvent;
+    // IMediaObject*           m_pDMO;
+    IPropertyStore*			m_pPropertyStore;
+    NuiAudioViewer*			m_pAudioViewer;
+    // CStaticMediaBuffer		m_captureBuffer;
+	WAVEFORMATEX		    m_wfxOut;
+	UINT					m_TimerCount;
+	bool                    m_Recording;
 
 };
