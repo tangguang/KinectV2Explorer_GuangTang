@@ -140,15 +140,16 @@ KinectWindow::KinectWindow(HINSTANCE hInstance, HWND hWndParent, IKinectSensor* 
 	
 
     // Create settings object
-   /* m_pSettings = new KinectSettings(m_pNuiSensor,
+    m_pSettings = new KinectSettings(m_pNuiSensor,
                                      m_pPrimaryView,
                                      m_pSecondaryView,
                                      m_pColorStream,
                                      m_pDepthStream,
 									 m_pAudioStream,
-                                     m_pSkeletonStream,
-                                     m_pColorSettingsView,
-                                     m_pExposureSettingsView,this);*/
+                                     //m_pSkeletonStream,
+                                     //m_pColorSettingsView,
+                                     //m_pExposureSettingsView,
+									 this);
 }
 
 
@@ -180,11 +181,6 @@ bool KinectWindow::Initialize()
         return false;
     }
 
-    /*if (S_OK != m_pNuiSensor->get_IsOpen())
-    {
-        return false;
-    }*/
-
    /* HRESULT hr = m_pNuiSensor->NuiInitialize(
         NUI_INITIALIZE_FLAG_USES_DEPTH_AND_PLAYER_INDEX
         | NUI_INITIALIZE_FLAG_USES_SKELETON
@@ -213,7 +209,7 @@ bool KinectWindow::Initialize()
 /// <returns>Indicates success or failure</returns>
 bool KinectWindow::InitializeCommonControl()
 {
-    /*static bool initialized = false;
+    static bool initialized = false;
     if (!initialized)
     {
         // Initliaze common control for tab control.
@@ -222,7 +218,7 @@ bool KinectWindow::InitializeCommonControl()
         icex.dwICC  = ICC_TAB_CLASSES;
         initialized = (FALSE != InitCommonControlsEx(&icex));
     }
-    return initialized;*/
+    return initialized;
 	return true;
 }
 
@@ -622,15 +618,15 @@ void KinectWindow::CleanUp()
     SafeDelete(m_pPrimaryView);
     SafeDelete(m_pSecondaryView);
     SafeDelete(m_pAudioView);
-    /*SafeDelete(m_pAccelView);
-    SafeDelete(m_pTiltAngleView);
-    SafeDelete(m_pColorSettingsView);
-    SafeDelete(m_pExposureSettingsView);
+    //SafeDelete(m_pAccelView);
+    //SafeDelete(m_pTiltAngleView);
+    //SafeDelete(m_pColorSettingsView);
+    //SafeDelete(m_pExposureSettingsView);
     SafeDelete(m_pSettings);
 	////Delete face tracker, face recognition and speech recog
-	SafeDelete(m_pFaceTrackerStream);
-	SafeDelete(m_pFaceRecogStream);*/
-//	SafeDelete(m_pSimpleDict);
+	//SafeDelete(m_pFaceTrackerStream);
+	//SafeDelete(m_pFaceRecogStream);
+    //SafeDelete(m_pSimpleDict);
     SafeRelease(m_pNuiSensor);
 	StopThreads();
     if (INVALID_HANDLE_VALUE != m_hStartWindow)
@@ -692,7 +688,7 @@ void KinectWindow::OnCommand(WPARAM wParam)
     if (ProcessMenuItem(id, itemChecked))
     {
         // Process menu item command
-        //m_pSettings->ProcessMenuCommand(id, param, itemChecked);
+        m_pSettings->ProcessMenuCommand(id, param, itemChecked);
     }
 }
 

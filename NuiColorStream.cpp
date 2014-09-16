@@ -160,6 +160,10 @@ void NuiColorStream::ProcessStreamFrame()
 	if (WAIT_OBJECT_0 == WaitForSingleObject(reinterpret_cast<HANDLE>(GetArrivedEvent()), 0))
     {
         // Frame ready event has been set. Proceed to process incoming frame
+		if (m_paused)
+		{
+			return;
+		}
         ProcessColor();
     }
 }
@@ -187,10 +191,10 @@ void NuiColorStream::ProcessColor()
 		RGBQUAD *pBuffer = NULL;
 		RGBQUAD* m_pColorRGBX;
 
-		if (m_paused)
+		/*if (m_paused)
 		{
-			return;
-		}
+			goto ReleaseFrame;
+		}*/
 
 		hr = pColorFrame->get_RelativeTime(&nTime);
 
@@ -250,14 +254,9 @@ void NuiColorStream::ProcessColor()
 		SafeRelease(pFrameDescription);
 	}
 	SafeRelease(pColorFrame);
-	if (m_paused)
-	{
-		m_pColorFrameReader->put_IsPaused(m_paused);
-	}
-	else
-	{
 
-	}
+	//ReleaseFrame:
+		//m_pColorFrameReader->put_IsPaused(m_paused);
 }
 
 void NuiColorStream::SetRecordingStatus (bool RecStatus) 

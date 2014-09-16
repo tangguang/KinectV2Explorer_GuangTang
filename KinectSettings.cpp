@@ -306,7 +306,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 			{
 				m_pAudioStream->m_pWaveWriter->Stop();
 				delete(m_pAudioStream->m_pWaveWriter);
-				m_pAudioStream->m_pWaveWriter=NULL;
+				m_pAudioStream->m_pWaveWriter = NULL;
 				m_pAudioStream->SetRecordingStatus(false);
 			}
 			break;
@@ -319,7 +319,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 			else if (m_pColorStream && m_pColorStream->GetRecordingStauts())
 			{
 				cvReleaseVideoWriter(&m_pColorStream->m_pwriter);
-				m_pColorStream->m_pwriter=nullptr;
+				m_pColorStream->m_pwriter = nullptr;
 				m_pColorStream->SetRecordingStatus(false);
 			}
 			break;
@@ -433,32 +433,32 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 			break;
 
 		case ID_MOVEMENTDETECTION:	
-			if (!(pFallDetect->getIsRunMovementDetect()))
+			/*if (!(pFallDetect->getIsRunMovementDetect()))
 			{
 				pFallDetect->setIsRunMovementDetect(TRUE);
 			}
 			else
 			{
 				pFallDetect->setIsRunMovementDetect(FALSE);
-			}
+			}*/
 			break;
 
 		case ID_OUTOFBEDDETECTION: 		  
 			break;
 
 		case ID_LYANGLEDETECTION:
-			if (!(pDepthInbedApps->getIsRunLyAngleDetect()))
+			/*if (!(pDepthInbedApps->getIsRunLyAngleDetect()))
 			{
 				pDepthInbedApps->setIsRunLyAngleDetect(TRUE);
 			}
 			else
 			{
 				pDepthInbedApps->setIsRunLyAngleDetect(FALSE);
-			}
+			}*/
 			break;
 
 		case ID_CALLNURSINGBYHANDRAISING:
-			if (!(pFallDetect->getIsRunHandsMovementRIC()))
+			/*if (!(pFallDetect->getIsRunHandsMovementRIC()))
 			{
 				pFallDetect->setIsRunHandsMovementRIC(TRUE);
 				if (!m_NurseCallThreadRun)
@@ -480,7 +480,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 				    CloseHandle(m_hNurseCallTxt2SpeechThread);
 				    m_NurseCallThreadRun = FALSE;
 				}
-			}
+			}*/
 			break;
 
 		case ID_VIEWDETECTIONRECS:
@@ -498,7 +498,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 			break;
 
 		case ID_STANDMOVELEGOUTWARD:
-			if (!(pLegRaisExer->isRunningExcer()))
+			/*if (!(pLegRaisExer->isRunningExcer()))
 			{
 				Sleep(5000);
 				pLegRaisExer->setRunningExer(TRUE);
@@ -521,11 +521,11 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 				    CloseHandle(m_hLegRaisExcerTxt2SpeechThread);
 				    m_LegRaisexcerThreadRun = FALSE;
 				}
-			}
+			}*/
 			break;
 
 		case ID_STANDARMSLIFTWEIGHTS:
-			if (!(pHandRaisExer->isRunningExcer()))
+			/*if (!(pHandRaisExer->isRunningExcer()))
 			{
 				Sleep(5000);
 				pHandRaisExer->setRunningExer(TRUE);
@@ -548,7 +548,7 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 				    CloseHandle(m_hHandRaisExcerTxt2SpeechThread);
 				    m_HandRaisexcerThreadRun = FALSE;
 				}
-			}
+			}*/
 			break;
 
         default:

@@ -14,7 +14,7 @@
 #include "NuiAudioStream.h"
 // #include "NuiAccelerometerStream.h"
 // #include "NuiTiltAngleViewer.h"
-//#include "KinectSettings.h"
+#include "KinectSettings.h"
 // #include "FaceTracker.h"
 // #include "FaceRecog.h"
 //#include "SpeechRecog.h"
@@ -270,7 +270,7 @@ private:
     HANDLE                  m_hStartWindow;             // Handle to the start window sync event
     HANDLE                  m_hStopStreamEventThread;   // Event to stop stream events thread
 
-    //KinectSettings*         m_pSettings;                // Pointer to Kinect setting object
+    KinectSettings*         m_pSettings;                // Pointer to Kinect setting object
 
     NuiStreamViewer*        m_pPrimaryView;             // Pointer to primary viewer
     NuiStreamViewer*        m_pSecondaryView;           // Pointer to secondary viewer

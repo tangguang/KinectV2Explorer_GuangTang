@@ -151,7 +151,11 @@ void NuiDepthStream::ProcessStreamFrame()
 	if (WAIT_OBJECT_0 == WaitForSingleObject(reinterpret_cast<HANDLE>(GetArrivedEvent()), 0))
     {
         // if we have received any valid new depth data we may need to draw
-        ProcessDepth();
+		if (m_paused)
+		{
+			return;
+		}
+		ProcessDepth();
     }
 }
 
