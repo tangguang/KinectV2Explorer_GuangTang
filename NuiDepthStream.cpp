@@ -148,13 +148,13 @@ HRESULT NuiDepthStream::OpenStream(NUI_IMAGE_RESOLUTION resolution)
 /// </summary>
 void NuiDepthStream::ProcessStreamFrame()
 {
+	if (m_paused)
+	{
+		return;
+	}
 	if (WAIT_OBJECT_0 == WaitForSingleObject(reinterpret_cast<HANDLE>(GetArrivedEvent()), 0))
     {
         // if we have received any valid new depth data we may need to draw
-		if (m_paused)
-		{
-			return;
-		}
 		ProcessDepth();
     }
 }

@@ -157,13 +157,13 @@ void NuiColorStream::SetImageResolution(NUI_IMAGE_RESOLUTION resolution)
 void NuiColorStream::ProcessStreamFrame()
 {
 
+	if (m_paused)
+    {
+		return;
+    }
 	if (WAIT_OBJECT_0 == WaitForSingleObject(reinterpret_cast<HANDLE>(GetArrivedEvent()), 0))
     {
         // Frame ready event has been set. Proceed to process incoming frame
-		if (m_paused)
-		{
-			return;
-		}
         ProcessColor();
     }
 }
@@ -225,10 +225,6 @@ void NuiColorStream::ProcessColor()
 			{
 				hr = pColorFrame->AccessRawUnderlyingBuffer(&nBufferSize, reinterpret_cast<BYTE**>(&pBuffer));
 				m_imageBuffer.CopyRGB(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
-				if (m_pStreamViewer)
-				{
-					m_pStreamViewer->SetImage(&m_imageBuffer);
-				}
 			}
 			else if (m_pColorRGBX)
 			{
@@ -236,10 +232,13 @@ void NuiColorStream::ProcessColor()
 				nBufferSize = nWidth * nHeight * sizeof(RGBQUAD);
 				hr = pColorFrame->CopyConvertedFrameDataToArray(nBufferSize, reinterpret_cast<BYTE*>(pBuffer), ColorImageFormat_Bgra);
 				m_imageBuffer.CopyRGB(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
-				if (m_pStreamViewer)
-				{
-					m_pStreamViewer->SetImage(&m_imageBuffer);
-				}
+				// Recording
+				//if (m_Recording)
+				//{
+				//	cvSetData(m_pcolorImage, reinterpret_cast<BYTE*>(pBuffer), nBufferSize);
+				//	cvWriteFrame(m_pwriter, m_pcolorImage);
+				//}
+				
 				if (m_pColorRGBX)
 				{
 					delete[] m_pColorRGBX;
@@ -250,6 +249,10 @@ void NuiColorStream::ProcessColor()
 			{
 				hr = E_FAIL;
 			}
+		}
+		if (m_pStreamViewer)
+		{
+			m_pStreamViewer->SetImage(&m_imageBuffer);
 		}
 		SafeRelease(pFrameDescription);
 	}

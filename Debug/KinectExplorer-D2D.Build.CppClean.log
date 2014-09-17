@@ -2,9 +2,11 @@ c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\vc120.pdb
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\vc120.idb
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\customdrawlistcontrol.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\imagerenderer.obj
+c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\kinectsettings.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\kinectwindow.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\kinectwindowmanager.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\mainwindow.obj
+c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\nuiaudiostream.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\nuiaudioviewer.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\nuicolorstream.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\nuidepthstream.obj
@@ -13,8 +15,6 @@ c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\nuistream.o
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\nuistreamviewer.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\nuiviewer.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\wavewriter.obj
-c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\nuiaudiostream.obj
-c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\kinectsettings.obj
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\kinectexplorer-d2d.ilk
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\kinectexplorer-d2d.exe
 c:\users\tg857_000\documents\github\kinectv2explorer_guangtang\debug\kinectexplorer-d2d.pdb

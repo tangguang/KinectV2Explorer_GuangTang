@@ -33,6 +33,8 @@
 #pragma comment (lib, "kinect20.lib")
 #pragma comment(lib,"strmiids.lib")
 #pragma comment(lib, "comctl32.lib")
+#pragma comment(lib, "Dmoguids.lib")
+#pragma comment(lib, "Msdmo.lib")
 
 // The user defined message
 #define WM_UPDATEMAINWINDOW             WM_USER + 1
