@@ -15,7 +15,7 @@
 
 #define FramesPerSecond 25          //Kinect RGB 30 frames per second
 static const UINT FileSizeInMS = 60000;  //60 seconds each file
-static const UINT FramesPerFile = FileSizeInMS*FramesPerSecond/1000;   //////
+static const UINT FramesPerFile = FileSizeInMS * FramesPerSecond / 1000;   //////
 
 /// <summary>
 /// Constructor
@@ -191,11 +191,28 @@ void NuiColorStream::ProcessColor()
 		RGBQUAD *pBuffer = NULL;
 		RGBQUAD* m_pColorRGBX;
 
-		/*if (m_paused)
+		if (m_Recording)
 		{
-			goto ReleaseFrame;
-		}*/
-
+			// Initializating a video writer
+			if ((m_TimerCount++) % FramesPerFile == 0)
+			{
+				WCHAR szFilename[MAX_PATH] = { 0 };
+				if (SUCCEEDED(GetFileName(szFilename, _countof(szFilename), m_instanceName, RGBSensor)))
+				{
+					char char_szFilename[MAX_PATH] = { 0 };
+					size_t convertedChars;
+					wcstombs_s(&convertedChars, char_szFilename, sizeof(char_szFilename), szFilename, sizeof(char_szFilename));
+					m_pwriter = cvCreateVideoWriter(  char_szFilename,
+						                              CV_FOURCC('M', 'J', 'P', 'G'),
+													  FramesPerSecond,
+						                              m_ImageRes,
+													  1
+						                           );
+				}
+				m_TimerCount %= FramesPerFile;
+			}
+		}
+		// Get the color frame
 		hr = pColorFrame->get_RelativeTime(&nTime);
 
 		if (SUCCEEDED(hr))
@@ -232,13 +249,15 @@ void NuiColorStream::ProcessColor()
 				nBufferSize = nWidth * nHeight * sizeof(RGBQUAD);
 				hr = pColorFrame->CopyConvertedFrameDataToArray(nBufferSize, reinterpret_cast<BYTE*>(pBuffer), ColorImageFormat_Bgra);
 				m_imageBuffer.CopyRGB(reinterpret_cast<BYTE*>(pBuffer), nWidth * nHeight * sizeof(RGBQUAD));
-				// Recording
-				//if (m_Recording)
-				//{
-				//	cvSetData(m_pcolorImage, reinterpret_cast<BYTE*>(pBuffer), nBufferSize);
-				//	cvWriteFrame(m_pwriter, m_pcolorImage);
-				//}
 				
+				// Recording
+				if (m_Recording)
+				{
+					cvSetData(m_pcolorImage, m_imageBuffer.GetBuffer(), nWidth * sizeof(RGBQUAD));
+					cvWriteFrame(m_pwriter, m_pcolorImage);
+				}
+				
+				// Release RGBX buffer
 				if (m_pColorRGBX)
 				{
 					delete[] m_pColorRGBX;
@@ -254,12 +273,18 @@ void NuiColorStream::ProcessColor()
 		{
 			m_pStreamViewer->SetImage(&m_imageBuffer);
 		}
+
+		// Recording
+		if (m_Recording)
+		{
+			if (m_TimerCount % FramesPerFile == 0)
+			{
+				cvReleaseVideoWriter(&m_pwriter);
+			}
+		}
 		SafeRelease(pFrameDescription);
 	}
 	SafeRelease(pColorFrame);
-
-	//ReleaseFrame:
-		//m_pColorFrameReader->put_IsPaused(m_paused);
 }
 
 void NuiColorStream::SetRecordingStatus (bool RecStatus) 

@@ -123,7 +123,7 @@ HRESULT NuiAudioStream::StartStream()
     //   OPTIBEAM_ARRAY_AND_AEC = 4
     //   SINGLE_CHANNEL_NSAGC = 5
 
-    PROPVARIANT pvSysMode;
+    /*PROPVARIANT pvSysMode;
 
     // Initialize the variable
     PropVariantInit(&pvSysMode);
@@ -161,7 +161,7 @@ HRESULT NuiAudioStream::StartStream()
     hr = m_pDMO->SetOutputType(0, &mt, 0); 
 
     // Release variable
-    MoFreeMediaType(&mt);
+    MoFreeMediaType(&mt);*/
 
     return hr;
 }
@@ -204,55 +204,35 @@ void NuiAudioStream::ProcessStream()
 	}
 	else if (cbRead > 0)
 	{
-		// Set buffer
-		ULONG cbProduced = 0;        //////
-		BYTE *pProduced = NULL;       //////
-		DWORD dwStatus;
-		DMO_OUTPUT_DATA_BUFFER outputBuffer = { 0 };
-		outputBuffer.pBuffer = &m_captureBuffer;
-
-		do
+	    // Process audio data
+		if (S_OK == hr)
 		{
-			m_captureBuffer.Init(0);
-			outputBuffer.dwStatus = 0;
+			// Get the reading
+			DWORD nSampleCount = cbRead / sizeof(float);
+			float fBeamAngle = 0.f;
+			float fBeamAngleConfidence = 0.f;
+			float fsourceAngle = 0.0f;
 
-			// Process audio data
-			hr = m_pDMO->ProcessOutput(0, 1, &outputBuffer, &dwStatus);
-			if (S_OK == hr)
+			// Get most recent audio beam angle and confidence
+			if (SUCCEEDED(m_pAudioBeam->get_BeamAngle(&fBeamAngle)) &&
+				SUCCEEDED(m_pAudioBeam->get_BeamAngleConfidence(&fBeamAngleConfidence)))
 			{
-				m_captureBuffer.GetBufferAndLength(&pProduced, &cbProduced);
-				// Get the reading
-				DWORD nSampleCount = cbRead / sizeof(float);
-				float fBeamAngle = 0.f;
-				float fBeamAngleConfidence = 0.f;
-				float fsourceAngle = 0.0f;
-				// Get most recent audio beam angle and confidence
-				if (SUCCEEDED(m_pAudioBeam->get_BeamAngle(&fBeamAngle)) &&
-					SUCCEEDED(m_pAudioBeam->get_BeamAngleConfidence(&fBeamAngleConfidence)))
+				if (m_pAudioViewer)
 				{
-					if (m_pAudioViewer)
-					{
-						// Set reading to viewer
-						m_pAudioViewer->SetAudioReadings(fBeamAngle, fsourceAngle, fBeamAngleConfidence);
-					}
-				}
-
-				// Write buffer into wav files
-				if (m_Recording)
-				{
-					if (m_pWaveWriter)
-					{
-						m_pWaveWriter->WriteBytes(pProduced, cbProduced);
-					}
+					// Set reading to viewer
+					m_pAudioViewer->SetAudioReadings(fBeamAngle, fsourceAngle, fBeamAngleConfidence);
 				}
 			}
 
-			if (S_FALSE == hr)
+			// Write buffer into wav files
+			if (m_Recording)
 			{
-				cbProduced = 0;
+				if (m_pWaveWriter)
+				{
+					m_pWaveWriter->WriteBytes(reinterpret_cast<unsigned char*>(audioBuffer), sizeof(audioBuffer));
+				}
 			}
-			
-		} while (outputBuffer.dwStatus & DMO_OUTPUT_DATA_BUFFERF_INCOMPLETE);
+		}
 
 		if (m_Recording)
 		{
@@ -262,7 +242,7 @@ void NuiAudioStream::ProcessStream()
 				delete m_pWaveWriter;
 				m_pWaveWriter = NULL;
 			}
-	    }
+		}
 	}
 
 	/*HRESULT hr;
@@ -324,7 +304,7 @@ void NuiAudioStream::ProcessStream()
 
 void NuiAudioStream::ProcessAudio(IAudioBeamSubFrame* pAudioBeamSubFrame)
 {
-	HRESULT hr;
+	/*HRESULT hr;
 	float* pAudioBuffer = NULL;
 	UINT cbRead = 0;
 
@@ -347,53 +327,32 @@ void NuiAudioStream::ProcessAudio(IAudioBeamSubFrame* pAudioBeamSubFrame)
 	// if (m_pAudioBeamFrameReader && m_pDMO)
 	if (SUCCEEDED(hr) && cbRead > 0)
 	{
-		// Set buffer
-		ULONG cbProduced = 0;        //////
-		BYTE *pProduced = NULL;       //////
-		//DWORD dwStatus;
-		//DMO_OUTPUT_DATA_BUFFER outputBuffer = { 0 };
-		//outputBuffer.pBuffer = &m_captureBuffer;
-
-		//do
-		//{
-			//m_captureBuffer.Init(0);
-			//outputBuffer.dwStatus = 0;
-
-			// Process audio data
-			//hr = m_pDMO->ProcessOutput(0, 1, &outputBuffer, &dwStatus);
-			if (S_OK == hr)
+		//// Get the reading
+		float fBeamAngle = 0.f;
+		float fBeamAngleConfidence = 0.0f;
+		float sourceAngle = 0.0f;
+		if (SUCCEEDED(pAudioBeamSubFrame->get_BeamAngle(&fBeamAngle)) &&
+			SUCCEEDED(pAudioBeamSubFrame->get_BeamAngleConfidence(&fBeamAngleConfidence)))
+		{
+			if (m_pAudioViewer)
 			{
-				//m_captureBuffer.GetBufferAndLength(&pProduced, &cbProduced);
-				//// Get the reading
-				// double beamAngle, sourceAngle, sourceConfidence;
-				float fBeamAngle = 0.f;
-				float fBeamAngleConfidence = 0.0f;
-				float sourceAngle = 0.0f;
-				if (SUCCEEDED(pAudioBeamSubFrame->get_BeamAngle(&fBeamAngle)) &&
-					SUCCEEDED(pAudioBeamSubFrame->get_BeamAngleConfidence(&fBeamAngleConfidence)))
-				{
-					if (m_pAudioViewer)
-					{
-						// Set reading sto viewer
-						m_pAudioViewer->SetAudioReadings(fBeamAngle, sourceAngle, fBeamAngleConfidence);
-					}
-				}
-				///////write buffer into wav files
-				if (m_Recording)
-				{
-					if (m_pWaveWriter)
-					{
-						m_pWaveWriter->WriteBytes(pProduced, cbProduced);
-					}
-				}
+				// Set reading sto viewer
+				m_pAudioViewer->SetAudioReadings(fBeamAngle, sourceAngle, fBeamAngleConfidence);
 			}
-
-			if (S_FALSE == hr)
+		}
+		///////write buffer into wav files
+		if (m_Recording)
+		{
+			if (m_pWaveWriter)
 			{
-				cbProduced = 0;
+				m_pWaveWriter->WriteBytes((BYTE*)pAudioBuffer, cbProduced);
 			}
+		}
 
-		//} while (outputBuffer.dwStatus & DMO_OUTPUT_DATA_BUFFERF_INCOMPLETE);//Check if there is still remaining data
+		//if (S_FALSE == hr)
+		///{
+		//	cbProduced = 0;
+		//}
 
 		if (m_Recording)
 		{
@@ -404,13 +363,13 @@ void NuiAudioStream::ProcessAudio(IAudioBeamSubFrame* pAudioBeamSubFrame)
 				m_pWaveWriter = NULL;
 			}
 		}
-	}
+	}*/
 }
 
 /////////////////////////////
 HRESULT GetFileName(wchar_t *FileName, UINT FileNameSize, WCHAR* instanceName, SensorType senserID)
 {
-	wchar_t DevIdOut[20];
+	wchar_t DevIdOut[5];
 	HRESULT hr;
 	GetDevIdforFile(instanceName, DevIdOut);
 
@@ -424,16 +383,16 @@ HRESULT GetFileName(wchar_t *FileName, UINT FileNameSize, WCHAR* instanceName, S
 	switch (senserID)
 	{
 	case AudioSensor:
-		hr=StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectAudio\\Audio-%s-%s-%s.wav", knownPath, DevIdOut, dateString, timeString);
+		hr = StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectAudio\\Audio-%s-%s-%s.wav", knownPath, DevIdOut, dateString, timeString);
 		break;
 	case RGBSensor:
-		hr=StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectRGB\\RGB-%s-%s-%s.avi", knownPath, DevIdOut, dateString, timeString);
+		hr = StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectRGB\\RGB-%s-%s-%s.mpg", knownPath, DevIdOut, dateString, timeString);
 		break;
 	case DepthSensor:
-		hr=StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectDepth\\Depth-%s-%s-%s.avi", knownPath, DevIdOut, dateString, timeString);
+		hr = StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectDepth\\Depth-%s-%s-%s.avi", knownPath, DevIdOut, dateString, timeString);
 		break;
 	case SpeechRecog:
-		hr=StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectSpeechRecog\\SpeechRecog-%s-%s-%s.txt", knownPath, DevIdOut, dateString, timeString);
+		hr = StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectSpeechRecog\\SpeechRecog-%s-%s-%s.txt", knownPath, DevIdOut, dateString, timeString);
 		break;
 	default:
 		break;
@@ -443,15 +402,15 @@ HRESULT GetFileName(wchar_t *FileName, UINT FileNameSize, WCHAR* instanceName, S
 
 bool GetDevIdforFile(wchar_t *USBDeviceInstancePath, wchar_t *pDevIdOut)
 {
-	int k=0, n=k;
+	int k = 0, n = k;
 	while (USBDeviceInstancePath[k]) k++;
-	while (--k>0)
+	while (--k > 0)
 	{
-		pDevIdOut[n++]=USBDeviceInstancePath[k];
-		if (n==10) break;
+		pDevIdOut[n++] = USBDeviceInstancePath[k];
+		if (n == 4) break;
 	};
-	if (k==0) return false;
-	   pDevIdOut[n]=L'\0';
+	if (k == 0) return false;
+	pDevIdOut[n] = L'\0';
 	return true;
 }
 
