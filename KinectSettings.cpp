@@ -318,7 +318,8 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 			}
 			else if (m_pColorStream && m_pColorStream->GetRecordingStauts())
 			{
-				cvReleaseVideoWriter(&m_pColorStream->m_pwriter);
+				//cvReleaseVideoWriter(&m_pColorStream->m_pwriter);
+				m_pColorStream->m_pwriter->release();
 				m_pColorStream->m_pwriter = nullptr;
 				m_pColorStream->SetRecordingStatus(false);
 			}
@@ -345,7 +346,8 @@ void KinectSettings::ProcessMenuCommand(WORD commandId, WORD param, bool previou
 			}
 			else if (m_pColorStream && m_pColorStream->GetRecordingStauts())
 			{
-				cvReleaseVideoWriter(&m_pColorStream->m_pwriter);
+				//cvReleaseVideoWriter(&m_pColorStream->m_pwriter);
+				m_pColorStream->m_pwriter->release();
 				m_pColorStream->m_pwriter=nullptr;
 				m_pColorStream->SetRecordingStatus(false);
 			}

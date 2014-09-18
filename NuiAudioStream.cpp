@@ -230,6 +230,8 @@ void NuiAudioStream::ProcessStream()
 				if (m_pWaveWriter)
 				{
 					m_pWaveWriter->WriteBytes(reinterpret_cast<unsigned char*>(audioBuffer), sizeof(audioBuffer));
+
+
 				}
 			}
 		}
@@ -386,7 +388,7 @@ HRESULT GetFileName(wchar_t *FileName, UINT FileNameSize, WCHAR* instanceName, S
 		hr = StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectAudio\\Audio-%s-%s-%s.wav", knownPath, DevIdOut, dateString, timeString);
 		break;
 	case RGBSensor:
-		hr = StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectRGB\\RGB-%s-%s-%s.mpg", knownPath, DevIdOut, dateString, timeString);
+		hr = StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectRGB\\RGB-%s-%s-%s.avi", knownPath, DevIdOut, dateString, timeString);
 		break;
 	case DepthSensor:
 		hr = StringCchPrintfW(FileName, FileNameSize, L"%s\\KinectDepth\\Depth-%s-%s-%s.avi", knownPath, DevIdOut, dateString, timeString);

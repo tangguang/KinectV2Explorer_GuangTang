@@ -12,7 +12,7 @@
 /// Constructor
 /// <summary>
 /// <param name="pNuiSensor">The pointer to NUI sensor device instance</param>
-NuiSkeletonStream::NuiSkeletonStream(INuiSensor* pNuiSensor)
+NuiSkeletonStream::NuiSkeletonStream(IKinectSensor* pNuiSensor)
     : NuiStream(pNuiSensor)
     , m_near(false)
     , m_seated(false)

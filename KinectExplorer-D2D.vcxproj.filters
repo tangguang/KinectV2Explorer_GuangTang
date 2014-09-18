@@ -16,6 +16,7 @@
     <ClCompile Include="NuiAudioViewer.cpp" />
     <ClCompile Include="WaveWriter.cpp" />
     <ClCompile Include="KinectSettings.cpp" />
+    <ClCompile Include="NuiSkeletonStream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility.h" />
@@ -36,6 +37,7 @@
     <ClInclude Include="NuiAudioViewer.h" />
     <ClInclude Include="WaveWriter.h" />
     <ClInclude Include="KinectSettings.h" />
+    <ClInclude Include="NuiSkeletonStream.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />

@@ -37,7 +37,7 @@ public:
     /// Constructor
     /// <summary>
     /// <param name="pNuiSensor">The pointer to NUI sensor device instance</param>
-    NuiSkeletonStream(INuiSensor* pNuiSensor);
+	NuiSkeletonStream(IKinectSensor* pNuiSensor);
 
     /// <summary>
     /// Destructor

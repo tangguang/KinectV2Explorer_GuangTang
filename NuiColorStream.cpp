@@ -13,7 +13,7 @@
 #include "opencv\cv.h"
 #include "opencv\highgui.h"
 
-#define FramesPerSecond 25          //Kinect RGB 30 frames per second
+#define FramesPerSecond 10          //Kinect RGB 30 frames per second
 static const UINT FileSizeInMS = 60000;  //60 seconds each file
 static const UINT FramesPerFile = FileSizeInMS * FramesPerSecond / 1000;   //////
 
@@ -40,7 +40,7 @@ NuiColorStream::NuiColorStream(IKinectSensor* pNuiSensor, PCWSTR instanceName)
 /// </summary>
 NuiColorStream::~NuiColorStream()
 {
-	if (m_pwriter) cvReleaseVideoWriter(&m_pwriter);
+	if (m_pwriter) m_pwriter->release();
 	SafeRelease(m_pColorFrameReader);
 	SafeRelease(m_pNuiSensor);
     /*if (m_pFTcolorBuffer) {
@@ -105,8 +105,8 @@ HRESULT NuiColorStream::OpenStream()
     m_imageBuffer.SetImageSize(m_imageResolution);  // Set source image resolution to image buffer
 
 	// Video writer
-	m_ImageRes = cvSize(static_cast<int>(m_imageBuffer.GetWidth()),static_cast<int>(m_imageBuffer.GetHeight()));
-	m_pcolorImage = cvCreateImage(m_ImageRes, 8, 4);    //openCV only supports <=8 bits
+	//m_ImageRes = cvSize(static_cast<int>(m_imageBuffer.GetWidth()),static_cast<int>(m_imageBuffer.GetHeight()));
+	// m_pcolorImage = cvCreateImage(m_ImageRes, 8, 4);    //openCV only supports <=8 bits
     return S_OK;
 }
 
@@ -202,12 +202,18 @@ void NuiColorStream::ProcessColor()
 					char char_szFilename[MAX_PATH] = { 0 };
 					size_t convertedChars;
 					wcstombs_s(&convertedChars, char_szFilename, sizeof(char_szFilename), szFilename, sizeof(char_szFilename));
-					m_pwriter = cvCreateVideoWriter(  char_szFilename,
-						                              CV_FOURCC('M', 'J', 'P', 'G'),
+					
+					m_pwriter = new cv::VideoWriter( char_szFilename,
+						                             CV_FOURCC('X', 'V', 'I', 'D'),
+												     FramesPerSecond,
+												     m_ImageRes,
+												     true);
+
+					/*m_pwriter = cvCreateVideoWriter(  char_szFilename,
+						                              CV_FOURCC('X', 'V', 'I', 'D'),
 													  FramesPerSecond,
-						                              m_ImageRes,
-													  1
-						                           );
+						                              m_ImageRes
+						                           );*/
 				}
 				m_TimerCount %= FramesPerFile;
 			}
@@ -253,8 +259,16 @@ void NuiColorStream::ProcessColor()
 				// Recording
 				if (m_Recording)
 				{
-					cvSetData(m_pcolorImage, m_imageBuffer.GetBuffer(), nWidth * sizeof(RGBQUAD));
-					cvWriteFrame(m_pwriter, m_pcolorImage);
+					//cvSetData(m_pcolorImage, m_imageBuffer.GetBuffer(), nWidth * 4);
+					//cvShowImage("1", m_pcolorImage);
+					// cvWriteFrame(m_pwriter, m_pcolorImage);
+					// int cvWriteFrame(CvVideoWriter* writer, const IplImage* image)
+					m_pcolorImage = new cv::Mat(nHeight, nWidth, CV_8UC4, m_imageBuffer.GetBuffer());
+					m_pwriter->write(*m_pcolorImage);
+					if (m_pcolorImage)
+					{
+						delete m_pcolorImage;
+					}
 				}
 				
 				// Release RGBX buffer
@@ -279,7 +293,8 @@ void NuiColorStream::ProcessColor()
 		{
 			if (m_TimerCount % FramesPerFile == 0)
 			{
-				cvReleaseVideoWriter(&m_pwriter);
+				m_pwriter->release();
+				//cvReleaseVideoWriter(&m_pwriter);
 			}
 		}
 		SafeRelease(pFrameDescription);

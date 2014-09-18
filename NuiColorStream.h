@@ -71,7 +71,7 @@ public:
 	bool GetRecordingStauts() const;
 	WAITABLE_HANDLE GetArrivedEvent();
 
-	CvVideoWriter       *m_pwriter;
+	cv::VideoWriter     *m_pwriter;
 	WCHAR*               m_instanceName;
 
 	/// Face tracking initialization
@@ -90,7 +90,8 @@ private:
     NUI_IMAGE_RESOLUTION m_imageResolution;
 	IColorFrameReader*   m_pColorFrameReader;
     NuiImageBuffer       m_imageBuffer;
-	IplImage            *m_pcolorImage;
+	//IplImage            *m_pcolorImage;
+	cv::Mat             *m_pcolorImage;
 	UINT                 m_TimerCount;
 	CvSize               m_ImageRes;
 	bool                 m_Recording, m_FTRecording;
